@@ -1,9 +1,9 @@
-from sqlalchemy import create_all_engines, create_engine
+from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# This matches the credentials your lead provided
-SQLALCHEMY_DATABASE_URL = "postgresql://admin:password123@localhost:5432/migrantdb"
+# Changed 'localhost' to '127.0.0.1'
+SQLALCHEMY_DATABASE_URL = "postgresql://admin:password123@127.0.0.1:5432/migrantdb"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
