@@ -1,13 +1,22 @@
-from fastapi import FastAPI
-from app.database import engine, Base
-from app.models.user import User
-from app.models.mentor import Mentor
+from fastapi import FastAPI,Depends
+from .models import models
+from .database import engine,get_db
+from sqlalchemy.orm import session
 
-# This triggers the creation of the tables
-Base.metadata.create_all(bind=engine)
+
+
+models.Base.metadata.create_all(engine)
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"message": "MIGRANT4MIGRANT API is running"}
+#testing docker ignor it
+@app.get('/docker')
+def docker():
+    return {'message':'docker run'}
+
+
+#testing database connection ignor
+@app.get('/db')
+def get_db(db:session=Depends(get_db)):
+    test = db.query(models.Taste).all()
+    return test
