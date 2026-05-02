@@ -4,6 +4,9 @@ from app.database import get_db
 from app.schemas import schemaUser
 from app.services import Userservice
 from typing import List
+from app.services.Userservice import UserService
+
+Userservice = Userservice()
 
 router = APIRouter(
     tags=['register'],

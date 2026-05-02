@@ -6,7 +6,9 @@ from app.schemas import schemaUser
 from app.models import ModoleUser
 
 # all services should be here for user
-def registerUser(request:schemaUser.User,db:Session):
+class UserService:
+  
+   def registerUser(request:schemaUser.User,db:Session):
     new_user = ModoleUser.User(
         name = request.name,
         user_name = request.user_name,
