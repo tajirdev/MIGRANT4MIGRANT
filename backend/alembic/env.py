@@ -13,7 +13,7 @@ sys.path.append(os.path.join(os.getcwd()))
 
 # 3. NEW: Import your Base and Models exactly as requested
 from app.database import Base
-from app.models.user import User  # Must import specific models for autogenerate
+from app.models.ModelUser import User  # Must import specific models for autogenerate
 from app.models.mentor import Mentor
 
 # this is the Alembic Config object
