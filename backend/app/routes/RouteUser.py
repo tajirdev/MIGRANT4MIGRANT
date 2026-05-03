@@ -2,11 +2,10 @@ from fastapi import APIRouter,Depends
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.schemas import schemaUser
-from app.services import Userservice
+from app.services.Userservice import UserReg
 from typing import List
-from app.services.Userservice import UserService
 
-Userservice = Userservice()
+Userservice = UserReg()
 
 router = APIRouter(
     tags=['register'],

@@ -6,9 +6,9 @@ from app.schemas import schemaUser
 from app.models import ModoleUser
 
 # all services should be here for user
-class UserService:
+class UserReg:
   
-   def registerUser(request:schemaUser.User,db:Session):
+   def registerUser(self,request:schemaUser.User,db:Session):
     new_user = ModoleUser.User(
         name = request.name,
         user_name = request.user_name,
@@ -27,9 +27,8 @@ class UserService:
     
     return new_user
 
-
-def getuser_all(db:Session):
-    user = db.query(ModoleUser.User).all()
-    if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
-    return user
+   def getuser_all(self,db:Session):
+        user = db.query(ModoleUser.User).all()
+        if not user:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+        return user
