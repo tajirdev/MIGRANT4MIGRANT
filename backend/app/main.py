@@ -1,12 +1,12 @@
 from fastapi import FastAPI
-from .models import ModoleUser
+from .models import ModelUser
 from .database import engine
 from .routes import RouteUser
 
 
 # table connection should be here
 
-ModoleUser.Base.metadata.create_all(engine)
+ModelUser.Base.metadata.create_all(engine)
 
 
 
