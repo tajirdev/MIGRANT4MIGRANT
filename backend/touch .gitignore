@@ -1,3 +1,5 @@
+# I have added ignore routes
+
 # Python
 venv/
 __pycache__/
@@ -7,10 +9,6 @@ __pycache__/
 # FastAPI
 *.db
 
-# React
-node_modules/
-dist/
-build/
 
 # OS
 .DS_Store
@@ -19,3 +17,7 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+.app/
+
+
