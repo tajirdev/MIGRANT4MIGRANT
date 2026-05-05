@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from .models import ModelUser
-from .database import engine,Base
+from .core.database import engine,Base
 from .routes import RouteUser,authenticationRoute
 
 

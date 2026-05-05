@@ -1,6 +1,6 @@
 from fastapi import Depends,HTTPException,status
 from sqlalchemy.orm import Session
-from app.database import get_db
+from app.core.database import get_db
 from app.models import ModelUser
 from app.core.security import Hash
 from app.core import jwt_token

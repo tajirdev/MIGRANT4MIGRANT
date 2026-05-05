@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi.security import OAuth2PasswordBearer
 from app.core import jwt_token
 from sqlalchemy.orm import Session
-from app.database import get_db
+from app.core.database import get_db
 
 
 
