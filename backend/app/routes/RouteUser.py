@@ -4,6 +4,7 @@ from app.database import get_db
 from app.schemas import schemaUser
 from app.services.Userservice import UserReg
 from typing import List
+from app.core import security
 
 Userservice = UserReg()
 
