@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.schemas import schemaUser
 from app.models import ModelUser
+from app.core import security
 
 # all services should be here for user
 class UserReg:
@@ -13,7 +14,7 @@ class UserReg:
         name = request.name,
         user_name = request.user_name,
         email = request.email,
-        password_hash = request.password_hash,
+        password_hash = security.Hash.hash(request.password_hash),
         language = request.language,
         country = request.country
     )

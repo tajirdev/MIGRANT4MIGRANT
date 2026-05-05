@@ -4,7 +4,7 @@ from app.database import get_db
 from app.schemas import schemaUser
 from app.services.Userservice import UserReg
 from typing import List
-
+from app.core.auth import get_current_user
 Userservice = UserReg()
 
 router = APIRouter(
@@ -22,5 +22,5 @@ def register(request:schemaUser.User,db:Session=Depends(get_db)):
 
 
 @router.get('/user',response_model=List[schemaUser.showUser])
-def getuser(db:Session=Depends(get_db)):
+def getuser(db:Session=Depends(get_db),current_user:schemaUser.User=Depends(get_current_user)):
     return Userservice.getuser_all(db)
