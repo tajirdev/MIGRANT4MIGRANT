@@ -1,5 +1,5 @@
 from app.core.database import Base
-from .user import User
+from .ModelUser import User
 from .mentor import Mentor
 from .organization import Organization
 from .resource import Resource

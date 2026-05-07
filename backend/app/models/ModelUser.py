@@ -8,10 +8,10 @@ class User(Base):
     __tablename__ = "Users"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    user_name = Column(String, unique=True)
     email = Column(String, unique=True)
+    user_name = Column(String, unique=True)
     password_hash = Column(String)
+    name = Column(String)
     role = Column(String, default="user")  # admin, migrant, volunteer (mentor)
     language = Column(String)
     country = Column(String)

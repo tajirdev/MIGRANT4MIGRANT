@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime, timedelta, timezone
 import jwt
-from app.models import user
+from backend.app.models import ModelUser
 from app.schemas import jwtToken
 from jwt.exceptions import InvalidTokenError
 from sqlalchemy.orm import Session

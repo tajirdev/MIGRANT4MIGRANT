@@ -3,14 +3,14 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.schemas import schemaUser
-from app.models import user
+from backend.app.models import ModelUser
 from app.core import security
 
 # all services should be here for user
 class UserReg:
   
    def registerUser(self,request:schemaUser.User,db:Session):
-    new_user = user.User(
+    new_user = ModelUser.User(
         name = request.name,
         user_name = request.user_name,
         email = request.email,
