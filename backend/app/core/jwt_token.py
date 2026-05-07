@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime, timedelta, timezone
 import jwt
-from app.models import ModelUser
+from app.models import user
 from app.schemas import jwtToken
 from jwt.exceptions import InvalidTokenError
 from sqlalchemy.orm import Session
@@ -40,7 +40,7 @@ def verify_token(token: str,credentials_exception,db:Session):
         token_data = jwtToken.TokenData(email=email)
    except InvalidTokenError:
         raise credentials_exception
-   user = db.query(ModelUser.User).filter(ModelUser.User.email == email).first()
+   user = db.query(user.User).filter(user.User.email == email).first()
 
    if user is None:
         raise credentials_exception

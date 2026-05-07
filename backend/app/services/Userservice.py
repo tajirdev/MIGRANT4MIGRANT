@@ -3,14 +3,14 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.schemas import schemaUser
-from app.models import ModelUser
+from app.models import user
 from app.core import security
 
 # all services should be here for user
 class UserReg:
   
    def registerUser(self,request:schemaUser.User,db:Session):
-    new_user = ModelUser.User(
+    new_user = user.User(
         name = request.name,
         user_name = request.user_name,
         email = request.email,
@@ -29,7 +29,7 @@ class UserReg:
     return new_user
 
    def getuser_all(self,db:Session):
-        user = db.query(ModelUser.User).all()
+        user = db.query(user.User).all()
         if not user:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
         return user
