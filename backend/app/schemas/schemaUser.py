@@ -10,6 +10,8 @@ class migrant(BaseModel):
     role : str
     language :str
     country : str
+    current_country: str
+    native_country: str
 
 class showUser(BaseModel):
     user_name:str

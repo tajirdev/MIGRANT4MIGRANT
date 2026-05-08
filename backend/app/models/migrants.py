@@ -4,7 +4,7 @@ from app.core.database import Base
 
 
 # this is user table to be used
-class migrant(Base):
+class Migrant(Base):
     __tablename__ = "migrants"
 
     id = Column(Integer, primary_key=True)
