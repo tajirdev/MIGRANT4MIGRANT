@@ -16,11 +16,11 @@ router = APIRouter(
 
 # routes for reg
 @router.post('/register',response_model=schemaUser.showUser)
-def register(request:schemaUser.User,db:Session=Depends(get_db)):
+def register(request:schemaUser.migrant,db:Session=Depends(get_db)):
     return Userservice.registerUser(request,db)
 
 
 
 @router.get('/user',response_model=List[schemaUser.showUser])
-def getuser(db:Session=Depends(get_db),current_user:schemaUser.User=Depends(get_current_user)):
+def getuser(db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(get_current_user)):
     return Userservice.getuser_all(db)
