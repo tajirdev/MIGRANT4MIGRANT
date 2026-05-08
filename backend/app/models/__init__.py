@@ -7,4 +7,4 @@ from .post import Post
 from .emergency_contact import EmergencyContact
 
 # This allows Alembic to see everything through Base.metadata
-__all__ = ["Base", "Migrants", "Mentor", "Organization", "Resource", "Post", "EmergencyContact"]
+__all__ = ["Base", "Migrant", "Mentor", "Organization", "Resource", "Post", "EmergencyContact"]
