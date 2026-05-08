@@ -17,8 +17,10 @@ class showUser(BaseModel):
     user_name:str
     email: str
     role:str  
+    current_country: str
+    language: str 
      
     class Config:
      from_attributes = True
- 
-    
+
+  

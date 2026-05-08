@@ -5,6 +5,11 @@ from app.schemas import schemaUser
 from app.services.Userservice import UserReg
 from typing import List
 from app.core.auth import get_current_user
+from app.models import migrants
+from app.core.authorization import RoleChecker
+
+
+
 Userservice = UserReg()
 
 router = APIRouter(
@@ -13,14 +18,29 @@ router = APIRouter(
     
 )
 
+mentor_and_admin = RoleChecker(["mentor", "admin"])
 
 # routes for reg
 @router.post('/register',response_model=schemaUser.showUser)
 def register(request:schemaUser.migrant,db:Session=Depends(get_db)):
     return Userservice.registerUser(request,db)
 
-
+#this route is for testing only
 
 @router.get('/user',response_model=List[schemaUser.showUser])
-def getuser(db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(get_current_user)):
+def getuser(db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(mentor_and_admin)):
     return Userservice.getuser_all(db)
+  
+
+
+
+@router.get('/me',response_model=schemaUser.showUser)
+def get_me(db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(get_current_user)):
+    return Userservice.return_current_user(db,current_user_id=current_user.id)
+
+
+
+# admin route
+@router.post("/admin",response_model=schemaUser.showUser)
+def crate_admin(request:schemaUser.migrant,db:Session=Depends(get_db)):
+    return Userservice.crate_new_admin(request,db)
