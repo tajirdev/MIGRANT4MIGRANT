@@ -1,7 +1,7 @@
 from fastapi import Depends,HTTPException,status
 from sqlalchemy.orm import Session
 from app.core.database import get_db
-from backend.app.models import ModelUser
+from app.models import migrant
 from app.core.security import Hash
 from app.core import jwt_token
 from fastapi.security import  OAuth2PasswordRequestForm
@@ -11,7 +11,7 @@ from typing import Annotated
 
 def login(request: Annotated[OAuth2PasswordRequestForm, Depends()],db:Session= Depends(get_db)):
 
-    user = db.query(user.User).filter(user.User. email == request.username).first()
+    user = db.query(user.migrant).filter(user.migrant. email == request.username).first()
 
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='false credetional')

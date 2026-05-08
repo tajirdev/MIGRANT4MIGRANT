@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 # user data varidation
-class User(BaseModel):
+class migrant(BaseModel):
     name : str
     user_name :str
     email :str
