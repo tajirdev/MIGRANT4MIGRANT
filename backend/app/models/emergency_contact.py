@@ -9,3 +9,4 @@ class EmergencyContact(Base):
     service_name = Column(String)
     phone = Column(String)
     available_24h = Column(Boolean, default=True)
+    date=Column(String)
