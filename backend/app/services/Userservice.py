@@ -1,11 +1,9 @@
-from fastapi import Depends,HTTPException,status
+from fastapi import HTTPException,status
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
-from app.core.database import get_db
 from app.schemas import schemaUser
 from app.models import migrants
 from app.core import security
-from app.core.auth import get_current_user
 
 # all services should be here for user
 class UserReg:
@@ -46,23 +44,7 @@ class UserReg:
    
 
 
-   # admin logic
-   def crate_new_admin(self,request:schemaUser.migrant,db:Session):
-    new_admin = migrants.Migrant(
-        name = request.name,
-        user_name = request.user_name,
-        email = request.email,
-        password_hash = security.Hash.hash(request.password_hash),
-        language = request.language,
-        current_country = request.current_country,
-        native_country = request.native_country,
-        role = 'admin'
-        )
-    db.add(new_admin)
-    db.commit()
-    db.refresh(new_admin)
-    return new_admin
-  
+
    
    
 

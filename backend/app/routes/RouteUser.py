@@ -40,7 +40,3 @@ def get_me(db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(ge
 
 
 
-# admin route
-@router.post("/admin",response_model=schemaUser.showUser)
-def crate_admin(request:schemaUser.migrant,db:Session=Depends(get_db)):
-    return Userservice.crate_new_admin(request,db)
