@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Registration - MIGRANT4MIGRANT</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <main class="master-container">
+        <div class="branding-side">
+            <header>
+                <h1>MIGRANT 4 MIGRANT</h1>
+                <p class="motto">"Every migrant deserves a community — MIGRANT4MIGRANT makes it findable."</p>
+            </header>
+
+            <section class="welcome-text">
+                <h2>Register as a Mentor</h2>
+                <p>Share your journey and help guide the next generation of migrants.</p>
+            </section>
+        </div>
+
+        <div class="form-side">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Share Your Journey.</h2>
+                    <p>Your experience is a roadmap for someone else. 
+                        <br>Join us as a mentor to guide new arrivals and help build a stronger, more connected community.</p>
+                </div>
+
+                <form id="mentorRegForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="user_name">Username</label>
+                    <input type="text" id="user_name" name="user_name" required placeholder="Choose a unique username">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="name@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Create a strong password">
+                </div>
+
+                <div class="form-group">
+                    <label for="native_country">Native Country</label>
+                    <input type="text" id="native_country" name="native_country" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="current_country">Current Country</label>
+                    <input type="text" id="current_country" name="current_country" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="expertise">Area of Expertise</label>
+                    <input type="text" id="expertise" name="expertise" required placeholder="e.g., Legal Aid, Job Hunting, Housing">
+                </div>
+
+                <div class="form-group">
+                    <label for="languages">Languages You Speak</label>
+                    <input type="text" id="languages" name="languages" required placeholder="e.g., English, Swahili, Spanish">
+                </div>
+
+                <div class="form-group">
+                    <label for="availability">General Availability</label>
+                    <input type="text" id="availability" name="availability" placeholder="e.g., Weekends, Evenings">
+                </div>
+
+                    <button type="submit" class="btn-primary">Register as Mentor</button>
+                </form>
+
+                <p class="footer-link">Want to join as a migrant instead? <a href="migrant_reg.html">Register here</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/mentor_reg.js"></script>
+</body>
+</html>
