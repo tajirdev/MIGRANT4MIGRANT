@@ -13,21 +13,21 @@ from app.core.authorization import RoleChecker
 Userservice = UserReg()
 
 router = APIRouter(
-    tags=['register'],
-    prefix="/auth"
+    tags=['MIGRANT'],
+    prefix="/register"
     
 )
 
 mentor_and_admin = RoleChecker(["mentor", "admin"])
 
 # routes for reg
-@router.post('/register',response_model=schemaUser.showUser)
+@router.post('/user',response_model=schemaUser.showUser)
 def register(request:schemaUser.migrant,db:Session=Depends(get_db)):
     return Userservice.registerUser(request,db)
 
 #this route is for testing only
 
-@router.get('/user',response_model=List[schemaUser.showUser])
+@router.get('/users',response_model=List[schemaUser.showUser])
 def getuser(db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(mentor_and_admin)):
     return Userservice.getuser_all(db)
   

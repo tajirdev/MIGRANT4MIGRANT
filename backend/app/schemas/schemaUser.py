@@ -1,11 +1,11 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 # user data varidation
 class migrant(BaseModel):
     name : str
     user_name :str
-    email :str
+    email :EmailStr
     password_hash : str
     role : str
     language :str
