@@ -1,0 +1,253 @@
+/* --- Root Variables --- */
+:root {
+    --red: rgb(173, 86, 71);
+    --yellow: rgb(193, 151, 66);
+    --black: rgb(26, 26, 26);
+    --input-bg: #1e1e1e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body, html {
+    height: 100%;
+    background-color: var(--black);
+    overflow: hidden; /* Fixes the "stray line" / double scrollbar issue */
+}
+
+/* --- The Main Layout --- */
+.master-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* --- Left Side: Red Branding --- */
+.branding-side {
+    width: 40%;
+    background-color: var(--red);
+    color: white;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers text vertically */
+    text-align: center;
+}
+
+.branding-side header h1 {
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.branding-side .motto {
+    font-style: italic;
+    opacity: 0.8;
+    margin-bottom: 40px;
+    line-height: 1.4;
+}
+
+.branding-side h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* --- Right Side: Dark Form --- */
+.form-side {
+    width: 60%;
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    overflow-y: auto; /* Allows scrolling ONLY if form is long */
+}
+
+/* Custom Scrollbar to hide that "ugly line" */
+.form-side::-webkit-scrollbar {
+    width: 6px;
+}
+.form-side::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+/* --- Form Container and Header --- */
+.form-container {
+    width: 100%;
+    max-width: 420px;
+}
+
+.form-header {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.form-header h2 {
+    font-size: 2rem;
+    color: var(--yellow);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.form-header p {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--yellow);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    background: var(--input-bg);
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--yellow);
+}
+
+.btn-primary {
+    width: 100%;
+    background-color: var(--yellow);
+    color: var(--black);
+    padding: 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+    background-color: #d4a042;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(193, 151, 66, 0.3);
+}
+
+.footer-link, .registration-links {
+    margin-top: 30px;
+    color: #888;
+    text-align: center;
+}
+
+.footer-link a, .registration-links a, .forgot-password {
+    color: var(--yellow);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.footer-link a:hover, .registration-links a:hover, .forgot-password:hover {
+    color: #e8c856;
+    text-decoration: underline;
+}
+
+.registration-links {
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+
+.registration-links p {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.registration-links a.btn-secondary {
+    display: inline-block;
+    margin: 8px 5px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 1px solid var(--yellow);
+    border-radius: 5px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.registration-links a.btn-secondary:hover {
+    background-color: var(--yellow);
+    color: var(--black);
+    text-decoration: none;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.form-options label {
+    color: #aaa;
+    margin: 0;
+}
+
+/* --- Responsive for Phones --- */
+@media (max-width: 900px) {
+    .master-container {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    .branding-side, .form-side {
+        width: 100%;
+        height: auto;
+        padding: 40px 20px;
+    }
+    
+    .form-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .form-header {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-header h2 {
+        font-size: 1.25rem;
+    }
+    
+    .form-group input {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .branding-side {
+        padding: 30px 15px;
+    }
+    
+    .branding-side h2 {
+        font-size: 1.8rem;
+    }
+}

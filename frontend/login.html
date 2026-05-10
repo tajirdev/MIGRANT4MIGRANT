@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MIGRANT4MIGRANT</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <main class="master-container">
+        <div class="branding-side">
+            <header>
+                <h1>MIGRANT 4 MIGRANT</h1>
+                <p class="motto">"Every migrant deserves a community — MIGRANT4MIGRANT makes it findable."</p>
+            </header>
+        </div>
+
+        <div class="form-side">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Welcome Back</h2>
+                    <p>Log in to access your resources and see what's new in your area.</p>
+                    <p>Your community is waiting...</p>
+                </div>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username or Email</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter your username or email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox" name="remember"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+
+                <div class="registration-links">
+                    <p>Don't have an account yet?</p>
+                    <a href="migrant_reg.html" class="btn-secondary">Register as Migrant</a>
+                    <span>or</span>
+                    <a href="mentor_reg.html" class="btn-secondary">Register as Mentor</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/login.js"></script>
+</body>
+</html>
