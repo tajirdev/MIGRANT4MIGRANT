@@ -35,6 +35,7 @@ body, html {
     display: flex;
     flex-direction: column;
     justify-content: center; /* Centers text vertically */
+    text-align: center;
 }
 
 .branding-side header h1 {
