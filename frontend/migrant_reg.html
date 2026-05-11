@@ -50,13 +50,15 @@
 
                 <div class="form-group">
                     <label for="native_country">Native Country</label>
-                    <input type="text" id="native_country" name="native_country" required placeholder="Where are you originally from?">
+                    <input list="country-list" id="native_country" name="native_country" required placeholder="Search country...">
                 </div>
 
                 <div class="form-group">
                     <label for="current_country">Current Country</label>
-                    <input type="text" id="current_country" name="current_country" required placeholder="Where are you living now?">
+                    <input list="country-list" id="current_country" name="current_country" required placeholder="Search country...">
                 </div>
+
+                <datalist id="country-list"></datalist>
 
                 <div class="form-group">
                     <label for="language">Language</label>
@@ -72,5 +74,6 @@
     </main>
 
     <script src="js/migrant_reg.js"></script>
+    <script src="js/validation_input.js"></script>
 </body>
 </html>
