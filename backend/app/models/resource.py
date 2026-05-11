@@ -6,6 +6,7 @@ class Resource(Base):
     __tablename__ = "resources"
 
     id = Column(Integer, primary_key=True, index=True)
+    added_by = Column(Integer, ForeignKey("mentors.id"))
     title = Column(String, index=True)
     category = Column(String)
     description = Column(Text)
@@ -14,5 +15,6 @@ class Resource(Base):
     verified = Column(Boolean, default=False)
     
     # Links to the mentor table
-    added_by = Column(Integer, ForeignKey("mentors.id"))
-    mentor = relationship("Mentor")
+   
+      
+    mentor_rec = relationship("Mentor", back_populates="rescou")  
