@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  /* This replaces your tailwind.config JavaScript object */
+  --color-brand-red: rgb(173, 86, 71);
+  --color-brand-yellow: rgb(193, 151, 66);
+  --color-brand-dark: rgb(26, 26, 26);
+  --color-brand-input: #1e1e1e;
+}
+
+@layer components {
+  .form-label { 
+    @apply block text-brand-yellow text-[10px] font-bold uppercase mb-2 tracking-wider; 
+  }
+  .form-input { 
+    @apply w-full p-4 bg-brand-input border border-[#333] rounded-md text-white text-base focus:outline-none focus:border-brand-yellow transition-colors; 
+  }
+  .btn-primary { 
+    @apply w-full bg-brand-yellow text-brand-dark py-4 rounded-md font-black uppercase tracking-widest hover:bg-[#d4a042] transition-all transform hover:-translate-y-1 hover:shadow-[0_4px_12px_rgba(193,151,66,0.3)]; 
+  }
+  .link-yellow { 
+    @apply text-brand-yellow font-bold no-underline hover:text-[#e8c856] hover:underline transition-colors; 
+  }
+}
+
+/* Standard CSS works exactly the same way here */
+.form-side::-webkit-scrollbar { 
+  width: 6px; 
+}
+.form-side::-webkit-scrollbar-thumb { 
+  background: #333; 
+  border-radius: 10px; 
+}

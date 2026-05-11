@@ -4,55 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mentor Registration - MIGRANT4MIGRANT</title>
-    <link rel="stylesheet" href="style/style.css">
+    <link href="style/output.css" rel="stylesheet">
 </head>
-<body>
-    <main class="master-container">
-        <div class="branding-side">
+<body class="bg-brand-dark min-h-screen overflow-auto">
+    <main class="flex flex-col md:flex-row min-h-screen w-full">
+        <div class="w-full md:w-[40%] bg-brand-red text-white p-8 md:p-14 flex flex-col justify-center text-center rounded-b-2xl md:rounded-bl-none md:rounded-r-2xl">
             <header>
-                <h1>MIGRANT 4 MIGRANT</h1>
-                <p class="motto">"Every migrant deserves a community — MIGRANT4MIGRANT makes it findable."</p>
+                <h1 class="text-3xl md:text-4xl font-bold tracking-[4px] mb-2">MIGRANT 4 MIGRANT</h1>
+                <p class="italic opacity-80 text-sm md:text-base">"Every migrant deserves a community — MIGRANT4MIGRANT makes it findable."</p>
             </header>
-
-            <section class="welcome-text">
-                <h2>Be a Mentor</h2>
-                <p>Share your journey and help guide the next generation of migrants.</p>
-            </section>
         </div>
 
-        <div class="form-side">
-            <div class="form-container">
-                <div class="form-header">
-                    <h2>Share Your Journey.</h2>
-                    <p>Your experience is a roadmap for someone else. 
-                        <br>Be a mentor to guide new arrivals and help build a stronger, more connected community.</p>
+        <div class="form-side w-full md:w-[60%] bg-brand-dark flex flex-col justify-center items-center p-8 md:p-10">
+            <div class="w-full max-w-[420px]">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-brand-yellow mb-2">Be a Mentor</h2>
+                    <p class="text-gray-400 text-sm">Share your journey and help guide the next generation of migrants.</p>
+                    <p class="text-gray-400 text-sm">Because your experience is a roadmap for someone else.</p>
                 </div>
 
-                <form id="mentorRegForm">
-                <div class="form-group">
-                    <label for="expertise">Area of Expertise</label>
-                    <input type="text" id="expertise" name="expertise" required placeholder="e.g., Legal Aid, Job Hunting, Housing">
-                </div>
-
-                <div class="form-group">
-                    <label for="organization">Organization</label>
-                    <input type="text" id="organization" name="organization" required placeholder="The Organization which you work with (if any...)">
-                </div>
-
-                <div class="form-group">
-                    <label for="availability">General Availability</label>
-                    <input type="text" id="availability" name="availability" placeholder="e.g., Weekends, Evenings">
-                </div>
-
+                <form id="mentorRegForm" class="space-y-6">
+                    <div>
+                        <label class="form-label">Area of Expertise</label>
+                        <input type="text" name="expertise" class="form-input" required placeholder="e.g., Legal Aid, Job Hunting">
+                    </div>
+                    <div>
+                        <label class="form-label">Organization</label>
+                        <input type="text" name="organization" class="form-input" required placeholder="Organization name (if any)">
+                    </div>
+                    <div>
+                        <label class="form-label">General Availability</label>
+                        <input type="text" name="availability" class="form-input" placeholder="e.g., Weekends, Evenings">
+                    </div>
                     <button type="submit" class="btn-primary">Be a Mentor</button>
                 </form>
-
-                <p class="footer-link">Not yet Registered?  <a href="migrant_reg.html">Register here</a></p>
+                <p class="mt-8 text-center text-gray-500 text-sm">Not yet Registered? <a href="migrant_reg.html" class="link-yellow">Register here</a></p>
             </div>
         </div>
     </main>
-
-    <script src="js/mentor_reg.js"></script>
     <script src="js/validation_input.js"></script>
+    <script src="js/mentor_reg.js"></script>
 </body>
 </html>

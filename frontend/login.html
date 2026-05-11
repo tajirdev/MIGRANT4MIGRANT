@@ -4,57 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - MIGRANT4MIGRANT</title>
-    <link rel="stylesheet" href="style/style.css">
+    
+    <link href="style/output.css" rel="stylesheet">
 </head>
-<body>
-    <main class="master-container">
-        <div class="branding-side">
+<body class="bg-brand-dark min-h-screen overflow-auto">
+    <main class="flex flex-col md:flex-row min-h-screen w-full">
+        <div class="w-full md:w-[40%] bg-brand-red text-white p-8 md:p-14 flex flex-col justify-center text-center rounded-b-2xl md:rounded-bl-none md:rounded-r-2xl">
             <header>
-                <h1>MIGRANT 4 MIGRANT</h1>
-                <p class="motto">"Every migrant deserves a community — MIGRANT4MIGRANT makes it findable."</p>
+                <h1 class="text-3xl md:text-4xl font-bold tracking-[4px] mb-2">MIGRANT 4 MIGRANT</h1>
+                <p class="italic opacity-80 text-sm md:text-base">"Every migrant deserves a community — MIGRANT4MIGRANT makes it findable."</p>
             </header>
         </div>
 
-        <div class="form-side">
-            <div class="form-container">
-                <div class="form-header">
-                    <h2>Welcome Back</h2>
-                    <p>Log in to access your resources and see what's new in your area.</p>
-                    <p>Your community is waiting...</p>
+        <div class="form-side w-full md:w-[60%] bg-brand-dark flex flex-col justify-center items-center p-8 md:p-10">
+            <div class="w-full max-w-[420px]">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-brand-yellow mb-2 tracking-tight">Welcome Back!</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">Log in to access your resources and see what's new in your area.</p>
                 </div>
 
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="username">Username or Email</label>
-                    <input type="text" id="username" name="username" required placeholder="Enter your username or email">
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="Enter your password">
-                </div>
-
-                <div class="form-options">
-                    <label>
-                        <input type="checkbox" name="remember"> Remember me
-                    </label>
-                    <a href="#" class="forgot-password">Forgot Password?</a>
-                </div>
-
+                <form id="loginForm" class="space-y-5">
+                    <div>
+                        <label for="username" class="form-label">Username or Email</label>
+                        <input type="text" id="username" name="username" class="form-input" required placeholder="Enter your username or email">
+                    </div>
+                    <div>
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" name="password" class="form-input" required placeholder="Enter your password">
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <label class="text-gray-400 flex items-center gap-2">
+                            <input type="checkbox" name="remember" class="accent-brand-yellow"> Remember me
+                        </label>
+                        <a href="#" class="link-yellow">Forgot Password?</a>
+                    </div>
                     <button type="submit" class="btn-primary">Login</button>
                 </form>
 
-                <div class="registration-links">
-                    <p>Don't have an account yet?</p>
-                    <a href="migrant_reg.html" class="btn-secondary">Register as Migrant</a>
-                    <span>or</span>
-                    <a href="mentor_reg.html" class="btn-secondary">Register as Mentor</a>
+                <div class="mt-8 pt-6 border-t border-[#333] text-center">
+                    <p class="text-gray-500 text-sm mb-4">Don't have an account yet?</p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <a href="migrant_reg.html" class="px-5 py-2 border border-brand-yellow text-brand-yellow rounded text-xs font-bold hover:bg-brand-yellow hover:text-brand-dark transition-all">Register as Migrant</a>
+                        <a href="mentor_reg.html" class="px-5 py-2 border border-brand-yellow text-brand-yellow rounded text-xs font-bold hover:bg-brand-yellow hover:text-brand-dark transition-all">Register as Mentor</a>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-
-    <script src="js/login.js"></script>
     <script src="js/validation_input.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
