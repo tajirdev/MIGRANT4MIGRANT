@@ -1,3 +1,6 @@
+'''
+
+
 from fastapi import APIRouter, HTTPException, status, Depends
 from app.services.posts_service import get_all_posts
 from typing import Optional, List
@@ -15,3 +18,5 @@ def read_post(category: str = None, db: Session = Depends(get_db)):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
     return {"data": posts}
+    '''
+# DO NOT RUB THESE CODES HAVE SOME ERROR
