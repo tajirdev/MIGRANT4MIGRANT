@@ -4,54 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - MIGRANT4MIGRANT</title>
-    
     <link href="style/output.css" rel="stylesheet">
 </head>
-<body class="bg-brand-dark min-h-screen overflow-auto">
-    <main class="flex flex-col md:flex-row min-h-screen w-full">
-        <div class="w-full md:w-[40%] bg-brand-red text-white p-8 md:p-14 flex flex-col justify-center text-center rounded-b-2xl md:rounded-bl-none md:rounded-r-2xl">
-            <header>
-                <h1 class="text-3xl md:text-4xl font-bold tracking-[4px] mb-2">MIGRANT 4 MIGRANT</h1>
-                <p class="italic opacity-80 text-sm md:text-base">"Every migrant deserves a community — MIGRANT4MIGRANT makes it findable."</p>
-            </header>
+<body class="bg-split-layout min-h-screen flex items-center justify-center p-4 md:p-8 overflow-x-hidden font-sans antialiased">
+
+    <div class="fixed inset-0 z-0">
+        <img src="assets/background_form.png" 
+             alt="Migrant Journey Silhouettes" 
+             class="w-full h-full object-cover opacity-90 mix-blend-multiply">
+        
+        <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-sunny-yellow/10 to-transparent"></div>
+    </div>
+
+    <main class="relative z-10 w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-12">
+        
+        <div class="w-full md:w-1/2 text-center md:text-left space-y-4 pt-0 md:mt-[-28rem]">
+        <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true" focusable="false">
+            <filter id="rough-edge">
+            <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+            </filter>
+        </svg>
+
+        <h1 class="text-text-main text-5xl md:text-7xl font-black uppercase leading-none tracking-tighter">
+            MIGRANT<span class="text-home-coral">4</span><br>MIGRANT
+        </h1>
+
+        <div class="brush-wrapper mx-auto md:mx-0">
+            <div class="brush-stroke"></div>
+            
+            <p class="text-text-main text-lg font-bold leading-relaxed relative">
+                A community where your journey becomes a shared map to the future.
+            </p>
+        </div>
         </div>
 
-        <div class="form-side w-full md:w-[60%] bg-brand-dark flex flex-col justify-center items-center p-8 md:p-10">
-            <div class="w-full max-w-[420px]">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-bold text-brand-yellow mb-2 tracking-tight">Welcome Back!</h2>
-                    <p class="text-gray-400 text-sm leading-relaxed">Log in to access your resources and see what's new in your area.</p>
+        <div class="w-full max-w-md">
+            <div class="glass-card">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-text-main">Welcome Back</h2>
+                    <p class="text-gray-500 text-sm">Join the progression toward your destination.</p>
                 </div>
 
-                <form id="loginForm" class="space-y-5">
+                <form action="#" class="space-y-5">
                     <div>
-                        <label for="username" class="form-label">Username or Email</label>
-                        <input type="text" id="username" name="username" class="form-input" required placeholder="Enter your username or email">
+                        <label class="form-label">Email</label>
+                        <input type="text" placeholder="Email" class="form-input">
                     </div>
+
                     <div>
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" id="password" name="password" class="form-input" required placeholder="Enter your password">
+                        <label class="form-label">Password</label>
+                        <input type="password" placeholder="••••••••••••" class="form-input">
                     </div>
-                    <div class="flex justify-between items-center text-sm">
-                        <label class="text-gray-400 flex items-center gap-2">
-                            <input type="checkbox" name="remember" class="accent-brand-yellow"> Remember me
+
+                    <div class="flex justify-between items-center text-xs">
+                        <label class="flex items-center gap-2 text-gray-500 cursor-pointer">
+                            <input type="checkbox" class="accent-home-coral rounded"> Remember me
                         </label>
-                        <a href="#" class="link-yellow">Forgot Password?</a>
+                        <a href="#" class="text-gray-400 hover:text-home-coral transition-colors">Lost password?</a>
                     </div>
-                    <button type="submit" class="btn-primary">Login</button>
+
+                    <button type="submit" class="w-full bg-home-coral text-white font-black py-4 rounded-xl shadow-lg hover:bg-home-coral/90 hover:scale-105 active:scale-[0.98] transition-all uppercase tracking-widest mt-2">
+                        Enter Community
+                    </button>
                 </form>
 
-                <div class="mt-8 pt-6 border-t border-[#333] text-center">
-                    <p class="text-gray-500 text-sm mb-4">Don't have an account yet?</p>
-                    <div class="flex flex-wrap justify-center gap-3">
-                        <a href="migrant_reg.html" class="px-5 py-2 border border-brand-yellow text-brand-yellow rounded text-xs font-bold hover:bg-brand-yellow hover:text-brand-dark transition-all">Register as Migrant</a>
-                        <a href="mentor_reg.html" class="px-5 py-2 border border-brand-yellow text-brand-yellow rounded text-xs font-bold hover:bg-brand-yellow hover:text-brand-dark transition-all">Register as Mentor</a>
+
+                    <div class="flex items-center gap-4 py-2">
+                        <div class="h-px bg-gray-200 flex-grow"></div>
+                        <span class="text-gray-400 text-[10px] uppercase font-bold tracking-widest">or</span>
+                        <div class="h-px bg-gray-200 flex-grow"></div>
                     </div>
+
+                    <button type="button" class="w-full flex items-center justify-center gap-3 py-3 rounded-xl border border-gray-100 bg-white text-gray-600 text-sm font-bold hover:bg-gray-50 transition-all">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google">
+                        Access with Google
+                    </button>
+
+                <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+                    <p class="text-sm text-gray-500">
+                        New to the pilgrimage? <a href="migrant_reg.html" class="link-teal">Join us</a>
+                    </p>
                 </div>
             </div>
         </div>
     </main>
-    <script src="js/validation_input.js"></script>
-    <script src="js/login.js"></script>
 </body>
 </html>
