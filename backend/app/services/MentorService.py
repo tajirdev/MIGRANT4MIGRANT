@@ -33,5 +33,5 @@ class Mentor:
 
         db.commit()
 
-        return {'message':"yo have been updated to mentor"}
+        return {'message':"you have been updated to mentor"}
     

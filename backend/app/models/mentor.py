@@ -2,6 +2,8 @@ from sqlalchemy import Column, DateTime, Integer, String, Float,ForeignKey
 from sqlalchemy.sql import func
 from app.core.database import Base
 from sqlalchemy.orm import relationship
+
+
 class Mentor(Base):
     __tablename__ = "mentors"
 
@@ -14,4 +16,6 @@ class Mentor(Base):
     rating = Column(Float, default=0.0)
 
     migrant = relationship('Migrant' ,back_populates='mentor')
+    rescou = relationship("Resource",back_populates="mentor_rec")
+     
    
