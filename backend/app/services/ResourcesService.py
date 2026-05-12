@@ -38,7 +38,7 @@ class Resource:
         return available_resouirce
     
 
-    def getby_id(self,db:Session,id):
+    def getby_id(self,db:Session,id,current_user_id: int):
         available = db.query(resource.Resource).filter(resource.Resource.id == id).first()
 
         if not available:
@@ -49,29 +49,31 @@ class Resource:
         return available
     
 
-    def update_resource(request:ResourceSchema.Resoureces,db:Session,id):
-        get_resource = db. query(resource.Resource).filter(resource.Resource.id == id).first()
+    def update_resource(self,request:ResourceSchema.Resoureces,db:Session,id):
+        get_resource = db.query(resource.Resource).filter(resource.Resource.id == id).first()
 
         if not get_resource:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail= f"resource with id of {id} not found"
             )
-        get_resource.title = request.title
-        get_resource.description = request.description
-        get_resource.category = request.category
-        get_resource.contact = request.contact
-        get_resource.location = request.location
+        else:
+            get_resource.title = request.title
+            get_resource.description = request.description
+            get_resource.category = request.category
+            get_resource.contact = request.contact
+            get_resource.location = request.location
 
         try:
             db.commit()
+            db.refresh(get_resource)
         except IntegrityError:
             db.rollback() 
             raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Conflict: in database") 
         return get_resource
     
 
-    def delete_resource(db:Session,id):
+    def delete_resource(self,id,db:Session):
         available = db.query(resource.Resource).filter(resource.Resource.id == id).delete(synchronize_session=False)
 
         try:

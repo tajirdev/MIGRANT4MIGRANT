@@ -44,20 +44,20 @@ def GetbyId(
     return ServiceRecorce.getby_id(db,id)
 
 
-@router.put("/update/{id}")
-def edite(
+@router.put("/edit/{id}")
+def edit(
     id,
     request:ResourceSchema.Resoureces,
     db:Session=Depends(get_db),
     current_user:schemaUser.migrant= Depends(mentor_and_admin)
 ):
-    return ServiceRecorce.update_resource(id,db,request)
+    return ServiceRecorce.update_resource(request,db,id)
 
 
-@router.delete("/remove/{id}")
+@router.delete("/delete/{id}")
 def remove(
     id,
     db:Session=Depends(get_db),
     current_user:schemaUser.migrant= Depends(mentor_and_admin)
 ):
-    return ServiceRecorce.delete_resource(db,id)
+    return ServiceRecorce.delete_resource(id,db)
