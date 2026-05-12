@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
-from backend.app.models.post import Post
+from app.models.post import Post
+from fastapi import HTTPException,status,Depends
 
 
 class ResourceService:
@@ -8,11 +9,14 @@ class ResourceService:
 
         delete_post = db.query(Post).filter(Post.id == post_id).first()
 
-        if delete_post:
-            db.delete(delete_post)
-            db.commit()
 
-            return {"message": "Post deleted successfully"}
+        if not delete_post:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,detail= f"Post with id of {post_id} not found"
+                )
 
-        else:
-            return {"message": "Post not found"}
+        db.delete(delete_post)
+        db.commit()
+
+        return {"message": f"Post with id {post_id} deleted successfully"}
+
