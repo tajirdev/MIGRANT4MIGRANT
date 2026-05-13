@@ -26,6 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        if (!validators.passwordsMatch(data.password, data.confirm_password)) {
+            alert("Passwords do not match. Please try again.");
+            return;
+        }
+
         if (!validators.isValidCountry(data.native_country) || !validators.isValidCountry(data.current_country)) {
             alert("Please select a valid country from the provided list.");
             return;

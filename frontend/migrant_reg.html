@@ -65,18 +65,26 @@
                         <label class="form-label">Password</label>
                         <input type="password" name="password" placeholder="••••••••••••" class="form-input" required>
                     </div>
+
+                    <div>
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" name="confirm_password" placeholder="••••••••••••" class="form-input" required>
+                    </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="form-label">Native Country</label>
-                            <input list="country-list" name="native_country" placeholder="Select Country" class="form-input" required>
+                            <select name="native_country" class="form-select" required>
+                                <option value="" disabled selected>Select Country</option>
+                            </select>
                         </div>
                         <div>
                             <label class="form-label">Current Country</label>
-                            <input list="country-list" name="current_country" placeholder="Select Country" class="form-input" required>
+                            <select name="current_country" class="form-select" required>
+                                <option value="" disabled selected>Select Country</option>
+                            </select>
                         </div>
                     </div>
-                    <datalist id="country-list"></datalist>
 
                     <div>
                         <label class="form-label">Preferred Language</label>

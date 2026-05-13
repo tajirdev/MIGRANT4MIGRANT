@@ -37,20 +37,27 @@ const validators = {
     // No spaces, minimum 3 chars
     isValidUsername: (user) => user.length >= 3 && !/\s/.test(user),
     // Ensures the typed country actually exists in our list
-    isValidCountry: (country) => countries.includes(country)
+    isValidCountry: (country) => countries.includes(country),
+    // Checks if passwords match
+    passwordsMatch: (password, confirmPassword) => password === confirmPassword
 };
 
-// Utility to fill the datalist
+// Utility to fill country select dropdowns
 function populateCountryDatalist(datalistId) {
-    const list = document.getElementById(datalistId);
-    if (!list) return;
+    // This function now populates all country selects
+    const selects = document.querySelectorAll('select[name="native_country"], select[name="current_country"]');
     
-    // Clear existing to avoid duplicates
-    list.innerHTML = ""; 
-    
-    countries.forEach(country => {
-        const option = document.createElement('option');
-        option.value = country;
-        list.appendChild(option);
+    selects.forEach(select => {
+        // Keep the first placeholder option
+        const placeholder = select.querySelector('option[disabled]');
+        const tempHtml = placeholder.outerHTML;
+        select.innerHTML = tempHtml;
+        
+        countries.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country;
+            option.textContent = country;
+            select.appendChild(option);
+        });
     });
 }
