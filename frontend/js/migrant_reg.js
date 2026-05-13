@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Populate the datalist using the utility function
-    populateCountryDatalist('country-list');
+    // Populate the custom select dropdowns
+    populateCustomSelects();
 
     const form = document.getElementById('migrantRegForm');
 
@@ -40,3 +40,49 @@ document.addEventListener('DOMContentLoaded', () => {
         // Here is where we will add the fetch() call later
     });
 });
+
+// Function to populate custom select dropdowns
+function populateCustomSelects() {
+    const containers = document.querySelectorAll('.custom-select-container');
+    
+    containers.forEach(container => {
+        const input = container.querySelector('.custom-select-input');
+        const optionsContainer = container.querySelector('.custom-select-options');
+        
+        // Clear existing options
+        optionsContainer.innerHTML = '';
+        
+        // Add options
+        countries.forEach(country => {
+            const option = document.createElement('div');
+            option.className = 'custom-select-option';
+            option.textContent = country;
+            option.addEventListener('click', () => {
+                input.value = country;
+                container.classList.remove('open');
+            });
+            optionsContainer.appendChild(option);
+        });
+        
+        // Toggle dropdown on click
+        const select = container.querySelector('.custom-select');
+        select.addEventListener('click', () => {
+            // Close other open dropdowns
+            document.querySelectorAll('.custom-select-container.open').forEach(openContainer => {
+                if (openContainer !== container) {
+                    openContainer.classList.remove('open');
+                }
+            });
+            container.classList.toggle('open');
+        });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.custom-select-container')) {
+            document.querySelectorAll('.custom-select-container.open').forEach(container => {
+                container.classList.remove('open');
+            });
+        }
+    });
+}

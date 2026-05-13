@@ -9,7 +9,7 @@
 <body class="bg-split-layout min-h-screen flex items-center justify-center p-4 md:p-8 overflow-x-hidden font-sans antialiased">
 
     <div class="fixed inset-0 z-0">
-        <img src="assets/background_form.png" 
+        <img src="assets/background_form.jpg" 
              alt="Journey Silhouettes" 
              class="w-full h-full object-cover opacity-90 mix-blend-multiply">
         <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-sunny-yellow/10 to-transparent"></div>
@@ -72,17 +72,25 @@
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
+                        <div class="custom-select-container">
                             <label class="form-label">Native Country</label>
-                            <select name="native_country" class="form-select" required>
-                                <option value="" disabled selected>Select Country</option>
-                            </select>
+                            <div class="custom-select">
+                                <input type="text" name="native_country" placeholder="Select Country" class="form-input custom-select-input" readonly required>
+                                <div class="custom-select-arrow">▼</div>
+                            </div>
+                            <div class="custom-select-options">
+                                <!-- Options will be populated by JavaScript -->
+                            </div>
                         </div>
-                        <div>
+                        <div class="custom-select-container">
                             <label class="form-label">Current Country</label>
-                            <select name="current_country" class="form-select" required>
-                                <option value="" disabled selected>Select Country</option>
-                            </select>
+                            <div class="custom-select">
+                                <input type="text" name="current_country" placeholder="Select Country" class="form-input custom-select-input" readonly required>
+                                <div class="custom-select-arrow">▼</div>
+                            </div>
+                            <div class="custom-select-options">
+                                <!-- Options will be populated by JavaScript -->
+                            </div>
                         </div>
                     </div>
 

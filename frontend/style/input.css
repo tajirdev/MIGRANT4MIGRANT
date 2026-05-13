@@ -33,6 +33,43 @@
   .link-teal { 
     @apply text-social-teal font-bold hover:text-home-coral transition-colors underline decoration-2 decoration-social-teal/30 underline-offset-4; 
   }
+
+  /* Custom Select Dropdown */
+  .custom-select-container {
+    @apply relative;
+  }
+
+  .custom-select {
+    @apply relative cursor-pointer;
+  }
+
+  .custom-select-input {
+    @apply cursor-pointer pr-10;
+  }
+
+  .custom-select-arrow {
+    @apply absolute right-3 top-1/2 transform -translate-y-1/2 text-home-coral font-bold text-sm pointer-events-none transition-transform duration-200;
+  }
+
+  .custom-select-container.open .custom-select-arrow {
+    @apply rotate-180;
+  }
+
+  .custom-select-options {
+    @apply absolute top-full left-0 right-0 bg-white border-4 border-[rgb(208,233,223)] rounded-xl shadow-glass max-h-48 overflow-y-auto z-50 opacity-0 invisible transition-all duration-200 mt-1;
+  }
+
+  .custom-select-container.open .custom-select-options {
+    @apply opacity-100 visible;
+  }
+
+  .custom-select-option {
+    @apply px-4 py-3 text-text-main text-sm hover:bg-[rgb(208,233,223)]/20 cursor-pointer transition-colors first:rounded-t-xl last:rounded-b-xl;
+  }
+
+  .custom-select-option:hover {
+    @apply bg-[rgb(208,233,223)]/30;
+  }
 }
 
 /* Background Logic to match your image description */
