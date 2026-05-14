@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - MIGRANT4MIGRANT</title>
+    <link href="style/output.css" rel="stylesheet">
+</head>
+<body class="bg-bone-white font-sans antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                MIGRANT<span>4</span>MIGRANT
+            </div>
+            <div class="navbar-menu">
+                <a href="index.html">Home</a>
+                <a href="community.html" class="active">Community</a>
+                <a href="resources.html">Resources</a>
+                <a href="mentor_reg.html">Be a Mentor</a>
+            </div>
+            <div class="navbar-auth">
+                <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
+                <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
+            </div>
+            <div class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar-mobile-menu hidden"></div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Community Forum</h1>
+            <p>Share your experiences, ask questions, and support fellow migrants on their journey.</p>
+        </div>
+
+        <div class="page-content">
+            <!-- Filter Section -->
+            <div class="mb-8 flex flex-col md:flex-row gap-4">
+                <input type="text" placeholder="Search discussions..." class="flex-1 form-input" id="searchInput">
+                <select id="categoryFilter" class="form-input w-full md:w-48">
+                    <option value="">All Categories</option>
+                    <option value="legal">Legal</option>
+                    <option value="employment">Employment</option>
+                    <option value="housing">Housing</option>
+                    <option value="education">Education</option>
+                    <option value="health">Health</option>
+                    <option value="general">General</option>
+                </select>
+                <button onclick="requireAuth(); openNewPostModal()" class="navbar-btn navbar-btn-primary px-6">
+                    + New Post
+                </button>
+            </div>
+
+            <!-- Posts Container -->
+            <div id="postsContainer" class="space-y-4">
+                <!-- Posts will be loaded here from backend -->
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="card-badge">Employment</span>
+                            </div>
+                            <h3 class="card-title">How to find tech jobs without local experience?</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">
+                        I'm a software engineer from India and recently moved to Canada. I'm having trouble finding jobs because employers require local experience. Has anyone found a way around this?
+                    </p>
+                    <div class="card-footer">
+                        <div class="text-xs text-gray-500">
+                            <p>Posted by <strong>Alex</strong> • 2 hours ago</p>
+                        </div>
+                        <div class="text-xs text-gray-500">
+                            <span class="text-home-coral font-bold">12 replies</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="card-badge" style="background-color: rgb(208,233,223); color: var(--color-social-teal);">Legal</span>
+                            </div>
+                            <h3 class="card-title">Timeline for work permit approval</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">
+                        Submitted my work permit application last month. Anyone know what the typical processing time is? I'm getting anxious about the wait.
+                    </p>
+                    <div class="card-footer">
+                        <div class="text-xs text-gray-500">
+                            <p>Posted by <strong>Maria</strong> • 5 hours ago</p>
+                        </div>
+                        <div class="text-xs text-gray-500">
+                            <span class="text-home-coral font-bold">8 replies</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="card-badge" style="background-color: rgba(255, 217, 61, 0.2); color: var(--color-sunny-yellow);">General</span>
+                            </div>
+                            <h3 class="card-title">Welcome to the community! Let's introduce ourselves</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">
+                        Hello everyone! I'm excited to be part of this community. I'm a teacher from Nigeria, recently settled in the UK. I'd love to connect with others and share experiences. Who wants to introduce themselves?
+                    </p>
+                    <div class="card-footer">
+                        <div class="text-xs text-gray-500">
+                            <p>Posted by <strong>David</strong> • 1 day ago</p>
+                        </div>
+                        <div class="text-xs text-gray-500">
+                            <span class="text-home-coral font-bold">24 replies</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-12">
+                <p class="text-gray-500 text-lg">No posts found. Be the first to start a discussion!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Post Modal -->
+    <div id="newPostModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full">
+            <h2 class="text-2xl font-bold text-text-main mb-6">Create a New Post</h2>
+            <form id="newPostForm" class="space-y-4">
+                <div>
+                    <label class="form-label">Title</label>
+                    <input type="text" name="title" placeholder="What's on your mind?" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Category</label>
+                    <select name="category" class="form-input" required>
+                        <option value="">Select a category</option>
+                        <option value="legal">Legal</option>
+                        <option value="employment">Employment</option>
+                        <option value="housing">Housing</option>
+                        <option value="education">Education</option>
+                        <option value="health">Health</option>
+                        <option value="general">General</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">Description</label>
+                    <textarea name="body" placeholder="Share your experience or question..." class="form-input h-32 resize-none" required></textarea>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary">Post</button>
+                    <button type="button" onclick="closeNewPostModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-text-main text-white py-12 px-4 md:px-8 mt-20">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="font-black text-lg mb-4">MIGRANT<span class="text-home-coral">4</span>MIGRANT</h4>
+                <p class="text-gray-300 text-sm">Empowering migrants through community and mentorship.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Quick Links</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="index.html" class="hover:text-home-coral transition-colors">Home</a></li>
+                    <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li>
+                    <li><a href="resources.html" class="hover:text-home-coral transition-colors">Resources</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Get Involved</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="migrant_reg.html" class="hover:text-home-coral transition-colors">Register as Migrant</a></li>
+                    <li><a href="mentor_reg.html" class="hover:text-home-coral transition-colors">Become a Mentor</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Support</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="#" class="hover:text-home-coral transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-home-coral transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 MIGRANT4MIGRANT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script>
+        function openNewPostModal() {
+            document.getElementById('newPostModal').classList.remove('hidden');
+        }
+
+        function closeNewPostModal() {
+            document.getElementById('newPostModal').classList.add('hidden');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('newPostModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeNewPostModal();
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('newPostForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            try {
+                const response = await fetch('/api/posts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                    },
+                    body: JSON.stringify({
+                        title: formData.get('title'),
+                        body: formData.get('body'),
+                        category: formData.get('category')
+                    })
+                });
+
+                if (response.ok) {
+                    closeNewPostModal();
+                    // Reload posts
+                    location.reload();
+                }
+            } catch (error) {
+                console.error('Error creating post:', error);
+                alert('Failed to create post. Please try again.');
+            }
+        });
+
+        // Search and filter functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            filterPosts();
+        });
+
+        document.getElementById('categoryFilter').addEventListener('change', function() {
+            filterPosts();
+        });
+
+        function filterPosts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const posts = document.querySelectorAll('#postsContainer .card');
+            let visibleCount = 0;
+
+            posts.forEach(post => {
+                const title = post.querySelector('.card-title').textContent.toLowerCase();
+                const badge = post.querySelector('.card-badge').textContent.toLowerCase();
+                
+                const matchesSearch = title.includes(searchTerm);
+                const matchesCategory = !category || badge.includes(category);
+
+                if (matchesSearch && matchesCategory) {
+                    post.style.display = '';
+                    visibleCount++;
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+
+            document.getElementById('emptyState').classList.toggle('hidden', visibleCount > 0);
+        }
+    </script>
+</body>
+</html>

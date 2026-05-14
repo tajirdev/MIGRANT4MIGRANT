@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - MIGRANT4MIGRANT</title>
+    <link href="style/output.css" rel="stylesheet">
+</head>
+<body class="bg-bone-white font-sans antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                MIGRANT<span>4</span>MIGRANT
+            </div>
+            <div class="navbar-menu">
+                <a href="index.html">Home</a>
+                <a href="community.html">Community</a>
+                <a href="resources.html" class="active">Resources</a>
+                <a href="mentor_reg.html">Be a Mentor</a>
+            </div>
+            <div class="navbar-auth">
+                <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
+                <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
+            </div>
+            <div class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar-mobile-menu hidden"></div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Resources</h1>
+            <p>Discover helpful resources curated by mentors to support your migration journey.</p>
+        </div>
+
+        <div class="page-content">
+            <!-- Filter and Search Section -->
+            <div class="mb-8 flex flex-col md:flex-row gap-4">
+                <input type="text" placeholder="Search resources..." class="flex-1 form-input" id="searchInput">
+                <select id="categoryFilter" class="form-input w-full md:w-48">
+                    <option value="">All Categories</option>
+                    <option value="legal">Legal Aid</option>
+                    <option value="employment">Employment</option>
+                    <option value="housing">Housing</option>
+                    <option value="education">Education</option>
+                    <option value="health">Health & Wellness</option>
+                    <option value="financial">Financial Services</option>
+                </select>
+                <button onclick="requireAuth(); openAddResourceModal()" class="navbar-btn navbar-btn-primary px-6">
+                    + Add Resource
+                </button>
+            </div>
+
+            <!-- Resources Grid -->
+            <div id="resourcesContainer" class="cards-grid">
+                <!-- Resources will be loaded here from backend -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="card-badge">Legal Aid</span>
+                                <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-bold">Verified</span>
+                            </div>
+                            <h3 class="card-title">Immigration Law Center</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">
+                        Provides free legal consultation for immigration matters including visa sponsorship, work permits, and residency applications.
+                    </p>
+                    <div class="space-y-2 mb-4 text-sm text-gray-600">
+                        <p><strong>Location:</strong> Toronto, Ontario</p>
+                        <p><strong>Contact:</strong> (416) 555-0123</p>
+                        <p><strong>Languages:</strong> English, French, Spanish</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn-sm">View Details</a>
+                        <button onclick="saveResource(1)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="card-badge" style="background-color: rgb(208,233,223); color: var(--color-social-teal);">Employment</span>
+                                <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-bold">Verified</span>
+                            </div>
+                            <h3 class="card-title">Job Training & Placement</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">
+                        Offers job training programs, resume building workshops, and interview coaching specifically for migrant professionals.
+                    </p>
+                    <div class="space-y-2 mb-4 text-sm text-gray-600">
+                        <p><strong>Location:</strong> Vancouver, BC</p>
+                        <p><strong>Contact:</strong> (604) 555-0456</p>
+                        <p><strong>Languages:</strong> English, Mandarin, Tagalog</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn-sm">View Details</a>
+                        <button onclick="saveResource(2)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="card-badge" style="background-color: rgba(255, 217, 61, 0.2); color: var(--color-sunny-yellow);">Housing</span>
+                                <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full font-bold">New</span>
+                            </div>
+                            <h3 class="card-title">Affordable Housing Program</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">
+                        Helps migrants find affordable housing with rental assistance programs and tenant rights education.
+                    </p>
+                    <div class="space-y-2 mb-4 text-sm text-gray-600">
+                        <p><strong>Location:</strong> Montreal, Quebec</p>
+                        <p><strong>Contact:</strong> (514) 555-0789</p>
+                        <p><strong>Languages:</strong> French, English, Arabic</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn-sm">View Details</a>
+                        <button onclick="saveResource(3)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="card-badge" style="background-color: rgba(78, 205, 196, 0.2); color: var(--color-social-teal);">Health & Wellness</span>
+                            </div>
+                            <h3 class="card-title">Community Health Clinic</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">
+                        Provides affordable healthcare services with interpreters for migrants. Covers medical checkups and vaccinations.
+                    </p>
+                    <div class="space-y-2 mb-4 text-sm text-gray-600">
+                        <p><strong>Location:</strong> Calgary, Alberta</p>
+                        <p><strong>Contact:</strong> (403) 555-1234</p>
+                        <p><strong>Languages:</strong> 15+ Languages Available</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn-sm">View Details</a>
+                        <button onclick="saveResource(4)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="card-badge" style="background-color: rgba(255, 107, 107, 0.2); color: var(--color-home-coral);">Education</span>
+                            </div>
+                            <h3 class="card-title">Language & Skills Academy</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">
+                        Offers English language courses, professional certifications, and skills training tailored for migrants.
+                    </p>
+                    <div class="space-y-2 mb-4 text-sm text-gray-600">
+                        <p><strong>Location:</strong> Ottawa, Ontario</p>
+                        <p><strong>Contact:</strong> (613) 555-5678</p>
+                        <p><strong>Languages:</strong> English, Spanish, Punjabi</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn-sm">View Details</a>
+                        <button onclick="saveResource(5)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="card-badge" style="background-color: rgba(78, 205, 196, 0.2); color: var(--color-social-teal);">Financial Services</span>
+                            </div>
+                            <h3 class="card-title">Banking & Financial Support</h3>
+                        </div>
+                    </div>
+                    <p class="card-description">
+                        Helps migrants open bank accounts, understand credit systems, and access microfinance for small businesses.
+                    </p>
+                    <div class="space-y-2 mb-4 text-sm text-gray-600">
+                        <p><strong>Location:</strong> Winnipeg, Manitoba</p>
+                        <p><strong>Contact:</strong> (204) 555-9012</p>
+                        <p><strong>Languages:</strong> English, Ukrainian, Somali</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn-sm">View Details</a>
+                        <button onclick="saveResource(6)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-12">
+                <p class="text-gray-500 text-lg">No resources found matching your criteria.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Resource Modal -->
+    <div id="addResourceModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full">
+            <h2 class="text-2xl font-bold text-text-main mb-6">Add a New Resource</h2>
+            <form id="addResourceForm" class="space-y-4">
+                <div>
+                    <label class="form-label">Resource Title</label>
+                    <input type="text" name="title" placeholder="e.g., Immigration Law Center" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Category</label>
+                    <select name="category" class="form-input" required>
+                        <option value="">Select a category</option>
+                        <option value="legal">Legal Aid</option>
+                        <option value="employment">Employment</option>
+                        <option value="housing">Housing</option>
+                        <option value="education">Education</option>
+                        <option value="health">Health & Wellness</option>
+                        <option value="financial">Financial Services</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">Description</label>
+                    <textarea name="description" placeholder="Describe this resource and how it helps..." class="form-input h-24 resize-none" required></textarea>
+                </div>
+                <div>
+                    <label class="form-label">Location</label>
+                    <input type="text" name="location" placeholder="City, Province/State" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Contact Information</label>
+                    <input type="text" name="contact" placeholder="Phone, email, or website" class="form-input" required>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary">Add Resource</button>
+                    <button type="button" onclick="closeAddResourceModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-text-main text-white py-12 px-4 md:px-8 mt-20">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="font-black text-lg mb-4">MIGRANT<span class="text-home-coral">4</span>MIGRANT</h4>
+                <p class="text-gray-300 text-sm">Empowering migrants through community and mentorship.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Quick Links</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="index.html" class="hover:text-home-coral transition-colors">Home</a></li>
+                    <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li>
+                    <li><a href="resources.html" class="hover:text-home-coral transition-colors">Resources</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Get Involved</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="migrant_reg.html" class="hover:text-home-coral transition-colors">Register as Migrant</a></li>
+                    <li><a href="mentor_reg.html" class="hover:text-home-coral transition-colors">Become a Mentor</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Support</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="#" class="hover:text-home-coral transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-home-coral transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 MIGRANT4MIGRANT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script>
+        function openAddResourceModal() {
+            document.getElementById('addResourceModal').classList.remove('hidden');
+        }
+
+        function closeAddResourceModal() {
+            document.getElementById('addResourceModal').classList.add('hidden');
+        }
+
+        function saveResource(resourceId) {
+            const savedResources = JSON.parse(localStorage.getItem('savedResources') || '[]');
+            if (!savedResources.includes(resourceId)) {
+                savedResources.push(resourceId);
+                localStorage.setItem('savedResources', JSON.stringify(savedResources));
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('addResourceModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAddResourceModal();
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('addResourceForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            try {
+                const response = await fetch('/api/resources', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                    },
+                    body: JSON.stringify({
+                        title: formData.get('title'),
+                        category: formData.get('category'),
+                        description: formData.get('description'),
+                        location: formData.get('location'),
+                        contact: formData.get('contact')
+                    })
+                });
+
+                if (response.ok) {
+                    closeAddResourceModal();
+                    location.reload();
+                }
+            } catch (error) {
+                console.error('Error adding resource:', error);
+                alert('Failed to add resource. Please try again.');
+            }
+        });
+
+        // Search and filter functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            filterResources();
+        });
+
+        document.getElementById('categoryFilter').addEventListener('change', function() {
+            filterResources();
+        });
+
+        function filterResources() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const resources = document.querySelectorAll('#resourcesContainer .card');
+            let visibleCount = 0;
+
+            resources.forEach(resource => {
+                const title = resource.querySelector('.card-title').textContent.toLowerCase();
+                const description = resource.querySelector('.card-description').textContent.toLowerCase();
+                const badges = resource.querySelectorAll('.card-badge');
+                
+                let matchesCategory = true;
+                if (category) {
+                    matchesCategory = Array.from(badges).some(badge => 
+                        badge.textContent.toLowerCase().includes(category)
+                    );
+                }
+
+                const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+
+                if (matchesSearch && matchesCategory) {
+                    resource.style.display = '';
+                    visibleCount++;
+                } else {
+                    resource.style.display = 'none';
+                }
+            });
+
+            document.getElementById('emptyState').classList.toggle('hidden', visibleCount > 0);
+        }
+    </script>
+</body>
+</html>
