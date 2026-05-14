@@ -37,20 +37,22 @@ const validators = {
     // No spaces, minimum 3 chars
     isValidUsername: (user) => user.length >= 3 && !/\s/.test(user),
     // Ensures the typed country actually exists in our list
-    isValidCountry: (country) => countries.includes(country)
+    isValidCountry: (country) => countries.includes(country),
+    // Checks if passwords match
+    passwordsMatch: (password, confirmPassword) => password === confirmPassword
 };
 
-// Utility to fill the datalist
-function populateCountryDatalist(datalistId) {
-    const list = document.getElementById(datalistId);
-    if (!list) return;
+// Utility to fill the datalist (kept for backward compatibility if needed elsewhere)
+// function populateCountryDatalist(datalistId) {
+//     const list = document.getElementById(datalistId);
+//     if (!list) return;
     
-    // Clear existing to avoid duplicates
-    list.innerHTML = ""; 
+//     // Clear existing to avoid duplicates
+//     list.innerHTML = ""; 
     
-    countries.forEach(country => {
-        const option = document.createElement('option');
-        option.value = country;
-        list.appendChild(option);
-    });
-}
+//     countries.forEach(country => {
+//         const option = document.createElement('option');
+//         option.value = country;
+//         list.appendChild(option);
+//     });
+// }
