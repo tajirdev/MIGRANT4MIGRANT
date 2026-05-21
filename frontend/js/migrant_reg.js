@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
            }catch(err){
                console.error("regi failed: ",err)
-               showStatus("Something went Please try again.", "error");
+               showStatus("Something went wrong Please try again.", "error");
 
         }
 

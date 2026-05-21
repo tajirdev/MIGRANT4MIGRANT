@@ -17,7 +17,7 @@ def login(request: Annotated[OAuth2PasswordRequestForm, Depends()],db:Session= D
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='false credetional')
     
     if not Hash.verify_password(request.password,user.password_hash):
-        raise  HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='false pass')
+        raise  HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='incorect password or username')
     
      #  create token
     access_token = jwt_token.create_access_token(data = {
