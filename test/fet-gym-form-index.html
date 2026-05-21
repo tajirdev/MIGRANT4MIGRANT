@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fet Gym Form</title>
+  <link rel="stylesheet" href="fet-gym-form-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+        <nav class="nav-bar">
+        <div class="logo1"> <img src="logo24.png" alt="fet gym"></div>
+        <div class="logo" > FetGym</div>
+            <ul class="nav-links">
+                <li><a href="FET GYM/fet-gym-index.html">HOME</a></li>
+                <li><a href="#ABOUT">ABOUT</a></li>
+                <li><a href="fet-gym-form/fet-gym-form-index.html">GYM REG</a></li>
+                <li><a href="#">CONTACTS</a></li>
+            </ul>
+        </nav>
+  
+  <form id="fetForm" class="form">
+    <div class="Fetheader">FET GYM REG FORM</div>
+
+   
+    
+
+
+
+    <label for="picture">Upload Picture *</label>
+<input type="file" id="picture" name="picture" accept="image/*">
+<span class="error" id="pictureError"></span>
+
+<div id="previewContainer">
+    <img id="previewImage" src="" alt="Image Preview" style="display:none; margin-top:10px; max-width:100%; border-radius:8px; border:1px solid #ccc;">
+</div>
+
+    <label class="label">Full Name:</label>
+    <input type="text" placeholder="Enter your Full Name" id="memberName">
+    <p id="NameError" class="error"></p>
+
+    <label class="label">Email:</label>
+    <input type="text" placeholder="Enter your email" id="email">
+    <p id="emailError" class="error"></p>
+
+    <label class="label">Phone Number:</label>
+    <input type="text" id="Phone" placeholder="Enter Phone Number">
+    <p id="phoneError" class="error"></p>
+
+    <label class="label">ADDRESS:</label>
+    <input type="text" placeholder="your address" id="address">
+    <p id="addressError" class="error"></p>
+
+     
+
+
+    <label class="label">Subscription Plan</label>
+    <div class="dropdown-wrapper">
+    <input list="plandata"  id="plan" placeholder="choose Subscription plan">
+    <datalist id="plandata">          
+      <option value="Bronze Plan">
+      <option value="Silver Plan">
+      <option value="Gold Plan">
+    </datalist>
+    <span class="arrow">&#9662;</span>
+    </div>
+    <p id="planError" class="error"></p>
+
+
+    <label class="label">Start Date</label>
+    <input type="date"  id="date">
+    <p id="dateError" class="error"></p>
+
+    <label class="label">Emergency Contact Name</label>
+    <input type="text" placeholder="Emergency Contact Name" id="emName">
+    <p id="emNameError" class="error"></p>
+
+    <label class="label">Emergency Contact Phone:</label>
+    <input type="text" placeholder="Emergency Contact Phone" id="emNumber">
+    <p id="emNumberError" class="error"></p>
+
+    <!-- Password -->
+      <label for="password" class="label">Password:</label>
+      <input type="password" id="password" placeholder="Create a password">
+      <small id="passwordError" class="error"></small>
+
+      <label for="confirmPassword" class="label">confirmPassword</label>
+      <input type="password" id="confirmPassword" placeholder="Confirm your password">
+      <p id="ConfirmError" class="error"></p>
+
+    <label>
+      
+      I agree to the<a href="#" target="_blank">Terms and conditions<input type="checkbox" id="terms"></a>
+      <p id="termsError" class="error"></p>
+    </label>
+     <p id="successMessage" style=" display:none; margin-bottom:15px; color:#00ff7f; font-weight:bold;">  🎉 Registration Successful! Welcome to the Gym!</p>
+
+
+    <button type="submit" class="submit">Register</button>
+
+    </form>
+
+
+    <!-- contact -->
+    <section id="#contact" class="contact-section">
+        <h3>Contact Us</h3>
+        <p>Email:fetgym@gmail.com<br>
+        Phone:+255 753 090 703</p>
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+            <a href="https://facebook.com" class="icon facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" class="icon twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" class="icon instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com" class="icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        </section>
+        <!-- Footer -->
+        <footer>
+            copyright &copy; 2025 AlfreDev. All rights reserved
+        </footer>
+
+
+
+    <script src="fet-gym-form.js"></script>
+
+
+
+
+  
+  
+</body>
+</html>
