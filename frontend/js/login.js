@@ -1,55 +1,104 @@
+const statusMessage = document.querySelector("#status-message");
+const url = "http://localhost:8000/login";
+
+/**
+ * Sends login credentials using OAuth2 standard form-encoding
+ * @param {Object} userdata - Contains email and password from the form
+ */
+async function loginUser(userdata) {
+    // 1. OAuth2 requires 'application/x-www-form-urlencoded'
+    // We use URLSearchParams to format the body correctly
+    const formBody = new URLSearchParams();
+    
+    // 2. CRITICAL: OAuth2 expects the key 'username', even for email addresses
+    formBody.append('username', userdata.username.trim());
+    formBody.append('password', userdata.password);
+
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: formBody
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        // Handle cases where detail is an array (validation) or string (auth error)
+        const errorMsg = Array.isArray(data.detail) 
+            ? `${data.detail[0].msg}: ${data.detail[0].loc[1]}` 
+            : data.detail || "Server error";
+        throw new Error(errorMsg);
+    }
+
+    return data;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
 
-    loginForm.addEventListener('submit', (e) => {
+    loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const formData = new FormData(loginForm);
         const data = Object.fromEntries(formData.entries());
-        const identity = data.username.trim(); // This is the "Username or Email" field
-
-        // --- 1. Identity Validation (Email or Username) ---
-        if (!identity) {
-            alert("Please enter your username or email.");
-            return;
-        }
-
-        let isIdentityValid = false;
-
-        if (identity.includes('@')) {
-            // If it looks like an email, use the email validator
-            isIdentityValid = validators.isEmail(identity);
-            if (!isIdentityValid) {
-                alert("The email format you entered is invalid.");
-                return;
-            }
-        } else {
-            // Otherwise, treat it as a username
-            isIdentityValid = validators.isValidUsername(identity);
-            if (!isIdentityValid) {
-                alert("Username must be at least 3 characters and contain no spaces.");
-                return;
-            }
-        }
-
-        // --- 2. Password Validation ---
-        if (!data.password) {
-            alert("Please enter your password.");
-            return;
-        }
-
-        // We don't necessarily check for "Strong Password" here 
-        // because the user might have an old account with a simpler pass.
-        // We just ensure it's not empty.
-
-        console.log("Login Validation Passed!");
-        console.log("Targeting identity:", identity);
         
-        /* Next step: We will send this data to the backend for authentication.
-           fetch('/api/login', { 
-               method: 'POST', 
-               body: JSON.stringify(data) 
-           })
-        */
+        
+        if (!data.username || !data.password) {
+            showStatus("Please fill in all fields.");
+            return;
+        }
+
+        console.log("Login Validation Passed! Formulating OAuth2 request...");
+
+      
+        try {
+            const result = await loginUser(data);
+
+            if (result.access_token) {
+                showStatus("Login Successful!...","success");
+                loginForm.reset();
+                
+                
+                localStorage.setItem('pa_token', result.access_token);
+                localStorage.setItem('pa_email', data.username.trim());
+
+                
+                
+                
+                
+                
+                
+                window.location.href = "index.html"; 
+            }
+        } catch (err) {
+            
+            
+            showStatus("network error","error");
+            showStatus("Login Error: " + err.message,"error")
+        }
     });
 });
+
+
+let messageTimeout;
+function showStatus(text, type) {
+    clearTimeout(messageTimeout);
+
+    statusMessage.innerText = text;
+    statusMessage.style.display = "block";
+    
+    if (type === "success") {
+        statusMessage.style.backgroundColor = "#d4edda";
+        statusMessage.style.color = "#155724";
+        statusMessage.style.border = "1px solid #c3e6cb";
+    } else {
+        statusMessage.style.backgroundColor = "#f8d7da";
+        statusMessage.style.color = "#721c24";
+        statusMessage.style.border = "1px solid #f5c6cb";
+    }
+    messageTimeout = setTimeout(() => {
+        statusMessage.style.display = "none";
+    }, 5000);
+}

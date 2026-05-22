@@ -38,7 +38,7 @@ class Resource:
         return available_resouirce
     
 
-    def getby_id(self,db:Session,id,current_user_id: int):
+    def getby_id(self,db:Session,id):
         available = db.query(resource.Resource).filter(resource.Resource.id == id).first()
 
         if not available:

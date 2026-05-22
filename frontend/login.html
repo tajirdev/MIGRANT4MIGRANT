@@ -114,40 +114,10 @@
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
-    <script src="js/nav.js"></script>
+    <script src="js/login.js"></script>
     <script src="js/validation_input.js"></script>
-    <script>
-        // Login form submission
-        document.querySelector('form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="text"]').value;
-            const password = this.querySelector('input[type="password"]').value;
-            
-            try {
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    localStorage.setItem('authToken', data.access_token);
-                    localStorage.setItem('userRole', data.role);
-                    window.location.href = 'profile.html';
-                } else {
-                    alert('Invalid email or password');
-                }
-            } catch (error) {
-                console.error('Login error:', error);
-                alert('Login failed. Please try again.');
-            }
-        });
-    </script>
 </body>
 </html>
