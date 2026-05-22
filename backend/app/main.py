@@ -24,6 +24,7 @@ origins = [
     "http://localhost:3000",    # React/Next.js default
     "http://127.0.0.1:5500",   # Live Server default
     "https://yourdomain.com",  # Production domain
+    "http://192.168.1.196:5500",
 ]
 
 app.add_middleware(
