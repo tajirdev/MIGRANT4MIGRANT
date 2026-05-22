@@ -1,14 +1,69 @@
 from sqlalchemy.orm import Session
-from app.models.post import Post
+from app.models import post,mentor
 from fastapi import HTTPException,status,Depends
 from typing import Optional
+from app.schemas import postSchema
+from sqlalchemy.exc import IntegrityError
 
 
 class Post_Service:
 
+
+
+    def create_post(self,request:postSchema.Post,db:Session,current_user_id:int):
+        current_mentor = db.query(mentor.Mentor).filter(mentor.Mentor.user_id == current_user_id).first()
+        new_post = post.Post(
+            title = request.title,
+            body = request.body,
+            category = request.category,
+            author_id = current_mentor.id
+        )
+        try:
+            db.add(new_post)
+            db.commit()
+            db.refresh(new_post)
+        except IntegrityError:
+            db.rollback() 
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Conflict: in database") 
+        return new_post
+    
+
+    def getby_id(self,db:Session,id):
+        available = db.query(post.Post).filter(post.Post.id == id).first()
+
+        if not available:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail= f"resource with id of {id} not found"
+            )
+        return available
+    
+
+    
+    def update_post(self,request:postSchema.Post,db:Session,id):
+        get_post = db.query(post.Post).filter(post.Post.id == id).first()
+
+        if not get_post:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail= f"resource with id of {id} not found"
+            )
+        else:
+            get_post.title = request.title
+            get_post.body = request.body
+            get_post.category = request.category
+
+        try:
+            db.commit()
+            db.refresh(get_post)
+        except IntegrityError:
+            db.rollback() 
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Conflict: in database") 
+        return get_post
+
     def delete_post(self, db: Session, post_id: int):
 
-        delete_post = db.query(Post).filter(Post.id == post_id).first()
+        delete_post = db.query(post.Post).filter(post.Post.id == post_id).first()
 
 
         if not delete_post:
@@ -24,7 +79,7 @@ class Post_Service:
 
     
     def get_all_posts(self,db: Session):
-        query = db.query(Post).all()
+        query = db.query(post.Post).all()
 
         if not query:
             raise HTTPException(
