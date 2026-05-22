@@ -72,15 +72,15 @@
                         <p class="text-gray-500 text-sm">Join the progression toward your destination.</p>
                     </div>
 
-                    <form action="#" class="space-y-5">
+                    <form action="#" class="space-y-5" id="loginForm">
                         <div>
                             <label class="form-label">Email</label>
-                            <input type="text" placeholder="Email" class="form-input">
+                            <input type="text" placeholder="Email" class="form-input" name="username">
                         </div>
 
                         <div>
                             <label class="form-label">Password</label>
-                            <input type="password" placeholder="••••••••••••" class="form-input">
+                            <input type="password" placeholder="••••••••••••" class="form-input" name="password">
                         </div>
 
                         <div class="flex justify-between items-center text-xs">
@@ -94,6 +94,8 @@
                             Enter Community
                         </button>
                     </form>
+                     <div id="status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
+
 
 
                     <div class="flex items-center gap-4 py-2">
