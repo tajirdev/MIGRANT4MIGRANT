@@ -1,4 +1,21 @@
+
+const statusMessage = document.querySelector("#status-message");
+//function to call API 
+const url = "http://localhost:8000/register/user"
+async function registerUser(UserData){
+    const response = await fetch(url,{
+        method:"POST",
+        headers:{
+        "Content-Type":"application/json"
+        },
+        body:JSON.stringify(UserData)
+    });
+    return await response.json()
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
+    
     // Populate the custom select dropdowns
     populateCustomSelects();
 
@@ -21,12 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        if (!validators.isStrongPassword(data.password)) {
+        if (!validators.isStrongPassword(data.password_hash)) {
             alert("Password must be at least 8 characters long.");
             return;
         }
 
-        if (!validators.passwordsMatch(data.password, data.confirm_password)) {
+        if (!validators.passwordsMatch(data.password_hash, data.confirm_password)) {
             alert("Passwords do not match. Please try again.");
             return;
         }
@@ -35,11 +52,65 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Please select a valid country from the provided list.");
             return;
         }
+       
 
-        console.log("Success! Data is clean. Ready for Backend:", data);
         // Here is where we will add the fetch() call later
+        //now I have added
+        
+        const{confirm_password,password, ...restOfData} = data;
+
+
+        const dataToSend = {
+        ...restOfData,         
+        role: "migrant"          
+    };
+
+        (async ()=>{
+            try{
+                const result = await registerUser(dataToSend);
+                
+                
+
+                if(result.detail){
+                    showStatus(result.detail, "error");
+                } else{
+                    showStatus("Registration successful!","success");
+                    form.reset();
+
+                }
+
+           }catch(err){
+               console.error("regi failed: ",err)
+               showStatus("Something went wrong Please try again.", "error");
+
+        }
+
+
+        })();
+
     });
 });
+
+let messageTimeout;
+function showStatus(text, type) {
+    clearTimeout(messageTimeout);
+
+    statusMessage.innerText = text;
+    statusMessage.style.display = "block";
+    
+    if (type === "success") {
+        statusMessage.style.backgroundColor = "#d4edda";
+        statusMessage.style.color = "#155724";
+        statusMessage.style.border = "1px solid #c3e6cb";
+    } else {
+        statusMessage.style.backgroundColor = "#f8d7da";
+        statusMessage.style.color = "#721c24";
+        statusMessage.style.border = "1px solid #f5c6cb";
+    }
+    messageTimeout = setTimeout(() => {
+        statusMessage.style.display = "none";
+    }, 5000);
+}
 
 // Function to populate custom select dropdowns
 function populateCustomSelects() {
@@ -86,3 +157,4 @@ function populateCustomSelects() {
         }
     });
 }
+

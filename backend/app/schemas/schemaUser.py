@@ -9,7 +9,6 @@ class migrant(BaseModel):
     password_hash : str
     role : str
     language :str
-    country : str
     current_country: str
     native_country: str
 
