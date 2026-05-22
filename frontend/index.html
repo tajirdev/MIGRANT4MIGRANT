@@ -43,7 +43,7 @@
             
             <!-- The Glass Overlay -->
             <!-- Example: A much "thicker" glass look -->
-            <div class="absolute inset-0 bg-white/60 backdrop-blur-xl"></div></div>
+            <div class="absolute inset-0 bg-black/20 backdrop-blur-[90px]"></div></div>
 
             <!-- Your existing Gradient -->
             <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-sunny-yellow/20 to-transparent"></div>
@@ -118,6 +118,120 @@
         </div>
     </section>
 
+    <!-- Featured Organizations Section -->
+    <section class="py-20 px-4 md:px-8 bg-gradient-to-br from-social-teal/10 to-sunny-yellow/10">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-black text-text-main mb-4 text-center">Trusted Partners & Organizations</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+                Verified NGOs and community organizations dedicated to supporting migrants.
+            </p>
+
+            <div class="featured-orgs-grid">
+                <div class="org-card">
+                    <div class="org-card-header">
+                        <img src="{{ organization.iconUrl }}" alt="Organization Icon" class="org-icon w-12 h-12 object-cover">
+                        <div>
+                            <h3 class="org-name">Global Migration Network</h3>
+                            <p class="org-type">Legal & Immigration Support</p>
+                        </div>
+                    </div>
+                    <p class="org-description">Provides free legal consultation and immigration guidance for displaced communities.</p>
+                    <div class="org-services">
+                        <span class="service-badge">Legal Aid</span>
+                        <span class="service-badge">Consultation</span>
+                        <span class="service-badge">Documents</span>
+                    </div>
+                    <button class="learn-more-btn">Learn More →</button>
+                </div>
+
+                <div class="org-card">
+                    <div class="org-card-header">
+                        <img src="{{ organization.iconUrl }}" alt="Organization Icon" class="org-icon w-12 h-12 object-cover">
+                        <div>
+                            <h3 class="org-name">Health Bridges International</h3>
+                            <p class="org-type">Healthcare Access</p>
+                        </div>
+                    </div>
+                    <p class="org-description">Connecting migrants with affordable healthcare services and wellness resources.</p>
+                    <div class="org-services">
+                        <span class="service-badge">Healthcare</span>
+                        <span class="service-badge">Mental Health</span>
+                        <span class="service-badge">Wellness</span>
+                    </div>
+                    <button class="learn-more-btn">Learn More →</button>
+                </div>
+
+                <div class="org-card">
+                    <div class="org-card-header">
+                        <img src="{{ organization.iconUrl }}" alt="Organization Icon" class="org-icon w-12 h-12 object-cover">
+                        <div>
+                            <h3 class="org-name">Career Pathways Initiative</h3>
+                            <p class="org-type">Employment & Training</p>
+                        </div>
+                    </div>
+                    <p class="org-description">Job placement and skills training programs tailored for migrant professionals.</p>
+                    <div class="org-services">
+                        <span class="service-badge">Job Placement</span>
+                        <span class="service-badge">Training</span>
+                        <span class="service-badge">Mentorship</span>
+                    </div>
+                    <button class="learn-more-btn">Learn More →</button>
+                </div>
+
+                <div class="org-card">
+                    <div class="org-card-header">
+                        <img src="{{ organization.iconUrl }}" alt="Organization Icon" class="org-icon w-12 h-12 object-cover">
+                        <div>
+                            <h3 class="org-name">Safe Haven Housing</h3>
+                            <p class="org-type">Housing Support</p>
+                        </div>
+                    </div>
+                    <p class="org-description">Connecting migrants with safe, affordable housing and accommodation resources.</p>
+                    <div class="org-services">
+                        <span class="service-badge">Housing</span>
+                        <span class="service-badge">Temporary Stay</span>
+                        <span class="service-badge">Community</span>
+                    </div>
+                    <button class="learn-more-btn">Learn More →</button>
+                </div>
+
+                <div class="org-card">
+                    <div class="org-card-header">
+                        <img src="{{ organization.iconUrl }}" alt="Organization Icon" class="org-icon w-12 h-12 object-cover">
+                        <div>
+                            <h3 class="org-name">Education Access Project</h3>
+                            <p class="org-type">Education & Scholarships</p>
+                        </div>
+                    </div>
+                    <p class="org-description">Educational opportunities and scholarship programs for migrant children and adults.</p>
+                    <div class="org-services">
+                        <span class="service-badge">Scholarships</span>
+                        <span class="service-badge">Language Classes</span>
+                        <span class="service-badge">Training</span>
+                    </div>
+                    <button class="learn-more-btn">Learn More →</button>
+                </div>
+
+                <div class="org-card">
+                    <div class="org-card-header">
+                        <img src="{{ organization.iconUrl }}" alt="Organization Icon" class="org-icon w-12 h-12 object-cover">
+                        <div>
+                            <h3 class="org-name">Community Solidarity Fund</h3>
+                            <p class="org-type">Community Support & Relief</p>
+                        </div>
+                    </div>
+                    <p class="org-description">Emergency financial assistance and community relief programs for migrants in need.</p>
+                    <div class="org-services">
+                        <span class="service-badge">Emergency Aid</span>
+                        <span class="service-badge">Relief Fund</span>
+                        <span class="service-badge">Support</span>
+                    </div>
+                    <button class="learn-more-btn">Learn More →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="py-20 px-4 md:px-8 bg-gradient-to-r from-home-coral/10 to-social-teal/10">
         <div class="max-w-4xl mx-auto text-center">
@@ -126,6 +240,32 @@
             <a href="migrant_reg.html" class="inline-block px-8 py-4 bg-home-coral text-white font-black rounded-xl shadow-lg hover:bg-home-coral/90 hover:scale-105 transition-all uppercase tracking-widest">
                 Get Started Now
             </a>
+        </div>
+    </section>
+
+     <!-- Emergency Contacts Strip -->
+    <section class="py-4 px-4 md:px-8 bg-home-coral/95 text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-sm md:text-base">
+                <div class="flex items-center gap-2">
+                    <span class="font-black text-lg">🚨</span>
+                    <span class="font-bold">EMERGENCY CONTACTS:</span>
+                </div>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <div class="emergency-contact-item">
+                        <span class="font-bold">Police:</span>
+                        <span id="emergencyPolice">911</span>
+                    </div>
+                    <div class="emergency-contact-item">
+                        <span class="font-bold">Medical:</span>
+                        <span id="emergencyMedical">911</span>
+                    </div>
+                    <div class="emergency-contact-item">
+                        <span class="font-bold">Immigration Help:</span>
+                        <span id="emergencyImmigration">1-844-363-1423</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -167,5 +307,13 @@
     </footer>
 
     <script src="js/nav.js"></script>
+    <script src="js/language-selector.js"></script>
+    <script>
+        // Google Translate Widget
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,es,fr,de,pt,ar,zh-CN,vi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-XXXXXXX-X'}, 'google_translate_element');
+        }
+    </script>
+    <script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

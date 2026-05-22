@@ -15,7 +15,7 @@
 @layer components {
   /* Glassmorphism Card - Light & Airy */
   .glass-card {
-    @apply bg-white/85 backdrop-blur-2xl border border-white/40 rounded-[2.5rem] shadow-glass p-8 md:p-10 w-full transition-all;
+    @apply bg-white/99 backdrop-blur-2xl border border-white/40 rounded-[2.5rem] shadow-glass p-8 md:p-10 w-full transition-all;
   }
 
   .form-label { 
@@ -146,7 +146,7 @@
 
   /* The actual stroke shape */
   .brush-stroke {
-    @apply absolute inset-0 -z-10 bg-social-teal/30;
+    @apply absolute inset-0 -z-10 bg-social-teal/90;
     /* This creates the 'zigzag' rough edge effect */
     filter: url(#rough-edge);
     clip-path: polygon(0% 15%, 100% 0%, 98% 85%, 2% 100%);
@@ -204,5 +204,51 @@
 
   .page-content {
     @apply max-w-7xl mx-auto px-4 md:px-8 pb-12;
+  }
+
+  /* Emergency Contacts Strip */
+  .emergency-contact-item {
+    @apply flex items-center gap-1 bg-white/20 px-3 py-1 rounded-lg hover:bg-white/30 transition-colors;
+  }
+
+  /* Featured Organizations Grid */
+  .featured-orgs-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  .org-card {
+    @apply bg-white rounded-2xl border-2 border-social-teal/30 shadow-md hover:shadow-xl transition-all p-6 hover:-translate-y-1 flex flex-col;
+  }
+
+  .org-card-header {
+    @apply flex items-start gap-4 mb-4;
+  }
+
+  .org-icon {
+    @apply text-5xl shrink-0;
+  }
+
+  .org-name {
+    @apply text-lg font-black text-text-main;
+  }
+
+  .org-type {
+    @apply text-sm font-bold text-home-coral;
+  }
+
+  .org-description {
+    @apply text-gray-600 text-sm mb-4 line-clamp-3 flex-grow;
+  }
+
+  .org-services {
+    @apply flex flex-wrap gap-2 mb-4;
+  }
+
+  .service-badge {
+    @apply px-2 py-1 bg-social-teal/20 text-social-teal rounded-full text-xs font-bold;
+  }
+
+  .learn-more-btn {
+    @apply px-4 py-2 bg-home-coral text-white font-bold rounded-lg hover:bg-home-coral/90 hover:scale-105 transition-all text-sm;
   }
 }
