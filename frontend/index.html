@@ -3,9 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home - MIGRANT4MIGRANT</title>
+    <link href="style/output.css" rel="stylesheet">
 </head>
-<body>
-    <h1>testing</h1>
+<body class="bg-bone-white font-sans antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                MIGRANT<span>4</span>MIGRANT
+            </div>
+            <div class="navbar-menu">
+                <a href="index.html" class="active">Home</a>
+                <a href="community.html">Community</a>
+                <a href="resources.html">Resources</a>
+                <a href="mentor_reg.html">Mentors</a>
+            </div>
+            <div class="navbar-auth">
+                <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
+                <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
+            </div>
+            <div class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar-mobile-menu hidden"></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-[80vh] flex items-center justify-center p-4 md:p-8 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- The Background Image -->
+            <img src="assets/background_form.jpg" 
+                alt="Journey Silhouettes" 
+                class="w-full h-full object-cover opacity-90 mix-blend-multiply">
+            
+            <!-- The Glass Overlay -->
+            <!-- Example: A much "thicker" glass look -->
+            <div class="absolute inset-0 bg-black/20 backdrop-blur-[90px]"></div></div>
+
+            <!-- Your existing Gradient -->
+            <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-sunny-yellow/20 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl text-center space-y-8">
+            <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true" focusable="false">
+                <filter id="rough-edge">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+                </filter>
+            </svg>
+
+            <h1 class="text-5xl md:text-7xl font-black uppercase leading-none tracking-tighter text-text-main">
+                MIGRANT<span class="text-home-coral">4</span><br>MIGRANT
+            </h1>
+
+            <div class="brush-wrapper mx-auto">
+                <div class="brush-stroke"></div>
+                <p class="text-text-main text-lg md:text-xl font-bold leading-relaxed relative max-w-2xl mx-auto">
+                    A community where your journey becomes a shared map to the future. Connect, learn, and grow with mentors and fellow migrants.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-4 justify-center pt-8">
+                <a href="migrant_reg.html" class="px-8 py-4 bg-home-coral text-white font-black rounded-xl shadow-lg hover:bg-home-coral/90 hover:scale-105 transition-all uppercase tracking-widest">
+                    Join us Today
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-4 md:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-black text-text-main mb-4 text-center">Why Join Us?</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+                Connect with a supportive community dedicated to helping migrants navigate their journey.
+            </p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Expert Mentors</h3>
+                            <p class="text-gray-600 text-sm mt-2">Learn from experienced mentors in legal, employment, and social services.</p>
+                        </div>
+                    </div>
+                    <div class="text-4xl text-home-coral mb-4">👨‍🏫</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Share Resources</h3>
+                            <p class="text-gray-600 text-sm mt-2">Access curated resources and share helpful information with the community.</p>
+                        </div>
+                    </div>
+                    <div class="text-4xl text-social-teal mb-4">📚</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Community Support</h3>
+                            <p class="text-gray-600 text-sm mt-2">Connect with others on similar journeys and build meaningful relationships.</p>
+                        </div>
+                    </div>
+                    <div class="text-4xl text-sunny-yellow mb-4">🤝</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Organizations Section -->
+    <section class="py-20 px-4 md:px-8 bg-gradient-to-br from-social-teal/10 to-sunny-yellow/10">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-black text-text-main mb-4 text-center">Trusted Partners & Organizations</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+                Verified NGOs and community organizations dedicated to supporting migrants.
+            </p>
+
+            <div class="featured-orgs-grid">
+                <div class="org-card">
+                    <div class="org-card-header">
+                        <img src="{{ organization.iconUrl }}" alt="Organization Icon" class="org-icon w-12 h-12 object-cover">
+                        <div>
+                            <h3 class="org-name">Global Migration Network</h3>
+                            <p class="org-type">Legal & Immigration Support</p>
+                        </div>
+                    </div>
+                    <p class="org-description">Provides free legal consultation and immigration guidance for displaced communities.</p>
+                    <div class="org-services">
+                        <span class="service-badge">Legal Aid</span>
+                        <span class="service-badge">Consultation</span>
+                        <span class="service-badge">Documents</span>
+                    </div>
+                    <button class="learn-more-btn">Learn More →</button>
+                </div>
+
+                <div class="org-card">
+                    <div class="org-card-header">
+                        <img src="{{ organization.iconUrl }}" alt="Organization Icon" class="org-icon w-12 h-12 object-cover">
+                        <div>
+                            <h3 class="org-name">Health Bridges International</h3>
+                            <p class="org-type">Healthcare Access</p>
+                        </div>
+                    </div>
+                    <p class="org-description">Connecting migrants with affordable healthcare services and wellness resources.</p>
+                    <div class="org-services">
+                        <span class="service-badge">Healthcare</span>
+                        <span class="service-badge">Mental Health</span>
+                        <span class="service-badge">Wellness</span>
+                    </div>
+                    <button class="learn-more-btn">Learn More →</button>
+                </div>
+
+                <div class="org-card">
+                    <div class="org-card-header">
+                        <img src="{{ organization.iconUrl }}" alt="Organization Icon" class="org-icon w-12 h-12 object-cover">
+                        <div>
+                            <h3 class="org-name">Career Pathways Initiative</h3>
+                            <p class="org-type">Employment & Training</p>
+                        </div>
+                    </div>
+                    <p class="org-description">Job placement and skills training programs tailored for migrant professionals.</p>
+                    <div class="org-services">
+                        <span class="service-badge">Job Placement</span>
+                        <span class="service-badge">Training</span>
+                        <span class="service-badge">Mentorship</span>
+                    </div>
+                    <button class="learn-more-btn">Learn More →</button>
+                </div>
+
+                <div class="org-card">
+                    <div class="org-card-header">
+                        <img src="{{ organization.iconUrl }}" alt="Organization Icon" class="org-icon w-12 h-12 object-cover">
+                        <div>
+                            <h3 class="org-name">Safe Haven Housing</h3>
+                            <p class="org-type">Housing Support</p>
+                        </div>
+                    </div>
+                    <p class="org-description">Connecting migrants with safe, affordable housing and accommodation resources.</p>
+                    <div class="org-services">
+                        <span class="service-badge">Housing</span>
+                        <span class="service-badge">Temporary Stay</span>
+                        <span class="service-badge">Community</span>
+                    </div>
+                    <button class="learn-more-btn">Learn More →</button>
+                </div>
+
+                <div class="org-card">
+                    <div class="org-card-header">
+                        <img src="{{ organization.iconUrl }}" alt="Organization Icon" class="org-icon w-12 h-12 object-cover">
+                        <div>
+                            <h3 class="org-name">Education Access Project</h3>
+                            <p class="org-type">Education & Scholarships</p>
+                        </div>
+                    </div>
+                    <p class="org-description">Educational opportunities and scholarship programs for migrant children and adults.</p>
+                    <div class="org-services">
+                        <span class="service-badge">Scholarships</span>
+                        <span class="service-badge">Language Classes</span>
+                        <span class="service-badge">Training</span>
+                    </div>
+                    <button class="learn-more-btn">Learn More →</button>
+                </div>
+
+                <div class="org-card">
+                    <div class="org-card-header">
+                        <img src="{{ organization.iconUrl }}" alt="Organization Icon" class="org-icon w-12 h-12 object-cover">
+                        <div>
+                            <h3 class="org-name">Community Solidarity Fund</h3>
+                            <p class="org-type">Community Support & Relief</p>
+                        </div>
+                    </div>
+                    <p class="org-description">Emergency financial assistance and community relief programs for migrants in need.</p>
+                    <div class="org-services">
+                        <span class="service-badge">Emergency Aid</span>
+                        <span class="service-badge">Relief Fund</span>
+                        <span class="service-badge">Support</span>
+                    </div>
+                    <button class="learn-more-btn">Learn More →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 md:px-8 bg-gradient-to-r from-home-coral/10 to-social-teal/10">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-black text-text-main mb-4">Ready to Start Your Journey?</h2>
+            <p class="text-gray-600 mb-8">Join thousands of migrants and mentors creating positive change together.</p>
+            <a href="migrant_reg.html" class="inline-block px-8 py-4 bg-home-coral text-white font-black rounded-xl shadow-lg hover:bg-home-coral/90 hover:scale-105 transition-all uppercase tracking-widest">
+                Get Started Now
+            </a>
+        </div>
+    </section>
+
+     <!-- Emergency Contacts Strip -->
+    <section class="py-4 px-4 md:px-8 bg-home-coral/95 text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-sm md:text-base">
+                <div class="flex items-center gap-2">
+                    <span class="font-black text-lg">🚨</span>
+                    <span class="font-bold">EMERGENCY CONTACTS:</span>
+                </div>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <div class="emergency-contact-item">
+                        <span class="font-bold">Police:</span>
+                        <span id="emergencyPolice">911</span>
+                    </div>
+                    <div class="emergency-contact-item">
+                        <span class="font-bold">Medical:</span>
+                        <span id="emergencyMedical">911</span>
+                    </div>
+                    <div class="emergency-contact-item">
+                        <span class="font-bold">Immigration Help:</span>
+                        <span id="emergencyImmigration">1-844-363-1423</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-text-main text-white py-12 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="font-black text-lg mb-4">MIGRANT<span class="text-home-coral">4</span>MIGRANT</h4>
+                <p class="text-gray-300 text-sm">Empowering migrants through community and mentorship.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Quick Links</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="index.html" class="hover:text-home-coral transition-colors">Home</a></li>
+                    <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li>
+                    <li><a href="resources.html" class="hover:text-home-coral transition-colors">Resources</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Get Involved</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="migrant_reg.html" class="hover:text-home-coral transition-colors">Register as Migrant</a></li>
+                    <li><a href="mentor_reg.html" class="hover:text-home-coral transition-colors">Become a Mentor</a></li>
+                    <li><a href="community.html" class="hover:text-home-coral transition-colors">Join Discussion</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Support</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="#" class="hover:text-home-coral transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-home-coral transition-colors">Contact</a></li>
+                    <li><a href="#" class="hover:text-home-coral transition-colors">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 MIGRANT4MIGRANT. All rights reserved. | Empowering migration through community.</p>
+        </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script src="js/language-selector.js"></script>
+    <script>
+        // Google Translate Widget
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,es,fr,de,pt,ar,zh-CN,vi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-XXXXXXX-X'}, 'google_translate_element');
+        }
+    </script>
+    <script async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

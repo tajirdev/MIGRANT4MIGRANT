@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - MIGRANT4MIGRANT</title>
+    <link href="style/output.css" rel="stylesheet">
+</head>
+<body class="bg-bone-white font-sans antialiased overflow-x-hidden" onload="requireAuth()">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                MIGRANT<span>4</span>MIGRANT
+            </div>
+            <div class="navbar-menu">
+                <a href="index.html">Home</a>
+                <a href="community.html">Community</a>
+                <a href="resources.html">Resources</a>
+                <a href="mentor_reg.html">Be a Mentor</a>
+            </div>
+            <div class="navbar-auth">
+                <a href="profile.html" class="navbar-btn navbar-btn-secondary">Profile</a>
+                <button onclick="logout()" class="navbar-btn navbar-btn-primary">Logout</button>
+            </div>
+            <div class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar-mobile-menu hidden"></div>
+    </nav>
+
+    <!-- Page Container -->
+    <div class="page-container">
+        <div class="page-content">
+            <div class="max-w-4xl mx-auto">
+                <!-- Profile Header -->
+                <div class="bg-white rounded-3xl shadow-md p-8 md:p-12 mb-8">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <!-- Profile Avatar -->
+                        <div class="flex flex-col items-center md:items-start gap-4">
+                            <div class="w-32 h-32 bg-gradient-to-br from-home-coral to-social-teal rounded-full flex items-center justify-center text-white text-5xl shadow-lg">
+                                👤
+                            </div>
+                            <button onclick="editProfile()" class="navbar-btn navbar-btn-primary px-6">
+                                Edit Profile
+                            </button>
+                        </div>
+
+                        <!-- Profile Info -->
+                        <div class="flex-1">
+                            <h1 id="profileName" class="text-3xl font-black text-text-main mb-2">John Doe</h1>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <div class="text-sm">
+                                    <p class="text-gray-500 uppercase tracking-widest font-bold">Role</p>
+                                    <p id="profileRole" class="text-text-main font-bold">Migrant</p>
+                                </div>
+                                <div class="text-sm">
+                                    <p class="text-gray-500 uppercase tracking-widest font-bold">Member Since</p>
+                                    <p class="text-text-main font-bold">January 2025</p>
+                                </div>
+                                <div class="text-sm">
+                                    <p class="text-gray-500 uppercase tracking-widest font-bold">Language</p>
+                                    <p id="profileLanguage" class="text-text-main font-bold">English</p>
+                                </div>
+                            </div>
+
+                            <!-- Location Info -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-gray-500 text-sm uppercase tracking-widest font-bold">Native Country</p>
+                                    <p id="profileNativeCountry" class="text-text-main font-bold">India</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500 text-sm uppercase tracking-widest font-bold">Current Country</p>
+                                    <p id="profileCurrentCountry" class="text-text-main font-bold">Canada</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mentor Section (if user is a mentor) -->
+                <div id="mentorSection" class="hidden bg-white rounded-3xl shadow-md p-8 md:p-12 mb-8">
+                    <h2 class="text-2xl font-black text-text-main mb-6">Mentor Profile</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <p class="text-gray-500 text-sm uppercase tracking-widest font-bold mb-2">Expertise</p>
+                            <p id="mentorExpertise" class="text-text-main font-bold bg-home-coral/20 px-4 py-2 rounded-lg inline-block">
+                                Legal Services
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm uppercase tracking-widest font-bold mb-2">Organization</p>
+                            <p id="mentorOrganization" class="text-text-main font-bold">Legal Aid Foundation</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm uppercase tracking-widest font-bold mb-2">Availability</p>
+                            <p id="mentorAvailability" class="text-text-main font-bold">Weekends & Evenings</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm uppercase tracking-widest font-bold mb-2">Rating</p>
+                            <div class="flex items-center gap-2">
+                                <span id="mentorRating" class="text-2xl font-black text-home-coral">4.8</span>
+                                <div class="text-yellow-400 text-lg">★★★★★</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="editMentorProfile()" class="navbar-btn navbar-btn-secondary px-6">
+                        Edit Mentor Info
+                    </button>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex gap-4 border-b border-gray-200 mb-8">
+                    <button class="tab-btn active px-6 py-3 border-b-2 border-home-coral text-home-coral font-bold" data-tab="activity">
+                        Activity
+                    </button>
+                    <button class="tab-btn px-6 py-3 border-b-2 border-transparent text-gray-600 font-bold hover:text-text-main transition" data-tab="saved">
+                        Saved Items
+                    </button>
+                    <button class="tab-btn px-6 py-3 border-b-2 border-transparent text-gray-600 font-bold hover:text-text-main transition" data-tab="settings">
+                        Settings
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <!-- Activity Tab -->
+                <div id="activityTab" class="tab-content">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-black text-text-main mb-4">Your Recent Posts</h3>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="card-badge">Employment</span>
+                                    </div>
+                                    <h4 class="card-title">Job search tips for professionals</h4>
+                                </div>
+                            </div>
+                            <p class="card-description">
+                                I've compiled some useful tips from my job search experience that might help others...
+                            </p>
+                            <div class="card-footer">
+                                <div class="text-xs text-gray-500">Posted 3 days ago</div>
+                                <div class="text-xs text-home-coral font-bold">5 replies</div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="card-badge" style="background-color: rgb(208,233,223); color: var(--color-social-teal);">Housing</span>
+                                    </div>
+                                    <h4 class="card-title">Finding affordable housing in the city</h4>
+                                </div>
+                            </div>
+                            <p class="card-description">
+                                Looking for recommendations on areas with affordable rental options...
+                            </p>
+                            <div class="card-footer">
+                                <div class="text-xs text-gray-500">Posted 1 week ago</div>
+                                <div class="text-xs text-home-coral font-bold">12 replies</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saved Items Tab -->
+                <div id="savedTab" class="tab-content hidden">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-black text-text-main mb-4">Your Saved Resources</h3>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="card-badge">Legal Aid</span>
+                                    </div>
+                                    <h4 class="card-title">Immigration Law Center</h4>
+                                </div>
+                            </div>
+                            <p class="card-description">
+                                Provides free legal consultation for immigration matters...
+                            </p>
+                            <div class="card-footer">
+                                <a href="resources.html" class="btn-sm">View Resource</a>
+                                <button onclick="unsaveResource(1)" class="text-home-coral font-bold text-sm hover:scale-110 transition">✕ Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div id="settingsTab" class="tab-content hidden">
+                    <div class="bg-white rounded-3xl shadow-md p-8">
+                        <h3 class="text-xl font-black text-text-main mb-6">Account Settings</h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-bold text-text-main mb-4">Email Notifications</h4>
+                                <label class="flex items-center gap-3 cursor-pointer">
+                                    <input type="checkbox" checked class="w-4 h-4 accent-home-coral">
+                                    <span class="text-text-main">Receive messages from mentors</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer mt-3">
+                                    <input type="checkbox" checked class="w-4 h-4 accent-home-coral">
+                                    <span class="text-text-main">Get notified about community posts</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer mt-3">
+                                    <input type="checkbox" class="w-4 h-4 accent-home-coral">
+                                    <span class="text-text-main">Receive resource recommendations</span>
+                                </label>
+                            </div>
+
+                            <div class="border-t border-gray-200 pt-6">
+                                <h4 class="font-bold text-text-main mb-4">Privacy Settings</h4>
+                                <label class="flex items-center gap-3 cursor-pointer">
+                                    <input type="checkbox" checked class="w-4 h-4 accent-home-coral">
+                                    <span class="text-text-main">Make profile visible to mentors</span>
+                                </label>
+                                <label class="flex items-center gap-3 cursor-pointer mt-3">
+                                    <input type="checkbox" checked class="w-4 h-4 accent-home-coral">
+                                    <span class="text-text-main">Show my posts publicly</span>
+                                </label>
+                            </div>
+
+                            <div class="border-t border-gray-200 pt-6">
+                                <h4 class="font-bold text-text-main mb-4 text-red-600">Danger Zone</h4>
+                                <button onclick="deleteAccount()" class="px-6 py-2 bg-red-500 text-white rounded-lg font-bold hover:bg-red-600 transition">
+                                    Delete Account
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <h2 class="text-2xl font-bold text-text-main mb-6">Edit Profile</h2>
+            <form id="editProfileForm" class="space-y-4">
+                <div>
+                    <label class="form-label">Full Name</label>
+                    <input type="text" id="editName" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Email</label>
+                    <input type="email" id="editEmail" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Native Country</label>
+                    <input type="text" id="editNativeCountry" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Current Country</label>
+                    <input type="text" id="editCurrentCountry" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Preferred Language</label>
+                    <input type="text" id="editLanguage" class="form-input" required>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary">Save Changes</button>
+                    <button type="button" onclick="closeEditProfileModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-text-main text-white py-12 px-4 md:px-8 mt-20">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="font-black text-lg mb-4">MIGRANT<span class="text-home-coral">4</span>MIGRANT</h4>
+                <p class="text-gray-300 text-sm">Empowering migrants through community and mentorship.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Quick Links</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="index.html" class="hover:text-home-coral transition-colors">Home</a></li>
+                    <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li>
+                    <li><a href="resources.html" class="hover:text-home-coral transition-colors">Resources</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Get Involved</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="migrant_reg.html" class="hover:text-home-coral transition-colors">Register as Migrant</a></li>
+                    <li><a href="mentor_reg.html" class="hover:text-home-coral transition-colors">Become a Mentor</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Support</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="#" class="hover:text-home-coral transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-home-coral transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 MIGRANT4MIGRANT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabName = this.dataset.tab;
+                
+                // Hide all tabs
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.add('hidden');
+                });
+                
+                // Show selected tab
+                document.getElementById(tabName + 'Tab').classList.remove('hidden');
+                
+                // Update button styles
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('border-home-coral', 'text-home-coral');
+                    b.classList.add('border-transparent', 'text-gray-600');
+                });
+                this.classList.remove('border-transparent', 'text-gray-600');
+                this.classList.add('border-home-coral', 'text-home-coral');
+            });
+        });
+
+        function editProfile() {
+            document.getElementById('editName').value = document.getElementById('profileName').textContent;
+            document.getElementById('editLanguage').value = document.getElementById('profileLanguage').textContent;
+            document.getElementById('editNativeCountry').value = document.getElementById('profileNativeCountry').textContent;
+            document.getElementById('editCurrentCountry').value = document.getElementById('profileCurrentCountry').textContent;
+            document.getElementById('editProfileModal').classList.remove('hidden');
+        }
+
+        function closeEditProfileModal() {
+            document.getElementById('editProfileModal').classList.add('hidden');
+        }
+
+        function editMentorProfile() {
+            alert('Edit mentor profile functionality coming soon');
+        }
+
+        function unsaveResource(resourceId) {
+            const savedResources = JSON.parse(localStorage.getItem('savedResources') || '[]');
+            const index = savedResources.indexOf(resourceId);
+            if (index > -1) {
+                savedResources.splice(index, 1);
+                localStorage.setItem('savedResources', JSON.stringify(savedResources));
+                location.reload();
+            }
+        }
+
+        function deleteAccount() {
+            if (confirm('Are you sure? This action cannot be undone.')) {
+                // Call backend to delete account
+                alert('Account deletion coming soon');
+            }
+        }
+
+        // Form submission
+        document.getElementById('editProfileForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            try {
+                const response = await fetch('/api/users/profile', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                    },
+                    body: JSON.stringify({
+                        name: document.getElementById('editName').value,
+                        native_country: document.getElementById('editNativeCountry').value,
+                        current_country: document.getElementById('editCurrentCountry').value,
+                        language: document.getElementById('editLanguage').value
+                    })
+                });
+
+                if (response.ok) {
+                    closeEditProfileModal();
+                    location.reload();
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('Failed to update profile. Please try again.');
+            }
+        });
+
+        // Load user data (from backend in production)
+        document.addEventListener('DOMContentLoaded', function() {
+            // This would load from backend in production
+            const userRole = localStorage.getItem('userRole') || 'migrant';
+            if (userRole === 'mentor') {
+                document.getElementById('mentorSection').classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
