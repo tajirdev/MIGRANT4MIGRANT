@@ -1,4 +1,5 @@
 // Navbar functionality
+
 document.addEventListener('DOMContentLoaded', function() {
   const navToggle = document.querySelector('.navbar-toggle');
   const mobileMenu = document.querySelector('.navbar-mobile-menu');
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.add('active');
     });
   });
-
+ 
   // Set active link based on current page
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   navLinks.forEach(link => {
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Check if user is logged in (from localStorage)
-  const isLoggedIn = localStorage.getItem('authToken');
+  const isLoggedIn = localStorage.getItem('pa_token');
   const authContainer = document.querySelector('.navbar-auth');
   
   if (isLoggedIn && authContainer) {
@@ -39,19 +40,26 @@ document.addEventListener('DOMContentLoaded', function() {
       <a href="profile.html" class="text-text-main text-sm font-bold hover:text-home-coral transition-colors">Profile</a>
       <button onclick="logout()" class="navbar-btn navbar-btn-secondary">Logout</button>
     `;
+    document.getElementById("community").hidden=false
+    document.getElementById("mentor").hidden = false
+    document.getElementById("resource").hidden = false
   }
 });
 
-// Logout function
-function logout() {
-  localStorage.removeItem('authToken');
-  window.location.href = 'login.html';
-}
-
 // Check if user is logged in (redirect unauthenticated users)
 function requireAuth() {
-  const authToken = localStorage.getItem('authToken');
+  const authToken = localStorage.getItem('pa_token');
   if (!authToken) {
     window.location.href = 'login.html';
+    
   }
+    
 }
+
+// Logout function
+function logout() {
+  localStorage.removeItem('pa_token');
+  window.location.href = 'login.html';
+}
+  
+

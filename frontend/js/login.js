@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 localStorage.setItem('pa_token', result.access_token);
                 localStorage.setItem('pa_email', data.username.trim());
+                localStorage.setItem('pa_role',result.role);
 
                 
                 
