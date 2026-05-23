@@ -68,7 +68,7 @@
                             localStorage.removeItem('pa_token');
                             localStorage.removeItem('pa_email');
                             localStorage.removeItem('pa_role');
-                            location.reload();
+                            
 
 
 
