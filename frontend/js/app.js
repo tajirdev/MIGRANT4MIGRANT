@@ -59,6 +59,9 @@ function requireAuth() {
 // Logout function
 function logout() {
   localStorage.removeItem('pa_token');
+  localStorage.removeItem('pa_email');
+  localStorage.removeItem('pa_role');
+
   window.location.href = 'login.html';
 }
   

@@ -18,5 +18,5 @@ class Migrant(Base):
     native_country = Column(String)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
-    mentor = relationship('Mentor' ,back_populates='migrant')
+    mentor = relationship('Mentor' ,back_populates='migrant',cascade="all, delete")
     

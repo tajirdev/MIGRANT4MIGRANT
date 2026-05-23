@@ -51,7 +51,7 @@
                         </div>
 
                         <!-- Profile Info -->
-                        <div class="flex-1">
+                        <div class="flex-1" id="profile">
                             <h1 id="profileName" class="text-3xl font-black text-text-main mb-2">John Doe</h1>
                             <div class="flex flex-wrap gap-4 mb-6">
                                 <div class="text-sm">
@@ -252,23 +252,24 @@
             <form id="editProfileForm" class="space-y-4">
                 <div>
                     <label class="form-label">Full Name</label>
-                    <input type="text" id="editName" class="form-input" required>
+                    <input type="text" id="editName" class="form-input">
                 </div>
                 <div>
-                    <label class="form-label">Email</label>
-                    <input type="email" id="editEmail" class="form-input" required>
+                    <label class="form-label">User name</label>
+                    <input type="text" id="user_name" class="form-input">
                 </div>
+                 
                 <div>
                     <label class="form-label">Native Country</label>
-                    <input type="text" id="editNativeCountry" class="form-input" required>
+                    <input type="text" id="editNativeCountry" class="form-input">
                 </div>
                 <div>
                     <label class="form-label">Current Country</label>
-                    <input type="text" id="editCurrentCountry" class="form-input" required>
+                    <input type="text" id="editCurrentCountry" class="form-input">
                 </div>
                 <div>
                     <label class="form-label">Preferred Language</label>
-                    <input type="text" id="editLanguage" class="form-input" required>
+                    <input type="text" id="editLanguage" class="form-input">
                 </div>
                 <div class="flex gap-4 pt-4">
                     <button type="submit" class="flex-1 navbar-btn navbar-btn-primary">Save Changes</button>
@@ -312,102 +313,10 @@
             <p>&copy; 2025 MIGRANT4MIGRANT. All rights reserved.</p>
         </div>
     </footer>
-
-    <script src="js/nav.js"></script>
-    <script>
-        // Tab functionality
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const tabName = this.dataset.tab;
-                
-                // Hide all tabs
-                document.querySelectorAll('.tab-content').forEach(tab => {
-                    tab.classList.add('hidden');
-                });
-                
-                // Show selected tab
-                document.getElementById(tabName + 'Tab').classList.remove('hidden');
-                
-                // Update button styles
-                document.querySelectorAll('.tab-btn').forEach(b => {
-                    b.classList.remove('border-home-coral', 'text-home-coral');
-                    b.classList.add('border-transparent', 'text-gray-600');
-                });
-                this.classList.remove('border-transparent', 'text-gray-600');
-                this.classList.add('border-home-coral', 'text-home-coral');
-            });
-        });
-
-        function editProfile() {
-            document.getElementById('editName').value = document.getElementById('profileName').textContent;
-            document.getElementById('editLanguage').value = document.getElementById('profileLanguage').textContent;
-            document.getElementById('editNativeCountry').value = document.getElementById('profileNativeCountry').textContent;
-            document.getElementById('editCurrentCountry').value = document.getElementById('profileCurrentCountry').textContent;
-            document.getElementById('editProfileModal').classList.remove('hidden');
-        }
-
-        function closeEditProfileModal() {
-            document.getElementById('editProfileModal').classList.add('hidden');
-        }
-
-        function editMentorProfile() {
-            alert('Edit mentor profile functionality coming soon');
-        }
-
-        function unsaveResource(resourceId) {
-            const savedResources = JSON.parse(localStorage.getItem('savedResources') || '[]');
-            const index = savedResources.indexOf(resourceId);
-            if (index > -1) {
-                savedResources.splice(index, 1);
-                localStorage.setItem('savedResources', JSON.stringify(savedResources));
-                location.reload();
-            }
-        }
-
-        function deleteAccount() {
-            if (confirm('Are you sure? This action cannot be undone.')) {
-                // Call backend to delete account
-                alert('Account deletion coming soon');
-            }
-        }
-
-        // Form submission
-        document.getElementById('editProfileForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            try {
-                const response = await fetch('/api/users/profile', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-                    },
-                    body: JSON.stringify({
-                        name: document.getElementById('editName').value,
-                        native_country: document.getElementById('editNativeCountry').value,
-                        current_country: document.getElementById('editCurrentCountry').value,
-                        language: document.getElementById('editLanguage').value
-                    })
-                });
-
-                if (response.ok) {
-                    closeEditProfileModal();
-                    location.reload();
-                }
-            } catch (error) {
-                console.error('Error updating profile:', error);
-                alert('Failed to update profile. Please try again.');
-            }
-        });
-
-        // Load user data (from backend in production)
-        document.addEventListener('DOMContentLoaded', function() {
-            // This would load from backend in production
-            const userRole = localStorage.getItem('userRole') || 'migrant';
-            if (userRole === 'mentor') {
-                document.getElementById('mentorSection').classList.remove('hidden');
-            }
-        });
-    </script>
+      
+    <script src="js/profile/get.js"></script>
+    <script src="js/profile/app.js"> </script>
+    <script src="js/app.js"></script>
+    
 </body>
 </html>

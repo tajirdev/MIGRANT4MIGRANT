@@ -8,7 +8,7 @@ class Mentor(Base):
     __tablename__ = "mentors"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer,ForeignKey("migrants.id"))
+    user_id = Column(Integer,ForeignKey("migrants.id",ondelete="CASCADE"))
     expertise = Column(String)
     languages = Column(String)
     organization = Column(String)
@@ -16,6 +16,7 @@ class Mentor(Base):
     rating = Column(Float, default=0.0)
 
     migrant = relationship('Migrant' ,back_populates='mentor')
-    rescou = relationship("Resource",back_populates="mentor_rec")
+    rescou = relationship("Resource",back_populates="mentor_rec",cascade="all, delete")
+    post = relationship("Post", back_populates="author",cascade="all, delete")
      
    

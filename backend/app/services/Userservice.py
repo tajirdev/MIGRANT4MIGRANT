@@ -42,6 +42,42 @@ class UserReg:
         active_user = db.query(migrants.Migrant).filter(migrants.Migrant.id == current_user_id).first()
         return active_user
    
+   def edit_me(self,request:schemaUser.Edite,db:Session,current_user_id:int):
+        active_user = db.query(migrants.Migrant).filter(migrants.Migrant.id == current_user_id).first()
+
+
+        active_user.name = request.name
+        active_user.user_name = request.user_name
+        
+        active_user.language = request.language
+        active_user.current_country = request.current_country
+        active_user.native_country = request.native_country
+    
+        try:
+            db.add(active_user)
+            db.commit()
+            db.refresh(active_user)
+        except IntegrityError:
+            db.rollback() 
+            raise HTTPException(status_code=400, detail="Conflict: Data already exists.")  
+        
+        return {"message":"you have update your information"}
+   
+   def delete_user(self, db: Session, current_user_id: int):
+        active_user = db.query(migrants.Migrant).filter(migrants.Migrant.id ==current_user_id).delete(synchronize_session=False)
+
+        try:
+            db.commit()
+        except IntegrityError:
+            db.rollback()
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Conflict: in database") 
+        return {"your no longer member"}
+
+       
+
+
+       
+   
 
 
 

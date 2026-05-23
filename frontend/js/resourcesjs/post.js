@@ -130,7 +130,7 @@ function showStatus(text, type) {
     }
     messageTimeout = setTimeout(() => {
         statusMessage.style.display = "none";
-    }, 5000);
+    }, 2000);
 }
 
 
