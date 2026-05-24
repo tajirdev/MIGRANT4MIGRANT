@@ -22,6 +22,18 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.add('active');
     });
   });
+
+  // Handle mobile menu links
+  const mobileMenuLinks = document.querySelectorAll('.navbar-mobile-menu a');
+  mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      mobileMenu.classList.add('hidden');
+      
+      // Set active link
+      mobileMenuLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
  
   // Set active link based on current page
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
