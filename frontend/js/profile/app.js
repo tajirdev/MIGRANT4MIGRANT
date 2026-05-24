@@ -33,6 +33,14 @@
             document.getElementById('editProfileModal').classList.add('hidden');
         }
 
+        function openBeaMentorModal() {
+            document.getElementById('beaMentorModal').classList.remove('hidden');
+        }
+
+        function closeBeaMentorModal() {
+            document.getElementById('beaMentorModal').classList.add('hidden');
+        }
+
         function editMentorProfile() {
             alert('Edit mentor profile functionality coming soon');
         }
@@ -124,5 +132,39 @@
             const userRole = localStorage.getItem('pa_role') || 'migrant';
             if (userRole === 'mentor') {
                 document.getElementById('mentorSection').classList.remove('hidden');
+                document.getElementById('beaMentorBtn').style.display = 'none';
+            } else {
+                document.getElementById('beaMentorBtn').style.display = 'block';
+            }
+        });
+
+        // Handle Be a Mentor form submission
+        document.getElementById('beaMentorForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            try {
+                const response = await fetch('http://localhost:8000/mentor/create/me', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('pa_token')}`
+                    },
+                    body: JSON.stringify({
+                        expertise: document.getElementById('mentorExpertiseInput').value,
+                        organization: document.getElementById('mentorOrganizationInput').value,
+                        availability: document.getElementById('mentorAvailabilityInput').value
+                    })
+                });
+                    
+                if (response.ok) {
+                    closeBeaMentorModal();
+                    localStorage.setItem('pa_role', 'mentor');
+                    location.reload();
+                } else {
+                    alert('Failed to become a mentor. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error becoming a mentor:', error);
+                alert('Failed to become a mentor. Please try again.');
             }
         });

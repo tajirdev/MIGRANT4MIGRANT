@@ -37,7 +37,16 @@ document.addEventListener('DOMContentLoaded', function() {
  
   // Set active link based on current page
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  
+  // Set active on desktop menu
   navLinks.forEach(link => {
+    if (link.getAttribute('href') === currentPage) {
+      link.classList.add('active');
+    }
+  });
+
+  // Set active on mobile menu
+  mobileMenuLinks.forEach(link => {
     if (link.getAttribute('href') === currentPage) {
       link.classList.add('active');
     }
@@ -52,6 +61,21 @@ document.addEventListener('DOMContentLoaded', function() {
       <a href="profile.html" class="text-text-main text-sm font-bold hover:text-home-coral transition-colors">Profile</a>
       <button onclick="logout()" class="navbar-btn navbar-btn-secondary">Logout</button>
     `;
+    
+    // Update mobile menu auth buttons
+    const mobileAuthLinks = document.querySelectorAll('.navbar-mobile-menu a[href="login.html"], .navbar-mobile-menu a[href="migrant_reg.html"]');
+    if (mobileAuthLinks.length >= 2) {
+      mobileAuthLinks[0].textContent = 'Profile';
+      mobileAuthLinks[0].href = 'profile.html';
+      mobileAuthLinks[0].classList.remove('navbar-btn-secondary');
+      mobileAuthLinks[0].classList.add('text-text-main', 'text-sm', 'font-bold', 'hover:text-home-coral', 'transition-colors');
+      
+      mobileAuthLinks[1].textContent = 'Logout';
+      mobileAuthLinks[1].onclick = function() { logout(); return false; };
+      mobileAuthLinks[1].href = '#';
+    }
+    
+    // Show hidden menu items for logged-in users
     document.getElementById("community").hidden=false
     document.getElementById("mentor").hidden = false
     document.getElementById("resource").hidden = false
