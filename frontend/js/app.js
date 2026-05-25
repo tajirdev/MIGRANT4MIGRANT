@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Show hidden menu items for logged-in users
     document.getElementById("community").hidden=false
-    document.getElementById("mentor").hidden = false
+    
     document.getElementById("resource").hidden = false
   }
 });
