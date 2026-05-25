@@ -143,7 +143,7 @@
             e.preventDefault();
             
             try {
-                const response = await fetch('http://localhost:8000/mentor/create/me', {
+                const response = await fetch('http://localhost:8000/register/mentor', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -152,7 +152,8 @@
                     body: JSON.stringify({
                         expertise: document.getElementById('mentorExpertiseInput').value,
                         organization: document.getElementById('mentorOrganizationInput').value,
-                        availability: document.getElementById('mentorAvailabilityInput').value
+                        availability: document.getElementById('mentorAvailabilityInput').value,
+                        languages: document.getElementById('languages').value
                     })
                 });
                     
