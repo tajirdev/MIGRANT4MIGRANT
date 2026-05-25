@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else{
                     showStatus("Registration successful!","success");
                     form.reset();
+                    window.location.href = 'login.html';
 
                 }
 

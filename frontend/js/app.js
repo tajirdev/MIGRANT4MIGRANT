@@ -98,7 +98,7 @@ function logout() {
   localStorage.removeItem('pa_email');
   localStorage.removeItem('pa_role');
 
-  window.location.href = 'login.html';
+  window.location.href = 'index.html';
 }
   
 
