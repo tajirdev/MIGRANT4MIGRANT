@@ -6,7 +6,7 @@
     <title>Resources - MIGRANT4MIGRANT</title>
     <link href="style/output.css" rel="stylesheet">
 </head>
-<body class="bg-bone-white font-sans antialiased overflow-x-hidden">
+<body class="bg-bone-white font-sans antialiased overflow-x-hidden" onload="requireAuth()">
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -18,7 +18,6 @@
                 <a href="index.html">Home</a>
                 <a href="community.html">Community</a>
                 <a href="resources.html" class="active">Resources</a>
-                <a href="mentor_reg.html">Be a Mentor</a>
             </div>
             <div class="navbar-auth">
                 <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
@@ -36,7 +35,6 @@
             <a href="resources.html">Resources</a>
             <a href="mentor_reg.html" hidden id="mentor">Mentors</a>
             <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
-            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
         </div>
     </nav>
 
@@ -69,147 +67,7 @@
 
             <!-- Resources Grid -->
             <div id="resourcesContainer" class="cards-grid">
-                <!-- Resources will be loaded here from backend -->
-                <div class="card">
-                    <div class="card-header">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="card-badge">Legal Aid</span>
-                                <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-bold">Verified</span>
-                            </div>
-                            <h3 class="card-title">Immigration Law Center</h3>
-                        </div>
-                    </div>
-                    <p class="card-description">
-                        Provides free legal consultation for immigration matters including visa sponsorship, work permits, and residency applications.
-                    </p>
-                    <div class="space-y-2 mb-4 text-sm text-gray-600">
-                        <p><strong>Location:</strong> Toronto, Ontario</p>
-                        <p><strong>Contact:</strong> (416) 555-0123</p>
-                        <p><strong>Languages:</strong> English, French, Spanish</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn-sm">View Details</a>
-                        <button onclick="saveResource(1)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="card-badge" style="background-color: rgb(208,233,223); color: var(--color-social-teal);">Employment</span>
-                                <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-bold">Verified</span>
-                            </div>
-                            <h3 class="card-title">Job Training & Placement</h3>
-                        </div>
-                    </div>
-                    <p class="card-description">
-                        Offers job training programs, resume building workshops, and interview coaching specifically for migrant professionals.
-                    </p>
-                    <div class="space-y-2 mb-4 text-sm text-gray-600">
-                        <p><strong>Location:</strong> Vancouver, BC</p>
-                        <p><strong>Contact:</strong> (604) 555-0456</p>
-                        <p><strong>Languages:</strong> English, Mandarin, Tagalog</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn-sm">View Details</a>
-                        <button onclick="saveResource(2)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="card-badge" style="background-color: rgba(255, 217, 61, 0.2); color: var(--color-sunny-yellow);">Housing</span>
-                                <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full font-bold">New</span>
-                            </div>
-                            <h3 class="card-title">Affordable Housing Program</h3>
-                        </div>
-                    </div>
-                    <p class="card-description">
-                        Helps migrants find affordable housing with rental assistance programs and tenant rights education.
-                    </p>
-                    <div class="space-y-2 mb-4 text-sm text-gray-600">
-                        <p><strong>Location:</strong> Montreal, Quebec</p>
-                        <p><strong>Contact:</strong> (514) 555-0789</p>
-                        <p><strong>Languages:</strong> French, English, Arabic</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn-sm">View Details</a>
-                        <button onclick="saveResource(3)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="card-badge" style="background-color: rgba(78, 205, 196, 0.2); color: var(--color-social-teal);">Health & Wellness</span>
-                            </div>
-                            <h3 class="card-title">Community Health Clinic</h3>
-                        </div>
-                    </div>
-                    <p class="card-description">
-                        Provides affordable healthcare services with interpreters for migrants. Covers medical checkups and vaccinations.
-                    </p>
-                    <div class="space-y-2 mb-4 text-sm text-gray-600">
-                        <p><strong>Location:</strong> Calgary, Alberta</p>
-                        <p><strong>Contact:</strong> (403) 555-1234</p>
-                        <p><strong>Languages:</strong> 15+ Languages Available</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn-sm">View Details</a>
-                        <button onclick="saveResource(4)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="card-badge" style="background-color: rgba(255, 107, 107, 0.2); color: var(--color-home-coral);">Education</span>
-                            </div>
-                            <h3 class="card-title">Language & Skills Academy</h3>
-                        </div>
-                    </div>
-                    <p class="card-description">
-                        Offers English language courses, professional certifications, and skills training tailored for migrants.
-                    </p>
-                    <div class="space-y-2 mb-4 text-sm text-gray-600">
-                        <p><strong>Location:</strong> Ottawa, Ontario</p>
-                        <p><strong>Contact:</strong> (613) 555-5678</p>
-                        <p><strong>Languages:</strong> English, Spanish, Punjabi</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn-sm">View Details</a>
-                        <button onclick="saveResource(5)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="card-badge" style="background-color: rgba(78, 205, 196, 0.2); color: var(--color-social-teal);">Financial Services</span>
-                            </div>
-                            <h3 class="card-title">Banking & Financial Support</h3>
-                        </div>
-                    </div>
-                    <p class="card-description">
-                        Helps migrants open bank accounts, understand credit systems, and access microfinance for small businesses.
-                    </p>
-                    <div class="space-y-2 mb-4 text-sm text-gray-600">
-                        <p><strong>Location:</strong> Winnipeg, Manitoba</p>
-                        <p><strong>Contact:</strong> (204) 555-9012</p>
-                        <p><strong>Languages:</strong> English, Ukrainian, Somali</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn-sm">View Details</a>
-                        <button onclick="saveResource(6)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
-                    </div>
-                </div>
+                
             </div>
 
             <!-- Empty State -->
@@ -297,8 +155,9 @@
         </div>
     </footer>
 
-    <script src="js/app.js"></script>
+    
     <script src="js/resourcesjs/post.js"></script>
     <script src="js/resourcesjs/get.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

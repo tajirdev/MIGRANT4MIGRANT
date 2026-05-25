@@ -87,7 +87,7 @@
                     
                 }
             
-                //alert('Account deletion coming soon');
+                
             }
         }
 
