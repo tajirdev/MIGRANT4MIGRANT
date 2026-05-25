@@ -6,7 +6,7 @@ class Resource(Base):
     __tablename__ = "resources"
 
     id = Column(Integer, primary_key=True, index=True)
-    added_by = Column(Integer, ForeignKey("mentors.id"))
+    added_by = Column(Integer, ForeignKey("mentors.id",ondelete="CASCADE"))
     title = Column(String, index=True)
     category = Column(String)
     description = Column(Text)

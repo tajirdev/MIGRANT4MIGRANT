@@ -16,5 +16,5 @@ class Post(Base):
     
 
     # Links to the mentor table
-    author_id = Column(Integer, ForeignKey("mentors.id"))
-    author = relationship("Mentor")
+    author_id = Column(Integer, ForeignKey("mentors.id",ondelete="CASCADE"))
+    author = relationship("Mentor", back_populates="post")

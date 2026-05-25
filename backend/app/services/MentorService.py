@@ -1,4 +1,4 @@
-from fastapi import HTTPException
+from fastapi import HTTPException,status
 from sqlalchemy.orm import Session
 from app.schemas import SchemaMentor
 from sqlalchemy.orm import Session
@@ -34,4 +34,17 @@ class Mentor:
         db.commit()
 
         return {'message':"you have been updated to mentor"}
+    
+
+    def get_mentor_info(self,db:Session,current_user_id:int):
+        show_mentor = db.query(mentor.Mentor).filter(mentor.Mentor.user_id== current_user_id).first()
+
+        if not show_mentor:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="mentor not found"
+
+            )
+        
+        return show_mentor
     

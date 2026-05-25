@@ -30,15 +30,24 @@
                 <span></span>
             </div>
         </div>
-        <div class="navbar-mobile-menu hidden"></div>
+        <div class="navbar-mobile-menu hidden">
+            <a href="index.html">Home</a>
+            <a href="community.html" hidden id="community">Community</a>
+            <a href="resources.html">Resources</a>
+            <a href="mentor_reg.html" hidden id="mentor">Mentors</a>
+            <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
+            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
+        </div>
     </nav>
 
     <!-- Page Header -->
     <div class="page-container">
         <div class="page-header">
+            <div id="status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
             <h1>Resources</h1>
             <p>Discover helpful resources curated by mentors to support your migration journey.</p>
         </div>
+         <div id="status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
 
         <div class="page-content">
             <!-- Filter and Search Section -->
@@ -53,7 +62,7 @@
                     <option value="health">Health & Wellness</option>
                     <option value="financial">Financial Services</option>
                 </select>
-                <button onclick="requireAuth(); openAddResourceModal()" class="navbar-btn navbar-btn-primary px-6">
+                <button onclick="requireAuth(); openAddResourceModal()" class="navbar-btn navbar-btn-primary px-6" id="addbtn">
                     + Add Resource
                 </button>
             </div>
@@ -243,6 +252,8 @@
                     <label class="form-label">Contact Information</label>
                     <input type="text" name="contact" placeholder="Phone, email, or website" class="form-input" required>
                 </div>
+               
+
                 <div class="flex gap-4 pt-4">
                     <button type="submit" class="flex-1 navbar-btn navbar-btn-primary">Add Resource</button>
                     <button type="button" onclick="closeAddResourceModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
@@ -262,8 +273,8 @@
                 <h5 class="font-bold mb-4">Quick Links</h5>
                 <ul class="space-y-2 text-gray-300 text-sm">
                     <li><a href="index.html" class="hover:text-home-coral transition-colors">Home</a></li>
-                    <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li>
-                    <li><a href="resources.html" class="hover:text-home-coral transition-colors">Resources</a></li>
+                    <li><a href="community.html" class="hover:text-home-coral transition-colors" id="community" hidden>Community</a></li>
+                    <li><a href="resources.html" class="hover:text-home-coral transition-colors" id="resource" hidden>Resources</a></li>
                 </ul>
             </div>
             <div>
@@ -286,101 +297,8 @@
         </div>
     </footer>
 
-    <script src="js/nav.js"></script>
-    <script>
-        function openAddResourceModal() {
-            document.getElementById('addResourceModal').classList.remove('hidden');
-        }
-
-        function closeAddResourceModal() {
-            document.getElementById('addResourceModal').classList.add('hidden');
-        }
-
-        function saveResource(resourceId) {
-            const savedResources = JSON.parse(localStorage.getItem('savedResources') || '[]');
-            if (!savedResources.includes(resourceId)) {
-                savedResources.push(resourceId);
-                localStorage.setItem('savedResources', JSON.stringify(savedResources));
-            }
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('addResourceModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeAddResourceModal();
-            }
-        });
-
-        // Handle form submission
-        document.getElementById('addResourceForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            
-            try {
-                const response = await fetch('/api/resources', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-                    },
-                    body: JSON.stringify({
-                        title: formData.get('title'),
-                        category: formData.get('category'),
-                        description: formData.get('description'),
-                        location: formData.get('location'),
-                        contact: formData.get('contact')
-                    })
-                });
-
-                if (response.ok) {
-                    closeAddResourceModal();
-                    location.reload();
-                }
-            } catch (error) {
-                console.error('Error adding resource:', error);
-                alert('Failed to add resource. Please try again.');
-            }
-        });
-
-        // Search and filter functionality
-        document.getElementById('searchInput').addEventListener('input', function() {
-            filterResources();
-        });
-
-        document.getElementById('categoryFilter').addEventListener('change', function() {
-            filterResources();
-        });
-
-        function filterResources() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const category = document.getElementById('categoryFilter').value;
-            const resources = document.querySelectorAll('#resourcesContainer .card');
-            let visibleCount = 0;
-
-            resources.forEach(resource => {
-                const title = resource.querySelector('.card-title').textContent.toLowerCase();
-                const description = resource.querySelector('.card-description').textContent.toLowerCase();
-                const badges = resource.querySelectorAll('.card-badge');
-                
-                let matchesCategory = true;
-                if (category) {
-                    matchesCategory = Array.from(badges).some(badge => 
-                        badge.textContent.toLowerCase().includes(category)
-                    );
-                }
-
-                const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
-
-                if (matchesSearch && matchesCategory) {
-                    resource.style.display = '';
-                    visibleCount++;
-                } else {
-                    resource.style.display = 'none';
-                }
-            });
-
-            document.getElementById('emptyState').classList.toggle('hidden', visibleCount > 0);
-        }
-    </script>
+    <script src="js/app.js"></script>
+    <script src="js/resourcesjs/post.js"></script>
+    <script src="js/resourcesjs/get.js"></script>
 </body>
 </html>

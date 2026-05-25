@@ -11,6 +11,14 @@ class Resource:
 
     def create_resource(self,request:ResourceSchema.Resoureces,db:Session,current_user_id:int):
         current_mentor = db.query(mentor.Mentor).filter(mentor.Mentor.user_id == current_user_id).first()
+
+
+        if current_mentor is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Mentor profile not found"
+        )
+    
         new_resourece = resource.Resource(
             title = request.title,
             category = request.category,
@@ -19,6 +27,7 @@ class Resource:
             contact = request.contact,
             added_by = current_mentor.id
         )
+
         try:
             db.add(new_resourece)
             db.commit()

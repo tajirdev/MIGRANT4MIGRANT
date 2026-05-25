@@ -19,6 +19,7 @@ router = APIRouter(
 )
 
 mentor_and_admin = RoleChecker(["mentor", "admin"])
+all = RoleChecker(["mentor","admin","migrant"])
 
 # routes for reg
 @router.post('/user',response_model=schemaUser.showUser)
@@ -37,6 +38,19 @@ def getuser(db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(m
 @router.get('/me',response_model=schemaUser.showUser)
 def get_me(db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(get_current_user)):
     return Userservice.return_current_user(db,current_user_id=current_user.id)
+
+@router.put('/edite/me')
+def put_me(request:schemaUser.Edite,db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(get_current_user)):
+    return Userservice.edit_me(request,db,current_user_id=current_user.id)
+
+
+@router.delete("/delete/me")
+def remove(
+    
+    db:Session=Depends(get_db),
+    current_user:schemaUser.migrant=Depends(get_current_user)
+):
+    return Userservice.delete_user(db,current_user_id=current_user.id)
 
 
 

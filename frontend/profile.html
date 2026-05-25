@@ -30,7 +30,14 @@
                 <span></span>
             </div>
         </div>
-        <div class="navbar-mobile-menu hidden"></div>
+        <div class="navbar-mobile-menu hidden">
+            <a href="index.html">Home</a>
+            <a href="community.html" hidden id="community">Community</a>
+            <a href="resources.html" hidden id="resource">Resources</a>
+            <a href="mentor_reg.html" hidden id="mentor">Mentors</a>
+            <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
+            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
+        </div>
     </nav>
 
     <!-- Page Container -->
@@ -45,13 +52,18 @@
                             <div class="w-32 h-32 bg-gradient-to-br from-home-coral to-social-teal rounded-full flex items-center justify-center text-white text-5xl shadow-lg">
                                 👤
                             </div>
-                            <button onclick="editProfile()" class="navbar-btn navbar-btn-primary px-6">
-                                Edit Profile
-                            </button>
+                            <div class="flex flex-col gap-2 w-full md:w-auto">
+                                <button onclick="editProfile()" class="navbar-btn navbar-btn-primary px-6">
+                                    Edit Profile
+                                </button>
+                                <button id="beaMentorBtn" onclick="openBeaMentorModal()" class="navbar-btn navbar-btn-secondary px-6" style="display: none;">
+                                    Be a Mentor
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Profile Info -->
-                        <div class="flex-1">
+                        <div class="flex-1" id="profile">
                             <h1 id="profileName" class="text-3xl font-black text-text-main mb-2">John Doe</h1>
                             <div class="flex flex-wrap gap-4 mb-6">
                                 <div class="text-sm">
@@ -85,35 +97,7 @@
 
                 <!-- Mentor Section (if user is a mentor) -->
                 <div id="mentorSection" class="hidden bg-white rounded-3xl shadow-md p-8 md:p-12 mb-8">
-                    <h2 class="text-2xl font-black text-text-main mb-6">Mentor Profile</h2>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <p class="text-gray-500 text-sm uppercase tracking-widest font-bold mb-2">Expertise</p>
-                            <p id="mentorExpertise" class="text-text-main font-bold bg-home-coral/20 px-4 py-2 rounded-lg inline-block">
-                                Legal Services
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-gray-500 text-sm uppercase tracking-widest font-bold mb-2">Organization</p>
-                            <p id="mentorOrganization" class="text-text-main font-bold">Legal Aid Foundation</p>
-                        </div>
-                        <div>
-                            <p class="text-gray-500 text-sm uppercase tracking-widest font-bold mb-2">Availability</p>
-                            <p id="mentorAvailability" class="text-text-main font-bold">Weekends & Evenings</p>
-                        </div>
-                        <div>
-                            <p class="text-gray-500 text-sm uppercase tracking-widest font-bold mb-2">Rating</p>
-                            <div class="flex items-center gap-2">
-                                <span id="mentorRating" class="text-2xl font-black text-home-coral">4.8</span>
-                                <div class="text-yellow-400 text-lg">★★★★★</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button onclick="editMentorProfile()" class="navbar-btn navbar-btn-secondary px-6">
-                        Edit Mentor Info
-                    </button>
                 </div>
 
                 <!-- Tabs -->
@@ -252,27 +236,60 @@
             <form id="editProfileForm" class="space-y-4">
                 <div>
                     <label class="form-label">Full Name</label>
-                    <input type="text" id="editName" class="form-input" required>
+                    <input type="text" id="editName" class="form-input">
                 </div>
                 <div>
-                    <label class="form-label">Email</label>
-                    <input type="email" id="editEmail" class="form-input" required>
+                    <label class="form-label">User name</label>
+                    <input type="text" id="user_name" class="form-input">
                 </div>
+                 
                 <div>
                     <label class="form-label">Native Country</label>
-                    <input type="text" id="editNativeCountry" class="form-input" required>
+                    <input type="text" id="editNativeCountry" class="form-input">
                 </div>
                 <div>
                     <label class="form-label">Current Country</label>
-                    <input type="text" id="editCurrentCountry" class="form-input" required>
+                    <input type="text" id="editCurrentCountry" class="form-input">
                 </div>
                 <div>
                     <label class="form-label">Preferred Language</label>
-                    <input type="text" id="editLanguage" class="form-input" required>
+                    <input type="text" id="editLanguage" class="form-input">
                 </div>
                 <div class="flex gap-4 pt-4">
                     <button type="submit" class="flex-1 navbar-btn navbar-btn-primary">Save Changes</button>
                     <button type="button" onclick="closeEditProfileModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Be a Mentor Modal -->
+    <div id="beaMentorModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <h2 class="text-2xl font-bold text-text-main mb-2">Be a Mentor</h2>
+            <p class="text-gray-500 text-sm mb-6">Guide the next generation with your story and expertise</p>
+            <form id="beaMentorForm" class="space-y-4">
+                <div>
+                    <label class="form-label">Area of Expertise</label>
+                    <input type="text" id="mentorExpertiseInput" name="expertise" placeholder="e.g., Legal Aid, Job Hunting" class="form-input" required>
+                </div>
+
+                <div>
+                    <label class="form-label">Language you can speak</label>
+                    <input type="text" id="languages" name="languages" placeholder="e.g., Swahili, English" class="form-input" required>
+                </div>
+
+                <div>
+                    <label class="form-label">Organization</label>
+                    <input type="text" id="mentorOrganizationInput" name="organization" placeholder="Organization name (if any)" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">General Availability</label>
+                    <input type="text" id="mentorAvailabilityInput" name="availability" placeholder="e.g., Weekends, Evenings" class="form-input">
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary">Start Guiding</button>
+                    <button type="button" onclick="closeBeaMentorModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
                 </div>
             </form>
         </div>
@@ -312,102 +329,12 @@
             <p>&copy; 2025 MIGRANT4MIGRANT. All rights reserved.</p>
         </div>
     </footer>
-
-    <script src="js/nav.js"></script>
-    <script>
-        // Tab functionality
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const tabName = this.dataset.tab;
-                
-                // Hide all tabs
-                document.querySelectorAll('.tab-content').forEach(tab => {
-                    tab.classList.add('hidden');
-                });
-                
-                // Show selected tab
-                document.getElementById(tabName + 'Tab').classList.remove('hidden');
-                
-                // Update button styles
-                document.querySelectorAll('.tab-btn').forEach(b => {
-                    b.classList.remove('border-home-coral', 'text-home-coral');
-                    b.classList.add('border-transparent', 'text-gray-600');
-                });
-                this.classList.remove('border-transparent', 'text-gray-600');
-                this.classList.add('border-home-coral', 'text-home-coral');
-            });
-        });
-
-        function editProfile() {
-            document.getElementById('editName').value = document.getElementById('profileName').textContent;
-            document.getElementById('editLanguage').value = document.getElementById('profileLanguage').textContent;
-            document.getElementById('editNativeCountry').value = document.getElementById('profileNativeCountry').textContent;
-            document.getElementById('editCurrentCountry').value = document.getElementById('profileCurrentCountry').textContent;
-            document.getElementById('editProfileModal').classList.remove('hidden');
-        }
-
-        function closeEditProfileModal() {
-            document.getElementById('editProfileModal').classList.add('hidden');
-        }
-
-        function editMentorProfile() {
-            alert('Edit mentor profile functionality coming soon');
-        }
-
-        function unsaveResource(resourceId) {
-            const savedResources = JSON.parse(localStorage.getItem('savedResources') || '[]');
-            const index = savedResources.indexOf(resourceId);
-            if (index > -1) {
-                savedResources.splice(index, 1);
-                localStorage.setItem('savedResources', JSON.stringify(savedResources));
-                location.reload();
-            }
-        }
-
-        function deleteAccount() {
-            if (confirm('Are you sure? This action cannot be undone.')) {
-                // Call backend to delete account
-                alert('Account deletion coming soon');
-            }
-        }
-
-        // Form submission
-        document.getElementById('editProfileForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            try {
-                const response = await fetch('/api/users/profile', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-                    },
-                    body: JSON.stringify({
-                        name: document.getElementById('editName').value,
-                        native_country: document.getElementById('editNativeCountry').value,
-                        current_country: document.getElementById('editCurrentCountry').value,
-                        language: document.getElementById('editLanguage').value
-                    })
-                });
-
-                if (response.ok) {
-                    closeEditProfileModal();
-                    location.reload();
-                }
-            } catch (error) {
-                console.error('Error updating profile:', error);
-                alert('Failed to update profile. Please try again.');
-            }
-        });
-
-        // Load user data (from backend in production)
-        document.addEventListener('DOMContentLoaded', function() {
-            // This would load from backend in production
-            const userRole = localStorage.getItem('userRole') || 'migrant';
-            if (userRole === 'mentor') {
-                document.getElementById('mentorSection').classList.remove('hidden');
-            }
-        });
-    </script>
+     
+    <script src="js/profile/get_mentor.js"></script>
+    <script src="js/profile/get.js"></script>
+    <script src="js/profile/app.js"> </script>
+    <script src="js/app.js"></script>
+    
+    
 </body>
 </html>
