@@ -66,6 +66,55 @@ document.addEventListener('DOMContentLoaded', () => {
     populateCustomSelects();
 
     const form = document.getElementById('migrantRegForm');
+    const passwordInput = document.querySelector('input[name="password_hash"]');
+    
+    // Real-time password strength indicator
+    if (passwordInput) {
+        passwordInput.addEventListener('input', function() {
+            const requirements = validators.checkPasswordRequirements(this.value);
+            const isValid = validators.isStrongPassword(this.value);
+            
+            if (this.value.length > 0) {
+                const errorElement = document.querySelector('.error-message[data-field="password_hash"]');
+                
+                if (errorElement && !isValid) {
+                    // Build HTML for requirements with color coding
+                    const requirementsHTML = `
+                        <div class="password-requirements">
+                            <div class="requirement-item ${requirements.hasMinLength ? 'met' : 'unmet'}">
+                                <span class="requirement-icon">${requirements.hasMinLength ? '✓' : '✗'}</span>
+                                <span>8+ characters</span>
+                            </div>
+                            <div class="requirement-item ${requirements.hasUpperCase ? 'met' : 'unmet'}">
+                                <span class="requirement-icon">${requirements.hasUpperCase ? '✓' : '✗'}</span>
+                                <span>Uppercase (A-Z)</span>
+                            </div>
+                            <div class="requirement-item ${requirements.hasLowerCase ? 'met' : 'unmet'}">
+                                <span class="requirement-icon">${requirements.hasLowerCase ? '✓' : '✗'}</span>
+                                <span>Lowercase (a-z)</span>
+                            </div>
+                            <div class="requirement-item ${requirements.hasNumber ? 'met' : 'unmet'}">
+                                <span class="requirement-icon">${requirements.hasNumber ? '✓' : '✗'}</span>
+                                <span>Number (0-9)</span>
+                            </div>
+                            <div class="requirement-item ${requirements.hasSpecialChar ? 'met' : 'unmet'}">
+                                <span class="requirement-icon">${requirements.hasSpecialChar ? '✓' : '✗'}</span>
+                                <span>Special char (!@#$%^&*)</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    errorElement.innerHTML = requirementsHTML;
+                    errorElement.classList.add('show');
+                    passwordInput.classList.add('has-error');
+                } else if (isValid) {
+                    errorElement.textContent = '';
+                    errorElement.classList.remove('show');
+                    passwordInput.classList.remove('has-error');
+                }
+            }
+        });
+    }
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -88,7 +137,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (!validators.isStrongPassword(data.password_hash)) {
-            showFieldError('password_hash', "Password must be at least 8 characters long.");
+            const requirements = validators.checkPasswordRequirements(data.password_hash);
+            
+            // Build color-coded requirements list for error message
+            const requirementsHTML = `
+                <div class="password-requirements">
+                    <div class="requirement-item ${requirements.hasMinLength ? 'met' : 'unmet'}">
+                        <span class="requirement-icon">${requirements.hasMinLength ? '✓' : '✗'}</span>
+                        <span>8+ characters</span>
+                    </div>
+                    <div class="requirement-item ${requirements.hasUpperCase ? 'met' : 'unmet'}">
+                        <span class="requirement-icon">${requirements.hasUpperCase ? '✓' : '✗'}</span>
+                        <span>Uppercase (A-Z)</span>
+                    </div>
+                    <div class="requirement-item ${requirements.hasLowerCase ? 'met' : 'unmet'}">
+                        <span class="requirement-icon">${requirements.hasLowerCase ? '✓' : '✗'}</span>
+                        <span>Lowercase (a-z)</span>
+                    </div>
+                    <div class="requirement-item ${requirements.hasNumber ? 'met' : 'unmet'}">
+                        <span class="requirement-icon">${requirements.hasNumber ? '✓' : '✗'}</span>
+                        <span>Number (0-9)</span>
+                    </div>
+                    <div class="requirement-item ${requirements.hasSpecialChar ? 'met' : 'unmet'}">
+                        <span class="requirement-icon">${requirements.hasSpecialChar ? '✓' : '✗'}</span>
+                        <span>Special char (!@#$%^&*)</span>
+                    </div>
+                </div>
+            `;
+            
+            const errorElement = document.querySelector('.error-message[data-field="password_hash"]');
+            if (errorElement) {
+                errorElement.innerHTML = requirementsHTML;
+                errorElement.classList.add('show');
+            }
             return;
         }
 
