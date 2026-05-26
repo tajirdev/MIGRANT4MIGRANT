@@ -119,6 +119,65 @@
     content: '';
   }
 
+  /* Toast Notification */
+  .toast-notification {
+    @apply fixed top-6 right-6 max-w-sm px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 z-[100] animate-slide-in;
+  }
+
+  .toast-notification.success {
+    @apply bg-green-50 border border-green-200;
+  }
+
+  .toast-notification.success .toast-text {
+    @apply text-green-700;
+  }
+
+  .toast-notification.error {
+    @apply bg-red-50 border border-red-200;
+  }
+
+  .toast-notification.error .toast-text {
+    @apply text-red-700;
+  }
+
+  .toast-icon {
+    @apply flex-shrink-0 w-5 h-5 flex items-center justify-center;
+  }
+
+  .toast-text {
+    @apply text-sm font-medium;
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-out {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out;
+  }
+
+  .animate-slide-out {
+    animation: slide-out 0.3s ease-in forwards;
+  }
+
   .navbar-auth {
     @apply hidden md:flex items-center gap-4;
   }
