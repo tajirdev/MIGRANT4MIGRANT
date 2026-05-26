@@ -1054,6 +1054,18 @@
       outline-style: none;
     }
   }
+  .form-input.has-error {
+    border-color: var(--color-red-300);
+    &:focus {
+      border-color: var(--color-red-500);
+    }
+    &:focus {
+      --tw-ring-color: color-mix(in srgb, oklch(63.7% 0.237 25.331) 30%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        --tw-ring-color: color-mix(in oklab, var(--color-red-500) 30%, transparent);
+      }
+    }
+  }
   .error-message {
     margin-top: calc(var(--spacing) * 1.5);
     margin-bottom: calc(var(--spacing) * 3);
@@ -1063,7 +1075,7 @@
     line-height: var(--tw-leading, var(--text-xs--line-height));
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-red-300);
+    color: var(--color-red-600);
   }
   .error-message.show {
     display: block;

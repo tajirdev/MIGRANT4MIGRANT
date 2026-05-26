@@ -4,27 +4,45 @@ const statusMessage = document.querySelector("#status-message");
 // Function to show field-specific errors
 function showFieldError(fieldName, message) {
     const errorElement = document.querySelector(`.error-message[data-field="${fieldName}"]`);
+    const inputElement = document.querySelector(`input[name="${fieldName}"]`);
+    
     if (errorElement) {
         errorElement.textContent = message;
         errorElement.classList.add('show');
+    }
+    
+    if (inputElement) {
+        inputElement.classList.add('has-error');
     }
 }
 
 // Function to clear field-specific errors
 function clearFieldError(fieldName) {
     const errorElement = document.querySelector(`.error-message[data-field="${fieldName}"]`);
+    const inputElement = document.querySelector(`input[name="${fieldName}"]`);
+    
     if (errorElement) {
         errorElement.textContent = '';
         errorElement.classList.remove('show');
+    }
+    
+    if (inputElement) {
+        inputElement.classList.remove('has-error');
     }
 }
 
 // Function to clear all field errors
 function clearAllErrors() {
     const errorElements = document.querySelectorAll('.error-message');
+    const inputElements = document.querySelectorAll('.form-input.has-error');
+    
     errorElements.forEach(element => {
         element.textContent = '';
         element.classList.remove('show');
+    });
+    
+    inputElements.forEach(element => {
+        element.classList.remove('has-error');
     });
 }
 
