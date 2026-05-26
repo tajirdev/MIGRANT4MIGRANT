@@ -1,5 +1,33 @@
 
 const statusMessage = document.querySelector("#status-message");
+
+// Function to show field-specific errors
+function showFieldError(fieldName, message) {
+    const errorElement = document.querySelector(`.error-message[data-field="${fieldName}"]`);
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.classList.add('show');
+    }
+}
+
+// Function to clear field-specific errors
+function clearFieldError(fieldName) {
+    const errorElement = document.querySelector(`.error-message[data-field="${fieldName}"]`);
+    if (errorElement) {
+        errorElement.textContent = '';
+        errorElement.classList.remove('show');
+    }
+}
+
+// Function to clear all field errors
+function clearAllErrors() {
+    const errorElements = document.querySelectorAll('.error-message');
+    errorElements.forEach(element => {
+        element.textContent = '';
+        element.classList.remove('show');
+    });
+}
+
 //function to call API 
 const url = "http://localhost:8000/register/user"
 async function registerUser(UserData){
@@ -24,32 +52,40 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         
+        // Clear all previous errors
+        clearAllErrors();
+        
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
 
         // Use the validators from validation_util.js
         if (!validators.isEmail(data.email)) {
-            alert("Please provide a valid email address.");
+            showFieldError('email', "Please provide a valid email address.");
             return;
         }
 
         if (!validators.isValidUsername(data.user_name)) {
-            alert("Username must be at least 3 characters and contain no spaces.");
+            showFieldError('user_name', "Username must be at least 3 characters and contain no spaces.");
             return;
         }
 
         if (!validators.isStrongPassword(data.password_hash)) {
-            alert("Password must be at least 8 characters long.");
+            showFieldError('password_hash', "Password must be at least 8 characters long.");
             return;
         }
 
         if (!validators.passwordsMatch(data.password_hash, data.confirm_password)) {
-            alert("Passwords do not match. Please try again.");
+            showFieldError('confirm_password', "Passwords do not match. Please try again.");
             return;
         }
 
         if (!validators.isValidCountry(data.native_country) || !validators.isValidCountry(data.current_country)) {
-            alert("Please select a valid country from the provided list.");
+            if (!validators.isValidCountry(data.native_country)) {
+                showFieldError('native_country', "Please select a valid country.");
+            }
+            if (!validators.isValidCountry(data.current_country)) {
+                showFieldError('current_country', "Please select a valid country.");
+            }
             return;
         }
        
@@ -76,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else{
                     showStatus("Registration successful!","success");
                     form.reset();
+                    clearAllErrors();
 
                 }
 
