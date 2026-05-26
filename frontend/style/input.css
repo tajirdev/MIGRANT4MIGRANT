@@ -38,6 +38,26 @@
     @apply block;
   }
 
+  .password-requirements {
+    @apply space-y-1;
+  }
+
+  .requirement-item {
+    @apply text-xs font-semibold flex items-center gap-1.5;
+  }
+
+  .requirement-item.met {
+    @apply text-green-600;
+  }
+
+  .requirement-item.unmet {
+    @apply text-red-600;
+  }
+
+  .requirement-icon {
+    @apply w-4 h-4 flex items-center justify-center font-bold;
+  }
+
   .btn-vibrant { 
     @apply w-full bg-gradient-to-r from-home-coral to-sunny-yellow text-white font-black py-4 rounded-xl shadow-lg hover:shadow-home-coral/30 hover:scale-[1.01] active:scale-[0.98] transition-all uppercase tracking-widest; 
   }

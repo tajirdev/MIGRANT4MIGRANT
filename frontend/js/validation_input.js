@@ -32,8 +32,26 @@ const validators = {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
     },
-    // Minimum 8 characters
-    isStrongPassword: (pass) => pass.length >= 8,
+    // Strong password: min 8 chars, uppercase, lowercase, number, special char
+    isStrongPassword: (pass) => {
+        const hasMinLength = pass.length >= 8;
+        const hasUpperCase = /[A-Z]/.test(pass);
+        const hasLowerCase = /[a-z]/.test(pass);
+        const hasNumber = /[0-9]/.test(pass);
+        const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(pass);
+        
+        return hasMinLength && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar;
+    },
+    // Check password requirements individually for detailed feedback
+    checkPasswordRequirements: (pass) => {
+        return {
+            hasMinLength: pass.length >= 8,
+            hasUpperCase: /[A-Z]/.test(pass),
+            hasLowerCase: /[a-z]/.test(pass),
+            hasNumber: /[0-9]/.test(pass),
+            hasSpecialChar: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(pass)
+        };
+    },
     // No spaces, minimum 3 chars
     isValidUsername: (user) => user.length >= 3 && !/\s/.test(user),
     // Ensures the typed country actually exists in our list
