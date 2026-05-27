@@ -1,7 +1,8 @@
 from fastapi import Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from app.database import get_db
-import jwtoken,models
+from app.core.database import get_db
+from app.core import jwt_token
+import models
 from fastapi.security import OAuth2PasswordBearer
 from typing import Annotated
 
@@ -14,7 +15,7 @@ def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], database: Se
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:
-        payload = jwtoken.decode_access_token(token)
+        payload = jwt_token.decode_access_token(token)
         username: str = payload.get("sub")
         if username is None:
             raise credentials_exception
@@ -29,8 +30,3 @@ def get_current_active_user(current_user: Annotated[models.User, Depends(get_cur
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user 
-
-@router.get("/protected")
-def protected_route(current_user: Annotated[models.User, Depends(get_current_active_user)]):
-    return {"message": f"Hello, {current_user.username}! Access granted.",
-            "user_id": current_user.id}
