@@ -1,7 +1,6 @@
 from fastapi import APIRouter,Depends
 from sqlalchemy.orm import Session
 from app.core.database import get_db
-from app.schemas import schemasResources  
 from app.services.PostServices import Post_Service
 from app.core.authorization import RoleChecker
 from app.schemas import schemaUser,postSchema
