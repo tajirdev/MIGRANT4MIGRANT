@@ -1,5 +1,10 @@
 const mentor_profile = document.getElementById("mentorSection");
-console.log(mentor_profile)
+const get_role = localStorage.getItem('pa_role')
+
+if(get_role == 'mentor'){
+
+
+
 
 
 async function get_data(){
@@ -60,5 +65,6 @@ function displaymentor(user){
     `;
 
        mentor_profile.innerHTML= active_mentor_profile;
+}
 }
         

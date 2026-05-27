@@ -55,21 +55,25 @@
                         <div>
                             <label class="form-label">Username</label>
                             <input type="text" name="user_name" placeholder="johndoe88" class="form-input" required>
+                            <div class="error-message" data-field="user_name"></div>
                         </div>
                         <div>
                             <label class="form-label">Email</label>
                             <input type="email" name="email" placeholder="john@example.com" class="form-input" required>
+                            <div class="error-message" data-field="email"></div>
                         </div>
                     </div>
 
                     <div>
                         <label class="form-label">Password</label>
                         <input type="password" name="password_hash" placeholder="••••••••••••" class="form-input" required>
+                        <div class="error-message" data-field="password_hash"></div>
                     </div>
 
                     <div>
                         <label class="form-label">Confirm Password</label>
                         <input type="password" name="confirm_password" placeholder="••••••••••••" class="form-input" required>
+                        <div class="error-message" data-field="confirm_password"></div>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -82,6 +86,7 @@
                             <div class="custom-select-options">
                                 <!-- Options will be populated by JavaScript -->
                             </div>
+                            <div class="error-message" data-field="native_country"></div>
                         </div>
                         <div class="custom-select-container">
                             <label class="form-label">Current Country</label>
@@ -92,6 +97,7 @@
                             <div class="custom-select-options">
                                 <!-- Options will be populated by JavaScript -->
                             </div>
+                            <div class="error-message" data-field="current_country"></div>
                         </div>
                     </div>
 

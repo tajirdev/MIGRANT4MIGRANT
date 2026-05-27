@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from .core.database import engine,Base
 from .routes import PostRouter, RouteUser,authenticationRoute,adminRoute,MentorRouter
-from .routes import RouteUser, RouterResources,authenticationRoute,adminRoute,MentorRouter
+from .routes import RouteUser, RouterResources,authenticationRoute,adminRoute,MentorRouter,emergencyrouter
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -43,3 +43,4 @@ app.include_router(adminRoute.router)
 app.include_router(MentorRouter.router)
 app.include_router(PostRouter.router)
 app.include_router(RouterResources.router)
+app.include_router(emergencyrouter.router)

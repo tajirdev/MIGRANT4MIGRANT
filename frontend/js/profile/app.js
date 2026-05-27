@@ -42,7 +42,7 @@
         }
 
         function editMentorProfile() {
-            alert('Edit mentor profile functionality coming soon');
+            showNotification('Edit mentor profile functionality coming soon', 'error');
         }
 
         function unsaveResource(resourceId) {
@@ -87,7 +87,7 @@
                     
                 }
             
-                //alert('Account deletion coming soon');
+                
             }
         }
 
@@ -122,7 +122,7 @@
                 }
             } catch (error) {
                 console.error('Error updating profile:', error);
-                alert('Failed to update profile. Please try again.');
+                showNotification('Failed to update profile. Please try again.', 'error');
             }
         });
 
@@ -162,10 +162,10 @@
                     localStorage.setItem('pa_role', 'mentor');
                     location.reload();
                 } else {
-                    alert('Failed to become a mentor. Please try again.');
+                    showNotification('Failed to become a mentor. Please try again.', 'error');
                 }
             } catch (error) {
                 console.error('Error becoming a mentor:', error);
-                alert('Failed to become a mentor. Please try again.');
+                showNotification('Failed to become a mentor. Please try again.', 'error');
             }
         });

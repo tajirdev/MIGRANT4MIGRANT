@@ -6,7 +6,7 @@
     <title>Community - MIGRANT4MIGRANT</title>
     <link href="style/output.css" rel="stylesheet">
 </head>
-<body class="bg-bone-white font-sans antialiased overflow-x-hidden">
+<body class="bg-bone-white font-sans antialiased overflow-x-hidden" onload="requireAuth()" >
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -16,9 +16,9 @@
             </div>
             <div class="navbar-menu">
                 <a href="index.html">Home</a>
-                <a href="community.html" class="active">Community</a>
-                <a href="resources.html">Resources</a>
-                <a href="mentor_reg.html">Be a Mentor</a>
+                <a href="community.html" class="active" id="community">Community</a>
+                <a href="resources.html" id="resource">Resources</a>
+                
             </div>
             <div class="navbar-auth">
                 <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
@@ -34,7 +34,7 @@
             <a href="index.html">Home</a>
             <a href="community.html">Community</a>
             <a href="resources.html">Resources</a>
-            <a href="mentor_reg.html">Mentors</a>
+           
             <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
             <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
         </div>
@@ -251,7 +251,7 @@
                 }
             } catch (error) {
                 console.error('Error creating post:', error);
-                alert('Failed to create post. Please try again.');
+                showNotification('Failed to create post. Please try again.', 'error');
             }
         });
 
@@ -289,5 +289,6 @@
         }
     </script>
     <script src="js/app.js"></script>
+    <script src="js/validation_input.js"></script>
 </body>
 </html>

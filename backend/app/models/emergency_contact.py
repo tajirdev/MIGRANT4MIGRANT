@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from app.core.database import Base
+from sqlalchemy.sql import func
 
 class EmergencyContact(Base):
     __tablename__ = "emergency_contacts"
@@ -9,4 +10,4 @@ class EmergencyContact(Base):
     service_name = Column(String)
     phone = Column(String)
     available_24h = Column(Boolean, default=True)
-    date=Column(String)
+    date=Column(DateTime(timezone=True), server_default=func.now())
