@@ -67,7 +67,7 @@ if(role === "mentor"){
                 }
             } catch (error) {
                 console.error('Error adding resource:', error);
-                alert('Failed to add resource. Please try again.');
+                showNotification('Failed to add resource. Please try again.', 'error');
             }
         });
 

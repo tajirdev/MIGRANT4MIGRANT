@@ -1,5 +1,51 @@
 
 const statusMessage = document.querySelector("#status-message");
+
+// Function to show field-specific errors
+function showFieldError(fieldName, message) {
+    const errorElement = document.querySelector(`.error-message[data-field="${fieldName}"]`);
+    const inputElement = document.querySelector(`input[name="${fieldName}"]`);
+    
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.classList.add('show');
+    }
+    
+    if (inputElement) {
+        inputElement.classList.add('has-error');
+    }
+}
+
+// Function to clear field-specific errors
+function clearFieldError(fieldName) {
+    const errorElement = document.querySelector(`.error-message[data-field="${fieldName}"]`);
+    const inputElement = document.querySelector(`input[name="${fieldName}"]`);
+    
+    if (errorElement) {
+        errorElement.textContent = '';
+        errorElement.classList.remove('show');
+    }
+    
+    if (inputElement) {
+        inputElement.classList.remove('has-error');
+    }
+}
+
+// Function to clear all field errors
+function clearAllErrors() {
+    const errorElements = document.querySelectorAll('.error-message');
+    const inputElements = document.querySelectorAll('.form-input.has-error');
+    
+    errorElements.forEach(element => {
+        element.textContent = '';
+        element.classList.remove('show');
+    });
+    
+    inputElements.forEach(element => {
+        element.classList.remove('has-error');
+    });
+}
+
 //function to call API 
 const url = "http://localhost:8000/register/user"
 async function registerUser(UserData){
@@ -20,36 +66,125 @@ document.addEventListener('DOMContentLoaded', () => {
     populateCustomSelects();
 
     const form = document.getElementById('migrantRegForm');
+    const passwordInput = document.querySelector('input[name="password_hash"]');
+    
+    // Real-time password strength indicator
+    if (passwordInput) {
+        passwordInput.addEventListener('input', function() {
+            const requirements = validators.checkPasswordRequirements(this.value);
+            const isValid = validators.isStrongPassword(this.value);
+            
+            if (this.value.length > 0) {
+                const errorElement = document.querySelector('.error-message[data-field="password_hash"]');
+                
+                if (errorElement && !isValid) {
+                    // Build HTML for requirements with color coding
+                    const requirementsHTML = `
+                        <div class="password-requirements">
+                            <div class="requirement-item ${requirements.hasMinLength ? 'met' : 'unmet'}">
+                                <span class="requirement-icon">${requirements.hasMinLength ? '✓' : '✗'}</span>
+                                <span>8+ characters</span>
+                            </div>
+                            <div class="requirement-item ${requirements.hasUpperCase ? 'met' : 'unmet'}">
+                                <span class="requirement-icon">${requirements.hasUpperCase ? '✓' : '✗'}</span>
+                                <span>Uppercase (A-Z)</span>
+                            </div>
+                            <div class="requirement-item ${requirements.hasLowerCase ? 'met' : 'unmet'}">
+                                <span class="requirement-icon">${requirements.hasLowerCase ? '✓' : '✗'}</span>
+                                <span>Lowercase (a-z)</span>
+                            </div>
+                            <div class="requirement-item ${requirements.hasNumber ? 'met' : 'unmet'}">
+                                <span class="requirement-icon">${requirements.hasNumber ? '✓' : '✗'}</span>
+                                <span>Number (0-9)</span>
+                            </div>
+                            <div class="requirement-item ${requirements.hasSpecialChar ? 'met' : 'unmet'}">
+                                <span class="requirement-icon">${requirements.hasSpecialChar ? '✓' : '✗'}</span>
+                                <span>Special char (!@#$%^&*)</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    errorElement.innerHTML = requirementsHTML;
+                    errorElement.classList.add('show');
+                    passwordInput.classList.add('has-error');
+                } else if (isValid) {
+                    errorElement.textContent = '';
+                    errorElement.classList.remove('show');
+                    passwordInput.classList.remove('has-error');
+                }
+            }
+        });
+    }
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+        
+        // Clear all previous errors
+        clearAllErrors();
         
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
 
         // Use the validators from validation_util.js
         if (!validators.isEmail(data.email)) {
-            alert("Please provide a valid email address.");
+            showFieldError('email', "Please provide a valid email address.");
             return;
         }
 
         if (!validators.isValidUsername(data.user_name)) {
-            alert("Username must be at least 3 characters and contain no spaces.");
+            showFieldError('user_name', "Username must be at least 3 characters and contain no spaces.");
             return;
         }
 
         if (!validators.isStrongPassword(data.password_hash)) {
-            alert("Password must be at least 8 characters long.");
+            const requirements = validators.checkPasswordRequirements(data.password_hash);
+            
+            // Build color-coded requirements list for error message
+            const requirementsHTML = `
+                <div class="password-requirements">
+                    <div class="requirement-item ${requirements.hasMinLength ? 'met' : 'unmet'}">
+                        <span class="requirement-icon">${requirements.hasMinLength ? '✓' : '✗'}</span>
+                        <span>8+ characters</span>
+                    </div>
+                    <div class="requirement-item ${requirements.hasUpperCase ? 'met' : 'unmet'}">
+                        <span class="requirement-icon">${requirements.hasUpperCase ? '✓' : '✗'}</span>
+                        <span>Uppercase (A-Z)</span>
+                    </div>
+                    <div class="requirement-item ${requirements.hasLowerCase ? 'met' : 'unmet'}">
+                        <span class="requirement-icon">${requirements.hasLowerCase ? '✓' : '✗'}</span>
+                        <span>Lowercase (a-z)</span>
+                    </div>
+                    <div class="requirement-item ${requirements.hasNumber ? 'met' : 'unmet'}">
+                        <span class="requirement-icon">${requirements.hasNumber ? '✓' : '✗'}</span>
+                        <span>Number (0-9)</span>
+                    </div>
+                    <div class="requirement-item ${requirements.hasSpecialChar ? 'met' : 'unmet'}">
+                        <span class="requirement-icon">${requirements.hasSpecialChar ? '✓' : '✗'}</span>
+                        <span>Special char (!@#$%^&*)</span>
+                    </div>
+                </div>
+            `;
+            
+            const errorElement = document.querySelector('.error-message[data-field="password_hash"]');
+            if (errorElement) {
+                errorElement.innerHTML = requirementsHTML;
+                errorElement.classList.add('show');
+            }
             return;
         }
 
         if (!validators.passwordsMatch(data.password_hash, data.confirm_password)) {
-            alert("Passwords do not match. Please try again.");
+            showFieldError('confirm_password', "Passwords do not match. Please try again.");
             return;
         }
 
         if (!validators.isValidCountry(data.native_country) || !validators.isValidCountry(data.current_country)) {
-            alert("Please select a valid country from the provided list.");
+            if (!validators.isValidCountry(data.native_country)) {
+                showFieldError('native_country', "Please select a valid country.");
+            }
+            if (!validators.isValidCountry(data.current_country)) {
+                showFieldError('current_country', "Please select a valid country.");
+            }
             return;
         }
        
@@ -76,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else{
                     showStatus("Registration successful!","success");
                     form.reset();
+                    clearAllErrors();
 
                 }
 
