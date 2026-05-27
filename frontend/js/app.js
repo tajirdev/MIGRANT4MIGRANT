@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Show hidden menu items for logged-in users
     document.getElementById("community").hidden=false
-    document.getElementById("mentor").hidden = false
+    
     document.getElementById("resource").hidden = false
   }
 });
@@ -129,7 +129,7 @@ function logout() {
   localStorage.removeItem('pa_email');
   localStorage.removeItem('pa_role');
 
-  window.location.href = 'login.html';
+  window.location.href = 'index.html';
 }
   
 
