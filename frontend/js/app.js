@@ -76,9 +76,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Show hidden menu items for logged-in users
-    document.getElementById("community").hidden=false
+    document.querySelectorAll(".community").forEach(function(element){
+      element.hidden = false;
+    });
     
-    document.getElementById("resource").hidden = false
+    document.querySelectorAll(".resource").forEach(function(element) {
+    element.hidden = false;
+   });
   }
 });
 
