@@ -107,9 +107,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Show hidden menu items for logged-in users
-    document.getElementById("community").hidden=false
+    const communityLink = document.getElementById("community");
+    const resourceLink = document.getElementById("resource");
+    const postsLink = document.getElementById("posts");
     
-    document.getElementById("resource").hidden = false
+    if (communityLink) communityLink.hidden = false;
+    if (resourceLink) resourceLink.hidden = false;
+    if (postsLink) postsLink.hidden = false;
   }
 });
 
