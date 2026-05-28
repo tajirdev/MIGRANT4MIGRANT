@@ -19,7 +19,7 @@ router = APIRouter(
 def new_post(
     request:postSchema.Post,
     db:Session=Depends(get_db),
-    current_user:schemaUser.migrant=Depends(mentor_and_admin)
+    current_user:schemaUser.migrant=Depends(all)
     ):
     return service_post.create_post(request,db,current_user_id=current_user.id)
 
