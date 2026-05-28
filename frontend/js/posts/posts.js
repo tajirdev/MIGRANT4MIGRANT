@@ -62,7 +62,7 @@ async function loadPosts() {
     try {
         const token = localStorage.getItem('pa_token');
         
-        const response = await fetch(`${API_BASE_URL}/post/posts`, {
+        const response = await fetch(`${API_BASE_URL}/posts`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -120,7 +120,7 @@ function displayPosts(posts) {
                 </p>
                 <div class="card-footer">
                     <div class="text-xs text-gray-500">
-                        <p>Posted by <strong>${escapeHtml(authorName)}</strong> • ${formattedDate}</p>
+                        <p>Posted by <strong>${escapeHtml(post.author.name)}</strong> • ${formattedDate}</p>
                     </div>
                     <div class="text-xs text-gray-500">
                         <a href="#" class="text-home-coral font-bold hover:underline">View post</a>
@@ -193,7 +193,7 @@ async function createPost() {
     try {
         const token = localStorage.getItem('pa_token');
         
-        const response = await fetch(`${API_BASE_URL}/post/create`, {
+        const response = await fetch(`${API_BASE_URL}/create`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,

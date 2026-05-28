@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.models import post,mentor
+from app.models import post,mentor,migrants
 from fastapi import HTTPException,status,Depends
 from typing import Optional
 from app.schemas import postSchema
@@ -11,12 +11,12 @@ class Post_Service:
 
 
     def create_post(self,request:postSchema.Post,db:Session,current_user_id:int):
-        current_mentor = db.query(mentor.Mentor).filter(mentor.Mentor.user_id == current_user_id).first()
+        current_migrant = db.query(migrants.Migrant).filter(migrants.Migrant.id == current_user_id).first()
         new_post = post.Post(
             title = request.title,
             body = request.body,
             category = request.category,
-            author_id = current_mentor.id
+            author_id = current_migrant.id
         )
         try:
             db.add(new_post)

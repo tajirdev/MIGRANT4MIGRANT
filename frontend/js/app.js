@@ -110,6 +110,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll(".community").forEach(function(element){
       element.hidden = false;
     });
+
+    document.querySelectorAll(".posts").forEach(function(element){
+      element.hidden = false;
+    });
     
     document.querySelectorAll(".resource").forEach(function(element) {
     element.hidden = false;
