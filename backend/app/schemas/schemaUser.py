@@ -40,5 +40,13 @@ class Edite(BaseModel):
         current_country :str
         native_country : str
 
+class showUserName(BaseModel):
+    name: str
+
+    class Config:
+     from_attributes = True
+
+
+
 
   
