@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from app.schemas.schemaUser import showUserName
+
 from datetime import datetime
 
 class postowner(BaseModel):
