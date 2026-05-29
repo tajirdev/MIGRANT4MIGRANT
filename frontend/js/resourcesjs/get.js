@@ -14,6 +14,13 @@ async function get_data(){
         });
         const data = await Response.json();
        displayUser(data)
+       if (Response.status === 401) {
+            localStorage.removeItem('pa_token');
+            localStorage.removeItem('pa_role');
+            localStorage.removeItem('pa_role');
+            window.location.href = 'login.html';
+            return null; 
+        }
 
     }catch(error){
         console.log("error message:",error)

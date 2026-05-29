@@ -51,10 +51,7 @@ function setupEventListeners() {
 function handleAuthMenuVisibility() {
     const authToken = localStorage.getItem('pa_token');
     
-    if (authToken) {
-        // On posts page, all authenticated users should see all menu items
-        // No need to toggle visibility as they're not hidden by default
-    }
+
 }
 
 // Load posts from backend
@@ -69,10 +66,16 @@ async function loadPosts() {
                 'Content-Type': 'application/json'
             }
         });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        if (response.status === 401) {
+            localStorage.removeItem('pa_token');
+            localStorage.removeItem('pa_role');
+            localStorage.removeItem('pa_role');
+            
+            window.location.href = 'login.html';
+            return null; 
         }
+
+  
 
         const data = await response.json();
         allPosts = Array.isArray(data) ? data : (data.data || []);

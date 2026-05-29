@@ -131,7 +131,37 @@ function requireAuth() {
     
 }
 
-// Logout function
+function checkTokenExpiry() {
+    const token = localStorage.getItem('pa_token'); 
+    
+
+       if(token){
+        const payloadBase64 = token.split('.')[1];
+        
+        
+        const decodedJson = atob(payloadBase64);
+        const payload = JSON.parse(decodedJson);
+
+       
+        const currentTime = Math.floor(Date.now() / 1000);
+        
+
+        if (currentTime >= payload.exp) {
+            console.warn("Session expired. Redirecting to login...");
+            localStorage.removeItem('pa_token');
+            localStorage.removeItem('pa_email');
+            localStorage.removeItem('pa_role');
+            location.reload();
+            window.location.href = 'index.html';
+        }
+        }
+
+    } 
+
+
+checkTokenExpiry();
+
+
 function logout() {
   localStorage.removeItem('pa_token');
   localStorage.removeItem('pa_email');
