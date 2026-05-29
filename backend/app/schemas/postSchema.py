@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+from datetime import datetime
 
 class postowner(BaseModel):
    name:str
@@ -16,6 +17,7 @@ class showPost(BaseModel):
     title : str
     body :str
     category : str
+    created_at : datetime
     author  : postowner
 
     class Config:
