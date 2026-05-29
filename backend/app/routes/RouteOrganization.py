@@ -31,8 +31,7 @@ def post_oragization(
 def get_all(
     db:Session=Depends(get_db),
     skip: int = 0,
-    limit: int = 20,
-    current_user:schemaUser.migrant=Depends(get_current_user)
+    limit: int = 20
     ):
     return serviceOrganization.get_organization(db,skip,limit)
 
@@ -41,8 +40,7 @@ def get_all(
 @router.get("/{id}",response_model=schemaorganization.ShowOrganizatios)
 def GetbyId(
     id,
-    db:Session=Depends(get_db),
-    current_user:schemaUser.migrant= Depends(get_current_user)
+    db:Session=Depends(get_db)
     ):
     return serviceOrganization.getby_id(db,id)
 
