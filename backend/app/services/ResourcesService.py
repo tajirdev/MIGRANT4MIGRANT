@@ -42,7 +42,7 @@ class Resource:
 
         if not available_resouirce:
             raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,detail="blog not found in db"
+                status_code=status.HTTP_404_NOT_FOUND,detail="resources not found in db"
             )
         return available_resouirce
     
