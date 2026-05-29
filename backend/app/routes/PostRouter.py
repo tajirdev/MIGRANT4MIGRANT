@@ -4,6 +4,7 @@ from app.core.database import get_db
 from app.services.PostServices import Post_Service
 from app.core.authorization import RoleChecker
 from app.schemas import schemaUser,postSchema
+from typing import List
 
 service_post = Post_Service()
 mentor_and_admin = RoleChecker(["mentor", "admin"])
@@ -15,7 +16,7 @@ router = APIRouter(
 
 
 
-@router.post("/create")
+@router.post("/create",response_model=postSchema.showPost)
 def new_post(
     request:postSchema.Post,
     db:Session=Depends(get_db),
@@ -24,12 +25,12 @@ def new_post(
     return service_post.create_post(request,db,current_user_id=current_user.id)
 
 
-@router.get("/posts")
+@router.get("/posts",response_model=List[postSchema.showPost])
 def read_post( db: Session = Depends(get_db),current_user:schemaUser.migrant=Depends(all)):
     return service_post.get_all_posts(db)
 
 
-@router.get("/{id}")
+@router.get("/{id}",response_model= postSchema.showPost)
 def GetbyId(
     id,
     db:Session=Depends(get_db),

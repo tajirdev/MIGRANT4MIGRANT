@@ -17,6 +17,5 @@ class Mentor(Base):
 
     migrant = relationship('Migrant' ,back_populates='mentor')
     rescou = relationship("Resource",back_populates="mentor_rec",cascade="all, delete")
-    post = relationship("Post", back_populates="author",cascade="all, delete")
-     
+    
    
