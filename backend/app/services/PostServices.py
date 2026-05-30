@@ -63,15 +63,17 @@ class Post_Service:
 
     def delete_post(self, db: Session, post_id: int):
 
-        delete_post = db.query(post.Post).filter(post.Post.id == post_id).first()
+        delete_posts = db.query(post.Post).filter(post.Post.id == post_id).first()
 
 
-        if not delete_post:
+
+
+        if not delete_posts:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,detail= f"Post with id of {post_id} not found"
                 )
 
-        db.delete(delete_post)
+        db.delete(delete_posts)
         db.commit()
 
         return {"message": f"Post with id {post_id} deleted successfully"}
@@ -87,4 +89,21 @@ class Post_Service:
                 detail="blogs not found in database"
             )
         return query
-
+    
+    def get_my_post(self, db: Session, skip: int, limit: int, current_user_id: int):
+    
+        available_posts = db.query(post.Post)\
+            .filter(post.Post.author_id == current_user_id)\
+            .order_by(post.Post.id.desc())\
+            .offset(skip)\
+            .limit(limit)\
+            .all()
+        
+        
+        if not available_posts:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="You don't have any posts. Please create one."
+            )
+        
+        return available_posts
