@@ -78,13 +78,20 @@ class Resource:
         return available
     
 
-    def update_resource(self,request:ResourceSchema.Resoureces,db:Session,id):
-        get_resource = db.query(resource.Resource).filter(resource.Resource.id == id).first()
+    def update_resource(self,request:ResourceSchema.Resoureces,db:Session,update_id,current_user_id):
+        get_resource = db.query(resource.Resource).filter(resource.Resource.id == update_id).first()
+        active_mentor = db.query(mentor.Mentor).filter(mentor.Mentor.user_id == current_user_id).first()
 
         if not get_resource:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail= f"resource with id of {id} not found"
+                detail= f"resource with id of {update_id} not found"
+            )
+               
+        if get_resource.added_by != active_mentor.id:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="You are not authorized to edite this resource."
             )
         else:
             get_resource.title = request.title
@@ -102,15 +109,28 @@ class Resource:
         return get_resource
     
 
-    def delete_resource(self,id,db:Session):
-        available = db.query(resource.Resource).filter(resource.Resource.id == id).delete(synchronize_session=False)
+    def delete_resource(self,delete_id,db:Session,cuurent_user_id):
+        available_qeury = db.query(resource.Resource).filter(resource.Resource.id == delete_id)
+        active_mentor = db.query(mentor.Mentor).filter(mentor.Mentor.user_id==cuurent_user_id).first()
+
+        available_to_delete = available_qeury.first()
+
+        if available_to_delete.added_by != active_mentor.id:
+            raise HTTPException(
+                status_code=403,
+                detail="You are not authorized to delete this resource."
+            )
+        
+        available_qeury.delete(synchronize_session=False)
+
+
 
         try:
             db.commit()
         except IntegrityError:
             db.rollback()
             raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Conflict: in database") 
-        return {"message" :f"blog with id {id} has been deleted"}
+        return {"message" :f"blog with id {delete_id} has been deleted"}
 
 
 
