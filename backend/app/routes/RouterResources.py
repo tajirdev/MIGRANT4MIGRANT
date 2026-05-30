@@ -1,19 +1,17 @@
 from sqlalchemy.orm import Session
 from app.schemas import ResourceSchema
-from sqlalchemy.orm import Session
-from sqlalchemy.orm import Session
 from fastapi import APIRouter,Depends
-from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.schemas import schemaUser
 from app.services.ResourcesService import Resource
 from app.core.authorization import RoleChecker
 from typing import List
+from app.core.authorization import get_current_user
 
 
 ServiceRecorce = Resource()
 mentor_and_admin = RoleChecker(["mentor", "admin"])
-all = RoleChecker(["mentor","admin","migrant"])
+
 
 
 router = APIRouter(
@@ -31,15 +29,25 @@ def post_resource(
 
 
 @router.get("/all",response_model=List[ResourceSchema.ShowResoureces])
-def get_all(db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(all)):
+def get_all(db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(get_current_user)):
     return ServiceRecorce.get_resource(db,current_user_id=current_user.id)
+
+@router.get("/all/me",response_model=List[ResourceSchema.ShowResoureces])
+def get_post_me(
+    db:Session=Depends(get_db),
+    current_user:schemaUser.migrant = Depends(mentor_and_admin),
+    skip : int = 0,
+    limit : int = 50
+    ):
+    return ServiceRecorce.get_my_resources(db,skip,limit,current_user_id=current_user.id)
+
 
 
 @router.get("/{id}")
 def GetbyId(
     id,
     db:Session=Depends(get_db),
-    current_user:schemaUser.migrant= Depends(all)
+    current_user:schemaUser.migrant= Depends(get_current_user)
     ):
     return ServiceRecorce.getby_id(db,id)
 

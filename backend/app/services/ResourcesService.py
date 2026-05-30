@@ -47,6 +47,26 @@ class Resource:
         return available_resouirce
     
 
+    def get_my_resources(self, db: Session, skip: int, limit: int, current_user_id: int):
+        mentor_id =db.query(mentor.Mentor).filter(mentor.Mentor.user_id== current_user_id).first()
+    
+        available_posts = db.query(resource.Resource)\
+            .filter(resource.Resource.added_by == mentor_id.id)\
+            .order_by(resource.Resource.id.desc())\
+            .offset(skip)\
+            .limit(limit)\
+            .all()
+        
+        
+        if not available_posts:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="You don't have any resource. Please create one."
+            )
+        
+        return available_posts
+    
+
     def getby_id(self,db:Session,id):
         available = db.query(resource.Resource).filter(resource.Resource.id == id).first()
 
