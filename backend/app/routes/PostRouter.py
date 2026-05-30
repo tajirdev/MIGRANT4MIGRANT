@@ -50,14 +50,14 @@ def get_post_me(
 
 
 
-@router.put("/edit/{id}")
+@router.put("/edit/{id}",response_model=postSchema.showPost)
 def edit(
     id,
     request:postSchema.Post,
     db:Session=Depends(get_db),
     current_user:schemaUser.migrant= Depends(mentor_and_admin)
 ):
-    return service_post.update_post(request,db,id)
+    return service_post.update_post(request,db,id,current_user_id=current_user.id)
 
 
 
@@ -65,6 +65,6 @@ def edit(
 @router.delete("/delete-post/{post_id}")
 def delete_post(post_id: int, db: Session = Depends(get_db),current_user:schemaUser.migrant=Depends(mentor_and_admin)):
     
-    return service_post.delete_post(db, post_id)
+    return service_post.delete_post(db, post_id,current_user_id=current_user.id)
 
 
