@@ -62,6 +62,6 @@ function displayUser(userally){
                 </div>
         `;
     });
-        header.innerHTML= cards;
+        header.innerHTML+= cards;
 }
         

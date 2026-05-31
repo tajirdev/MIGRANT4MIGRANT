@@ -104,9 +104,18 @@
 
                 <!-- Tabs -->
                 <div class="flex gap-4 border-b border-gray-200 mb-8">
-                    <button class="tab-btn active px-6 py-3 border-b-2 border-home-coral text-home-coral font-bold" data-tab="activity">
+                    <button class="tab-btn active px-6 py-3 border-b-2 border-home-coral text-home-coral font-bold" data-tab="Myresource">
+                        My Resources
+                    </button>
+
+                    <button class="tab-btn px-6 py-3 border-b-2 border-transparent text-gray-600 font-bold hover:text-text-main transition" data-tab="Mypost">
+                         My posts
+                    </button>
+
+                    <button class="tab-btn px-6 py-3 border-b-2 border-transparent text-gray-600 font-bold hover:text-text-main transition" data-tab="activity">
                         Activity
                     </button>
+                    
                     <button class="tab-btn px-6 py-3 border-b-2 border-transparent text-gray-600 font-bold hover:text-text-main transition" data-tab="saved">
                         Saved Items
                     </button>
@@ -116,8 +125,61 @@
                 </div>
 
                 <!-- Tab Content -->
+                <!-- resource Tab -->
+                <div id="MyresourceTab" class="tab-content">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-black text-text-main mb-4">Your resources</h3>
+                        
+
+
+
+                    </div>
+                </div>
+                 <!-- post Tab -->
+                <div id="MypostTab" class="tab-content hidden">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-black text-text-main mb-4">Your Recent Posts</h3>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="card-badge">Employment</span>
+                                    </div>
+                                    <h4 class="card-title">Job search tips for professionals</h4>
+                                </div>
+                            </div>
+                            <p class="card-description">
+                                I've compiled some useful tips from my job search experience that might help others...
+                            </p>
+                            <div class="card-footer">
+                                <div class="text-xs text-gray-500">Posted 3 days ago</div>
+                                <div class="text-xs text-home-coral font-bold">5 replies</div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="card-badge" style="background-color: rgb(208,233,223); color: var(--color-social-teal);">Housing</span>
+                                    </div>
+                                    <h4 class="card-title">Finding affordable housing in the city</h4>
+                                </div>
+                            </div>
+                            <p class="card-description">
+                                Looking for recommendations on areas with affordable rental options...
+                            </p>
+                            <div class="card-footer">
+                                <div class="text-xs text-gray-500">Posted 1 week ago</div>
+                                <div class="text-xs text-home-coral font-bold">12 replies</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Activity Tab -->
-                <div id="activityTab" class="tab-content">
+                <div id="activityTab" class="tab-content hidden">
                     <div class="space-y-4">
                         <h3 class="text-xl font-black text-text-main mb-4">Your Recent Posts</h3>
                         
