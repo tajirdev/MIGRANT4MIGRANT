@@ -62,7 +62,7 @@ if(role === "mentor"){
                 if (response.ok) {
                     showStatus("adding resource ....", "success");
                     closeAddResourceModal();
-                    //location.reload();
+                    location.reload();
                     document.getElementById('addResourceForm').reset()
                 }
             } catch (error) {
