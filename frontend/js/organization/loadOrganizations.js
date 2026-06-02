@@ -67,7 +67,6 @@ function createOrgCard(org) {
 
     card.innerHTML = `
         <div class="org-card-header">
-            <img src="" alt="${org.name || 'Organization'} Icon" class="org-icon w-12 h-12 object-cover">
             <div>
                 <h3 class="org-name">${org.name || 'Organization'}</h3>
                 <p class="org-type">${org.type || 'Community Support'}</p>
@@ -77,7 +76,6 @@ function createOrgCard(org) {
         <div class="org-services">
             ${serviceBadgesHTML}
         </div>
-        <button class="learn-more-btn">Learn More →</button>
     `;
 
     return card;
