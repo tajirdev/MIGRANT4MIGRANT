@@ -7,6 +7,8 @@ from typing import List
 from app.core.auth import get_current_user
 from app.models import migrants
 from app.core.authorization import RoleChecker
+from app.schemas.schemaUser import ForgotPasswordRequest, ResetPasswordRequest
+
 
 
 
@@ -53,4 +55,32 @@ def remove(
     return Userservice.delete_user(db,current_user_id=current_user.id)
 
 
+# This will be password  forgot and reset
+
+@router.post("/auth/forgot-password")
+def forgot_password(
+    request: ForgotPasswordRequest,
+    db: Session = Depends(get_db)
+):
+
+    service = UserReg()
+
+    return service.forgot_password(
+        request.email,
+        db
+    )
+
+@router.post("/auth/reset-password")
+def reset_password(
+    request: ResetPasswordRequest,
+    db: Session = Depends(get_db)
+):
+
+    service = UserReg()
+
+    return service.reset_password(
+        request.token,
+        request.new_password,
+        db
+    )
 

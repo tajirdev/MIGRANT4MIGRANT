@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Boolean
 from sqlalchemy.sql import func
 from app.core.database import Base
 from sqlalchemy.orm import relationship
@@ -19,4 +19,10 @@ class Migrant(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     mentor = relationship('Mentor' ,back_populates='migrant',cascade="all, delete")
-    
+
+
+    # Here is password reseting token
+    reset_token = Column(String, nullable=True)
+    reset_token_expiry =Column(DateTime, nullable=True)
+    reset_token_used = Column(Boolean, default=False)
+

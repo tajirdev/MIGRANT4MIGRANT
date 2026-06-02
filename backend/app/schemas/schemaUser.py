@@ -31,14 +31,26 @@ class showUser(BaseModel):
      
     class Config:
      from_attributes = True
+
+
 class Edite(BaseModel):
         
-        name :str
-        user_name :str
+    name :str
+    user_name :str
         
-        language :str
-        current_country :str
-        native_country : str
+    language :str
+    current_country :str
+    native_country : str
+
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+      
+
+class ResetPasswordRequest(BaseModel):
+   token: str
+   new_password: str
+   confirm_password: str
+    
 
 
   
