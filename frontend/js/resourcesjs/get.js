@@ -17,7 +17,7 @@ async function get_data(){
        if (Response.status === 401) {
             localStorage.removeItem('pa_token');
             localStorage.removeItem('pa_role');
-            localStorage.removeItem('pa_role');
+            localStorage.removeItem('pa_email');
             window.location.href = 'login.html';
             return null; 
         }
@@ -62,6 +62,6 @@ function displayUser(userally){
                 </div>
         `;
     });
-        header.innerHTML= cards;
+        header.innerHTML+= cards;
 }
         
