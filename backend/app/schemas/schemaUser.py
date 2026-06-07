@@ -42,10 +42,14 @@ class Edite(BaseModel):
         current_country :str
         native_country : str
 
+
 class ForgotPasswordRequest(BaseModel):
     email: EmailStr
+class VerifyOTPRequest(BaseModel):
+    email: EmailStr
+    otp: str = Field(..., min_length=6, max_length=6, description="The 6-digit numeric verification code")
 
 class ResetPasswordRequest(BaseModel):
-    otp: str = Field(..., min_length=6, max_length=6)
-    verification_context: str  # Keeps the signed validation state stateless
-    new_password: str = Field(..., min_length=8)
+    email: EmailStr
+    new_password: str = Field(..., min_length=8, description="The new password choice")
+    confirm_password: str = Field(..., min_length=8, description="The confirmation matching password")
