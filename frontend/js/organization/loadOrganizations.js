@@ -66,6 +66,8 @@ function createOrgCard(org) {
         : '<span class="service-badge">Support</span>';
 
     card.innerHTML = `
+        <div class="org-card-header">
+            <div>
        
                 <h3 class="org-name">${org.name || 'Organization'}</h3>
                 <p class="org-type">${org.type || 'Community Support'}</p>
