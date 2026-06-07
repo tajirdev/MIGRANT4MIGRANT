@@ -12,7 +12,7 @@ from app.schemas.schemaUser import ForgotPasswordRequest, VerifyOTPRequest, Rese
 from app.models import migrants
 
 
-# --- STEP 1: GENERATE AND EMAIL OTP ---
+
 def forgot_password(request: ForgotPasswordRequest, db: Session):
     user = db.query(migrants.Migrant).filter(migrants.Migrant.email == request.email).first()
     
@@ -30,7 +30,7 @@ def forgot_password(request: ForgotPasswordRequest, db: Session):
     
     print(f"\n[SECURITY DISPATCH]: User {user.email} generated OTP: {otp_code}\n")
 
-    # --- SMTP EMAIL DISPATCH ENGINE ---
+    
     try:
         SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
         SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
@@ -67,8 +67,6 @@ Migrant4Migrant Team"""
         
     return {"message": "A 6-digit verification code has been sent. Please check your email."}
 
-
-# --- STEP 2: VERIFY INPUTTED OTP ---
 def verify_otp(request: VerifyOTPRequest, db: Session):
     user = db.query(migrants.Migrant).filter(migrants.Migrant.email == request.email).first()
     if not user or not user.reset_otp:
@@ -89,7 +87,7 @@ def verify_otp(request: VerifyOTPRequest, db: Session):
     if user.reset_otp != request.otp:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid 6-digit reset code")
         
-    # Set verification flag to True so Step 3 is unlocked
+    
     user.is_otp_verified = True
     db.commit()
     
