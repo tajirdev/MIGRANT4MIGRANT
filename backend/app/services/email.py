@@ -96,8 +96,7 @@ def verify_otp(request: VerifyOTPRequest, db: Session):
 
 def reset_password(request: ResetPasswordRequest, db: Session):
     # Enforce confirmation match security
-    if request.new_password != request.confirm_password:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Passwords do not match")
+
 
     user = db.query(migrants.Migrant).filter(migrants.Migrant.email == request.email).first()
     if not user:

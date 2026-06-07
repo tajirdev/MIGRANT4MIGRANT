@@ -35,16 +35,29 @@ function closePasswordResetModal() {
 }
 
 // Request password reset
+
 async function requestPasswordReset(email) {
     try {
-        // Since email is not configured yet, just simulate the request
-        console.log('Password reset requested for:', email);
+        
+        
+        const response = await fetch(`http://localhost:8000/forgot-password`, {
+            method: 'POST',
+            headers: {
+                
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email:email
+            }
+            )
+        });
+        
         
         // Simulate sending OTP
         showOtpModal();
         closeForgotPasswordModal();
         
-        showStatus('OTP sent to your email! (Simulated)', 'success');
+        showStatus('OTP sent to your email! ', 'success');
         
         // Store email in sessionStorage for next step
         sessionStorage.setItem('resetEmail', email);
@@ -57,12 +70,27 @@ async function requestPasswordReset(email) {
 }
 
 // Verify OTP
+
 async function verifyOtp(otp) {
     try {
         console.log('Verifying OTP:', otp);
+        const user_email = sessionStorage.getItem('resetEmail')
+
+        const response = await fetch(`http://localhost:8000/verify-otp`,{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                email: user_email,
+                otp:otp
+
+            })
+        });
         
         // Simulate OTP verification
-        if (otp.length === 6) {
+        if (otp.length === 6 && response.ok) {
+
             closeOtpModal();
             showPasswordResetModal();
             showStatus('OTP verified successfully!', 'success');
@@ -72,6 +100,7 @@ async function verifyOtp(otp) {
             return false;
         }
     } catch (error) {
+        console.error(error)
         showStatus('Error verifying OTP: ' + error.message, 'error');
         return false;
     }
@@ -79,6 +108,7 @@ async function verifyOtp(otp) {
 
 // Reset password
 async function resetPassword(newPassword, confirmPassword) {
+    const email = sessionStorage.getItem('resetEmail');
     try {
         if (newPassword !== confirmPassword) {
             showStatus('Passwords do not match', 'error');
@@ -90,9 +120,21 @@ async function resetPassword(newPassword, confirmPassword) {
             return false;
         }
 
-        const email = sessionStorage.getItem('resetEmail');
+        const response = await fetch(`http://localhost:8000/reset-password`,{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                email:email,
+                new_password:newPassword
+
+            })
+
+        });
+
+        if(response.ok){
         
-        console.log('Resetting password for:', email);
         
         // Simulate password reset
         closePasswordResetModal();
@@ -103,7 +145,11 @@ async function resetPassword(newPassword, confirmPassword) {
         // Clear form
         document.getElementById('passwordResetForm').reset();
         
-        return true;
+
+        }else{
+            
+            showPasswordResetModal();
+        }
     } catch (error) {
         showStatus('Error resetting password: ' + error.message, 'error');
         return false;
@@ -190,3 +236,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
