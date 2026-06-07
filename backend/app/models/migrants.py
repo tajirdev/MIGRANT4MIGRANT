@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, Boolean
 from sqlalchemy.sql import func
 from app.core.database import Base
 from sqlalchemy.orm import relationship
@@ -20,4 +20,6 @@ class Migrant(Base):
 
     mentor = relationship('Mentor' ,back_populates='migrant',cascade="all, delete")
     post = relationship("Post", back_populates="author",cascade="all, delete")
-    
+    reset_otp = Column(String, nullable=True)
+    otp_expiry = Column(DateTime, nullable=True)
+    is_otp_verified = Column(Boolean, default=False, nullable=False)

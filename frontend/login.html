@@ -62,7 +62,7 @@
                             <label class="flex items-center gap-2 text-gray-500 cursor-pointer">
                                 <input type="checkbox" class="accent-home-coral rounded"> Remember me
                             </label>
-                            <a href="#" class="text-gray-400 hover:text-home-coral transition-colors">Lost password?</a>
+                            <button type="button" onclick="showForgotPasswordModal()" class="text-gray-400 hover:text-home-coral transition-colors">Lost password?</button>
                         </div>
 
                         <button type="submit" class="w-full bg-home-coral text-white font-black py-4 rounded-xl shadow-lg hover:bg-home-coral/90 hover:scale-105 active:scale-[0.98] transition-all uppercase tracking-widest mt-2">
@@ -93,8 +93,87 @@
             </div>
         </div>
     </main>
+    
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full">
+            <h2 class="text-2xl font-bold text-text-main mb-2">Forgot Password</h2>
+            <p class="text-gray-500 text-sm mb-6">Enter your email address and we'll send you a verification code.</p>
+            <form id="forgotPasswordForm" class="space-y-4">
+                <div>
+                    <label class="form-label">Email Address</label>
+                    <input type="email" id="forgotPasswordEmail" placeholder="your@email.com" class="form-input" required>
+                </div>
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" class="flex-1 bg-home-coral text-white font-bold py-3 rounded-xl hover:bg-home-coral/90 transition-all">
+                        Send Code
+                    </button>
+                    <button type="button" onclick="closeForgotPasswordModal()" class="flex-1 bg-gray-100 text-text-main font-bold py-3 rounded-xl hover:bg-gray-200 transition-all">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- OTP Verification Modal -->
+    <div id="otpModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full">
+            <h2 class="text-2xl font-bold text-text-main mb-2">Verify OTP</h2>
+            <p class="text-gray-500 text-sm mb-6">Enter the 6-digit verification code sent to your email.</p>
+            <form id="otpForm" class="space-y-4">
+                <div>
+                    <label class="form-label">Verification Code</label>
+                    <input type="text" id="otpInput" placeholder="000000" maxlength="6" class="form-input text-center text-2xl tracking-widest font-bold" required>
+                    <p class="text-gray-400 text-xs mt-2">Enter 6 digits</p>
+                </div>
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" class="flex-1 bg-home-coral text-white font-bold py-3 rounded-xl hover:bg-home-coral/90 transition-all">
+                        Verify
+                    </button>
+                    <button type="button" onclick="closeOtpModal()" class="flex-1 bg-gray-100 text-text-main font-bold py-3 rounded-xl hover:bg-gray-200 transition-all">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Password Reset Modal -->
+    <div id="passwordResetModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full">
+            <h2 class="text-2xl font-bold text-text-main mb-2">Reset Password</h2>
+            <p class="text-gray-500 text-sm mb-6">Enter your new password. It should be at least 8 characters long.</p>
+            <form id="passwordResetForm" class="space-y-4">
+                <div>
+                    <label class="form-label">New Password</label>
+                    <input type="password" id="newPassword" placeholder="••••••••" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="••••••••" class="form-input" required>
+                </div>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-700">
+                    <strong>Password requirements:</strong>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>At least 8 characters long</li>
+                        <li>Should be unique and strong</li>
+                    </ul>
+                </div>
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" class="flex-1 bg-home-coral text-white font-bold py-3 rounded-xl hover:bg-home-coral/90 transition-all">
+                        Reset Password
+                    </button>
+                    <button type="button" onclick="closePasswordResetModal()" class="flex-1 bg-gray-100 text-text-main font-bold py-3 rounded-xl hover:bg-gray-200 transition-all">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="js/login.js"></script>
     <script src="js/validation_input.js"></script>
+    <script src="js/otp_password_reset.js"></script>
 </body>
 </html>

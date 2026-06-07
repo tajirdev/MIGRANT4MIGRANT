@@ -1,5 +1,7 @@
-from pydantic import BaseModel, EmailStr,field_serializer
+from pydantic import BaseModel, EmailStr,field_serializer, Field
 from datetime import datetime,date
+
+
 
 
 # user data varidation
@@ -41,14 +43,13 @@ class Edite(BaseModel):
         native_country : str
 
 
-from pydantic import BaseModel, EmailStr, Field
-
 class ForgotPasswordRequest(BaseModel):
     email: EmailStr
+class VerifyOTPRequest(BaseModel):
+    email: EmailStr
+    otp: str = Field(..., min_length=6, max_length=6, description="The 6-digit numeric verification code")
 
 class ResetPasswordRequest(BaseModel):
-    token: str
-    new_password: str = Field(..., min_length=8)
-
-
-  
+    email: EmailStr
+    new_password: str = Field(..., min_length=8, description="The new password choice")
+    confirm_password: str = Field(..., min_length=8, description="The confirmation matching password")
