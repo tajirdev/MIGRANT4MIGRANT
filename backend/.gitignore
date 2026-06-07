@@ -1,17 +1,18 @@
-# I have added ignore routes
-
 # Python
 venv/
 __pycache__/
 *.pyc
+
+# Environment files
+.env
 *.env
+.env.*
 
 # FastAPI
 *.db
 
-
 # OS
-*.DS_Store
+.DS_Store
 Thumbs.db
 
 # IDE
@@ -19,5 +20,3 @@ Thumbs.db
 .idea/
 
 .app/
-
-
