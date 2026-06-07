@@ -20,4 +20,5 @@ class Migrant(Base):
 
     mentor = relationship('Mentor' ,back_populates='migrant',cascade="all, delete")
     post = relationship("Post", back_populates="author",cascade="all, delete")
-    
+    reset_otp = Column(String, nullable=True)
+    otp_expiry = Column(DateTime, nullable=True)
