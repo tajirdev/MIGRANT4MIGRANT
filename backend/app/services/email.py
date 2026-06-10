@@ -40,9 +40,9 @@ def forgot_password(request: ForgotPasswordRequest, db: Session):
     
 
     
-        msg = MIMEMultipart() # Changed to 'alternative' to support both text and HTML
+        msg = MIMEMultipart() 
         
-        # 1. Add a professional Display Name
+       
         msg['From'] = f"Migrant4Migrant Team <{SENDER_EMAIL}>"
         msg['To'] = user.email
         msg['Subject'] = "Your Migrant4Migrant Password Reset Code"
@@ -90,7 +90,7 @@ def verify_otp(request: VerifyOTPRequest, db: Session):
     if not user or not user.reset_otp:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="No active password reset session found")
         
-    # Timezone-aware expiration validation check
+  
     current_time = datetime.now(timezone.utc)
     expiry_time = user.otp_expiry.replace(tzinfo=timezone.utc) if user.otp_expiry.tzinfo is None else user.otp_expiry
 
