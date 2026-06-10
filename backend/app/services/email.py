@@ -36,24 +36,37 @@ def forgot_password(request: ForgotPasswordRequest, db: Session):
         SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
         SENDER_EMAIL = os.getenv("SENDER_EMAIL")       
         SENDER_PASSWORD = os.getenv("SENDER_PASSWORD") 
+        
+    
 
-        msg = MIMEMultipart()
-        msg['From'] = SENDER_EMAIL
+    
+        msg = MIMEMultipart() # Changed to 'alternative' to support both text and HTML
+        
+        # 1. Add a professional Display Name
+        msg['From'] = f"Migrant4Migrant Team <{SENDER_EMAIL}>"
         msg['To'] = user.email
         msg['Subject'] = "Your Migrant4Migrant Password Reset Code"
 
-        # email message
-        body = f"""Hello,
-
-We received a request to reset your password. 
-Your 6-digit verification code is: {otp_code}
-
-This code will expire in 20 minutes. If you did not request this change, please ignore this email.
-
-Thank you,
-Migrant4Migrant Team"""
+      
+       # body_text = f"Hello,\n\nWe received a request to reset your password. Your code is: {otp_code}\n\nThis code expires in 20 minutes."
         
-        msg.attach(MIMEText(body, 'plain'))
+
+        body_html = f"""
+        <html>
+          <body>
+            <h2 style="color: #2c3e50;">Migrant4Migrant Password Reset</h2>
+            <p>Hello,</p>
+            <p>We received a request to reset your password. Use the verification code below to proceed:</p>
+            <div style=" padding: 15px; font-size: 24px; font-weight: bold; letter-spacing: 2px; text-align: center; border-radius: 5px; color: #e74c3c; width: 200px;">
+                {otp_code}
+            </div>
+            <p style="color: #7f8c8d; font-size: 12px; margin-top: 20px;">This code will expire in 20 minutes. If you did not request this change, please ignore this email.</p>
+          </body>
+        </html>
+        """
+        
+       # msg.attach(MIMEText(body_text, 'plain'))
+        msg.attach(MIMEText(body_html, 'html'))
 
         server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
         server.starttls() 
@@ -64,6 +77,11 @@ Migrant4Migrant Team"""
         
     except Exception as e:
         print(f"[SMTP ERROR]: Failed to deliver email via SMTP. Details: {e}")
+
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Email delivery failed: {str(e)}"
+        )
         
     return {"message": "A 6-digit verification code has been sent. Please check your email."}
 
