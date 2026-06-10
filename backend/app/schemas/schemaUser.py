@@ -52,4 +52,3 @@ class VerifyOTPRequest(BaseModel):
 class ResetPasswordRequest(BaseModel):
     email: EmailStr
     new_password: str = Field(..., min_length=8, description="The new password choice")
-    confirm_password: str = Field(..., min_length=8, description="The confirmation matching password")
