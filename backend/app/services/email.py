@@ -23,7 +23,7 @@ def forgot_password(request: ForgotPasswordRequest, db: Session):
     otp_code = "".join(secrets.choice("0123456789") for _ in range(6))
     
     # 2. Update database records to track this dynamic session
-    user.reset_otp = otp_code
+    user.reset_otp = Hash.hash(otp_code)
     user.otp_expiry = datetime.now(timezone.utc) + timedelta(minutes=20)
     user.is_otp_verified = False  
     db.commit()
@@ -84,7 +84,7 @@ def verify_otp(request: VerifyOTPRequest, db: Session):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="The 6-digit verification code has expired")
     
     # Check if the code typed matches the database record
-    if user.reset_otp != request.otp:
+    if not Hash.verify_password(request.otp, user.reset_otp):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid 6-digit reset code")
         
     
@@ -96,8 +96,7 @@ def verify_otp(request: VerifyOTPRequest, db: Session):
 
 def reset_password(request: ResetPasswordRequest, db: Session):
     # Enforce confirmation match security
-    if request.new_password != request.confirm_password:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Passwords do not match")
+
 
     user = db.query(migrants.Migrant).filter(migrants.Migrant.email == request.email).first()
     if not user:
