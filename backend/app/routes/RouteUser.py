@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.schemas import schemaUser
 from app.services.Userservice import UserReg
+from app.services import verfiyAC
 from typing import List
 from app.core.auth import get_current_user
 from app.models import migrants
@@ -61,6 +62,22 @@ def remove(
 ):
     return Userservice.delete_user(db,current_user_id=current_user.id)
 
+
+@router.post('verfy/me')
+def verfy_me_account(
+    reques:schemaUser.ForgotPasswordRequest,
+    db:Session=Depends(get_db),
+    current_user : schemaUser.migrant= Depends(get_current_user)
+):
+    return verfiyAC.verify_account(reques,db)
+
+@router.post('verfy/me/otp')
+def verify_otp_me(
+    request:schemaUser.VerifyOTPRequest,
+    db:Session=Depends(get_db),
+    current_user: schemaUser.migrant = Depends(get_current_user)
+):
+    return verfiyAC.verify_otp(request,db)
 
 
 
