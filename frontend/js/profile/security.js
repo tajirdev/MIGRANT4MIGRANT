@@ -76,12 +76,26 @@ async function changePassword(currentPassword, newPassword, confirmPassword) {
 // Request account verification (send OTP)
 async function requestAccountVerification() {
     try {
-        console.log('Requesting account verification...');
+        const user_email= localStorage.getItem('pa_email')
         
-        // Simulate sending OTP for account verification
-        showNotification('Verification code sent to your email! (Simulated)', 'success');
-        showVerifyAccountModal();
-        
+        const rensponse = await fetch(`http://localhost:8000/registerverfy/me`,{
+            method:'POST',
+            headers:{
+                 'Content-Type': 'application/json',
+                 'Authorization': `Bearer ${localStorage.getItem('pa_token')}`
+                
+            },
+            body: JSON.stringify({
+                email: user_email
+                 })
+        });
+
+        if(rensponse.ok){
+             showNotification('Verification code sent to your email', 'success');
+             showVerifyAccountModal();
+
+        }
+  
         return true;
     } catch (error) {
         showNotification('Error requesting verification: ' + error.message, 'error');
@@ -92,18 +106,35 @@ async function requestAccountVerification() {
 // Verify account with OTP
 async function verifyAccountWithOtp(otp) {
     try {
+        const user_email= localStorage.getItem('pa_email')
         if (!otp || otp.length !== 6) {
             showNotification('Please enter a valid 6-digit verification code', 'error');
             return false;
         }
 
-        console.log('Verifying account with OTP:', otp);
-        
-        // Simulate OTP verification
-        showNotification('Account verified successfully!', 'success');
-        closeVerifyAccountModal();
-        document.getElementById('verifyAccountForm').reset();
-        
+        const rensponse = await fetch(`http://localhost:8000/registerverfy/me/otp`,{
+            method: 'POST',
+            headers:{
+                 'Content-Type': 'application/json',
+                 'Authorization': `Bearer ${localStorage.getItem('pa_token')}`
+
+            },
+             body: JSON.stringify({
+                email: user_email,
+                otp
+                 })
+
+        });
+
+        if(rensponse.ok){
+             showNotification('Account verified successfully!', 'success');
+             closeVerifyAccountModal();
+            document.getElementById('verifyAccountForm').reset();
+
+        } else{
+            showNotification('incorrect OTP code');
+
+        }
         return true;
     } catch (error) {
         showNotification('Error verifying account: ' + error.message, 'error');

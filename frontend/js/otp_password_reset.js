@@ -136,7 +136,7 @@ async function resetPassword(newPassword, confirmPassword) {
         if(response.ok){
         
         
-        // Simulate password reset
+      
         closePasswordResetModal();
         sessionStorage.removeItem('resetEmail');
         
