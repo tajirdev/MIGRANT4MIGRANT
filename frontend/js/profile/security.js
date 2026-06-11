@@ -46,12 +46,25 @@ async function changePassword(currentPassword, newPassword, confirmPassword) {
             return false;
         }
 
-        console.log('Changing password...');
-        
-        // Simulate password change (email not configured)
-        showNotification('Password changed successfully!', 'success');
-        closeChangePasswordModal();
-        document.getElementById('changePasswordForm').reset();
+        const response = await fetch('http://localhost:8000/register/edite/me/password', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('pa_token')}`
+                    },
+                    body: JSON.stringify({
+
+                         password_hash:currentPassword ,
+                         new_passord_hash:newPassword,
+                    })
+                });
+                    
+                if (response.ok) 
+                    closeChangePasswordModal();
+                    showNotification('Password changed successfully!', 'success');
+                    document.getElementById('changePasswordForm').reset();
+
+
         
         return true;
     } catch (error) {

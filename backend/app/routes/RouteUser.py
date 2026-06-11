@@ -44,6 +44,15 @@ def put_me(request:schemaUser.Edite,db:Session=Depends(get_db),current_user:sche
     return Userservice.edit_me(request,db,current_user_id=current_user.id)
 
 
+@router.put('/edite/me/password')
+def put_password(
+    request:schemaUser.EditePasword,
+    db:Session=Depends(get_db),
+    current_user:schemaUser.migrant=Depends(get_current_user)
+    ):
+    return Userservice.upadte_password(request,db,current_user_id=current_user.id)
+
+
 @router.delete("/delete/me")
 def remove(
     
@@ -51,6 +60,7 @@ def remove(
     current_user:schemaUser.migrant=Depends(get_current_user)
 ):
     return Userservice.delete_user(db,current_user_id=current_user.id)
+
 
 
 

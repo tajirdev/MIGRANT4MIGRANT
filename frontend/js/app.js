@@ -1,3 +1,17 @@
+function requireAuth() {
+  const authToken = localStorage.getItem('pa_token');
+  if (!authToken) {
+    window.location.href = 'login.html';
+    
+  }
+    
+}
+
+
+
+
+
+
 // Global Notification System
 function showNotification(message, type = 'error', duration = 4000) {
     const container = document.getElementById('toast-container') || createToastContainer();
@@ -122,14 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Check if user is logged in (redirect unauthenticated users)
-function requireAuth() {
-  const authToken = localStorage.getItem('pa_token');
-  if (!authToken) {
-    window.location.href = 'login.html';
-    
-  }
-    
-}
+
 
 function checkTokenExpiry() {
     const token = localStorage.getItem('pa_token'); 

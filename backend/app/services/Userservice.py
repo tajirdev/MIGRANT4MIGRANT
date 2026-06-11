@@ -54,12 +54,14 @@ class UserReg:
         active_user.native_country = request.native_country
     
         try:
-            db.add(active_user)
+          
             db.commit()
-            db.refresh(active_user)
+           
         except IntegrityError:
             db.rollback() 
             raise HTTPException(status_code=400, detail="Conflict: Data already exists.")  
+        
+        db.refresh(active_user)
         
         return {"message":"you have update your information"}
    
@@ -72,6 +74,27 @@ class UserReg:
             db.rollback()
             raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Conflict: in database") 
         return {"your no longer member"}
+   
+   def upadte_password(self,request:schemaUser.EditePasword,db:Session,current_user_id:int):
+       active_user=db.query(migrants.Migrant).filter(migrants.Migrant.id == current_user_id).first()
+
+
+       if  not security.Hash.verify_password(request.password_hash, active_user.password_hash) :
+           raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="password dismatch")
+       else:
+        active_user.password_hash = security.Hash.hash(request.new_passord_hash)
+        try:
+          
+            db.commit()
+            
+        except IntegrityError:
+            db.rollback() 
+            raise HTTPException(status_code=400, detail="Conflict in db")
+        
+        db.refresh(active_user)
+      
+       
+       return {"Message":"your password has been updated"}
 
        
 
