@@ -53,14 +53,66 @@ def forgot_password(request: ForgotPasswordRequest, db: Session):
 
         body_html = f"""
         <html>
-          <body>
-            <h2 style="color: #2c3e50;">Migrant4Migrant Password Reset</h2>
-            <p>Hello,</p>
-            <p>We received a request to reset your password. Use the verification code below to proceed:</p>
-            <div style=" padding: 15px; font-size: 24px; font-weight: bold; letter-spacing: 2px; text-align: center; border-radius: 5px; color: #e74c3c; width: 200px;">
-                {otp_code}
-            </div>
-            <p style="color: #7f8c8d; font-size: 12px; margin-top: 20px;">This code will expire in 20 minutes. If you did not request this change, please ignore this email.</p>
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Reset Your Password</title>
+          </head>
+          <body style="margin: 0; padding: 0; background-color: #F9F9F9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F9F9F9; padding: 40px 20px;">
+              <tr>
+                <td align="center">
+                  
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 500px; background-color: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #4ECDC4; box-shadow: 0 4px 12px rgba(45, 52, 54, 0.05);">
+                    
+                    <tr>
+                      <td align="center" style="background-color: #2D3436; padding: 32px 20px;">
+                        <h1 style="color: #FF6B6B; margin: 0; font-size: 26px; font-weight: 700; letter-spacing: 1px;">Migrant4Migrant</h1>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td style="padding: 40px 32px; background-color: #ffffff;">
+                        <h2 style="color: #2D3436; font-size: 22px; font-weight: 600; margin-top: 0; margin-bottom: 16px;">Password Reset Request</h2>
+                        <p style="color: #2D3436; font-size: 15px; line-height: 24px; margin: 0 0 24px 0;">
+                          Hello,
+                        </p>
+                        <p style="color: #2D3436; font-size: 15px; line-height: 24px; margin: 0 0 32px 0;">
+                          We received a request to reset the password for your Migrant4Migrant account. Please use the secure 6-digit verification code below to proceed with setting a new password:
+                        </p>
+                        
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 32px 0;">
+                          <tr>
+                            <td align="center">
+                              <div style="background-color: #F9F9F9; border: 2px dashed #4ECDC4; border-radius: 8px; padding: 20px 40px; display: inline-block;">
+                                <span style="font-size: 36px; font-weight: 800; color: #FF6B6B; letter-spacing: 6px; font-family: 'Courier New', Courier, monospace;">{otp_code}</span>
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                        
+                        <p style="color: #2D3436; font-size: 14px; line-height: 22px; margin: 32px 0 0 0;">
+                          This security code will expire in <span style="padding: 2px 6px; border-radius: 4px; font-weight: bold; color:  #4ECDC4;">20 minutes</span>. For protection, please do not forward or share this code with anyone.
+                        </p>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td style="background-color: #F9F9F9; padding: 28px 32px; text-align: center; border-top: 1px solid #4ECDC4;">
+                        <p style="color: #636e72; font-size: 12px; line-height: 18px; margin: 0;">
+                          If you did not request a password change, you can safely disregard this message. Your current password will remain completely secure and unchanged.
+                        </p>
+                        <p style="color: #2D3436; font-size: 12px; margin: 16px 0 0 0; font-weight: 500; letter-spacing: 0.5px;">
+                          &copy; 2026 Migrant4Migrant. All rights reserved.
+                        </p>
+                      </td>
+                    </tr>
+                    
+                  </table>
+                  
+                </td>
+              </tr>
+            </table>
           </body>
         </html>
         """

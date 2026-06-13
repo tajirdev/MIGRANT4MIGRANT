@@ -167,10 +167,30 @@ function show_resource(resources){
 
 }
 } else{
+  
     mentor_resource_btn.style.display = "none"
     resource_tab.style.display = "none"
-}
 
+   
+    function button_card_display(){
+        const post_button = document.getElementById('post-button')
+        post_button.classList.remove('border-transparent', 'text-gray-600');
+        post_button.classList.add('border-home-coral', 'text-home-coral');
+
+       // const postshow =document.getElementById('MypostTab"');
+       // postshow.classList.remove('hidden')
+
+        
+
+    }
+   button_card_display()
+
+  
+
+   
+
+}
+// this function for getting post aply to all doesnot matter is mentor or migrant
 
 async function get_post() {
     let skip = 0;
@@ -195,6 +215,7 @@ async function get_post() {
                     </div>`;;
             return null; 
         }
+        button_card_display()
 
     const post_data = await response.json()
     if(post_data.length === 0){
@@ -252,5 +273,7 @@ function show_posts(posts){
         `;
     });
     posts_tab.innerHTML += posts_display;
+
+    
   
 }

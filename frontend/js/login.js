@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             
             showStatus("network error","error");
-            showStatus("Login Error: " + err.message,"error")
+            showStatus( err.message,"error")
         }
     });
 });

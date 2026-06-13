@@ -9,7 +9,7 @@ class migrant(BaseModel):
     name : str
     user_name :str
     email :EmailStr
-    password_hash : str
+    password_hash : str = Field(..., min_length=8)
     role : str
     language :str
     current_country: str
@@ -41,6 +41,10 @@ class Edite(BaseModel):
         language :str
         current_country :str
         native_country : str
+
+class EditePasword(BaseModel):
+    password_hash : str
+    new_passord_hash : str = Field(..., min_length=8)
 
 
 class ForgotPasswordRequest(BaseModel):
