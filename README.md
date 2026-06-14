@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="frontend\assets\background_form.jpg" alt="Migrant4Migrant Banner" width="100%">
+<img src="frontend/assets/background_form.jpg" alt="Migrant4Migrant Banner" width="100%">
 
-<h1>MIGRANT4MIGRANT</h1>
+<h1><span style="color: #2b3137;">MIGRANT</span><span style="color: #ff6b6b;">4</span><span style="color: #2b3137;">MIGRANT</span></h1>
 
 <p><strong>A community-first platform connecting migrants with resources, support & each other.</strong></p>
 
@@ -374,54 +374,35 @@ See [open issues](https://github.com/tajirdev/MIGRANT4MIGRANT/issues) for the fu
 
 Thanks to everyone who has contributed to this project:
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/omarisengulo17">
-        <img src="https://github.com/omarisengulo17.png" width="80" height="80" style="border-radius:50%" alt="omarisengulo17"/><br/>
-        <sub><b>omarisengulo17</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/maduhu1234">
-        <img src="https://github.com/maduhu1234.png" width="80" height="80" style="border-radius:50%" alt="maduhu1234"/><br/>
-        <sub><b>maduhu1234</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/Jobbarnar">
-        <img src="https://github.com/Jobbarnar.png" width="80" height="80" style="border-radius:50%" alt="Jobbarnar"/><br/>
-        <sub><b>Jobbarnar</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/HimChana">
-        <img src="https://github.com/HimChana.png" width="80" height="80" style="border-radius:50%" alt="HimChana"/><br/>
-        <sub><b>HimChana</b></sub><br/>
-        <sub>he/him</sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/anollian-mushi">
-        <img src="https://github.com/anollian-mushi.png" width="80" height="80" style="border-radius:50%" alt="anollian-mushi"/><br/>
-        <sub><b>anollian-mushi</b></sub><br/>
-        <sub>he/him</sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/agostinosasi3-rgb">
-        <img src="https://github.com/agostinosasi3-rgb.png" width="80" height="80" style="border-radius:50%" alt="agostinosasi3-rgb"/><br/>
-        <sub><b>agostinosasi3-rgb</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/tajirdev">
-        <img src="https://github.com/tajirdev.png" width="80" height="80" style="border-radius:50%" alt="tajirdev"/><br/>
-        <sub><b>tajirdev</b></sub>
-      </a>
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <a href="https://github.com/omarisengulo17">
+    <img src="https://github.com/omarisengulo17.png" width="80" height="80" alt="omarisengulo17"/>
+  </a>
+  &nbsp;
+  <a href="https://github.com/maduhu1234">
+    <img src="https://github.com/maduhu1234.png" width="80" height="80" alt="maduhu1234"/>
+  </a>
+  &nbsp;
+  <a href="https://github.com/Jobbarnar">
+    <img src="https://github.com/Jobbarnar.png" width="80" height="80" alt="Jobbarnar"/>
+  </a>
+  &nbsp;
+  <a href="https://github.com/HimChana">
+    <img src="https://github.com/HimChana.png" width="80" height="80" alt="HimChana"/>
+  </a>
+  &nbsp;
+  <a href="https://github.com/anollian-mushi">
+    <img src="https://github.com/anollian-mushi.png" width="80" height="80" alt="anollian-mushi"/>
+  </a>
+  &nbsp;
+  <a href="https://github.com/agostinosasi3-rgb">
+    <img src="https://github.com/agostinosasi3-rgb.png" width="80" height="80" alt="agostinosasi3-rgb"/>
+  </a>
+  &nbsp;
+  <a href="https://github.com/tajirdev">
+    <img src="https://github.com/tajirdev.png" width="80" height="80" alt="tajirdev"/>
+  </a>
+</p>
 
 ---
 
