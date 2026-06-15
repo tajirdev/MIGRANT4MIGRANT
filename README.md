@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="frontend/assets/background_form.jpg" alt="Migrant4Migrant Banner" width="100%">
+
 
 <h1><span style="color: #2b3137;">MIGRANT</span><span style="color: #ff6b6b;">4</span><span style="color: #2b3137;">MIGRANT</span></h1>
 
@@ -10,6 +10,7 @@
   <a href="https://github.com/tajirdev/MIGRANT4MIGRANT/graphs/contributors">
     <img src="https://img.shields.io/github/contributors/tajirdev/MIGRANT4MIGRANT?style=for-the-badge&color=FF6B6B" alt="Contributors">
   </a>
+  
   <a href="https://github.com/tajirdev/MIGRANT4MIGRANT/network/members">
     <img src="https://img.shields.io/github/forks/tajirdev/MIGRANT4MIGRANT?style=for-the-badge&color=4ECDC4" alt="Forks">
   </a>
@@ -114,7 +115,7 @@ Migrants often face a triple barrier: **no reliable information**, **language ob
 |---|---|
 | **Guest** | Browse resources, read posts, search by location, view org profiles |
 | **Migrant** | + Post support requests, message mentors, save bookmarks, join groups |
-| **Volunteer** | + Offer mentorship, add local resources, moderate posts |
+| **Mentor** | + Offer mentorship, add local resources, moderate posts |
 | **Admin** | Full access: verify orgs, manage users, analytics, system config |
 
 ---
