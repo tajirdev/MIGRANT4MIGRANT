@@ -6,6 +6,10 @@ const posts_tab = document.getElementById("MypostTab")
 
 
 
+// this function for getting post aply to all doesnot matter is mentor or migrant
+
+
+
 
 
 if(get_role == 'mentor'){
@@ -172,108 +176,111 @@ function show_resource(resources){
     resource_tab.style.display = "none"
 
    
-    function button_card_display(){
+  
         const post_button = document.getElementById('post-button')
         post_button.classList.remove('border-transparent', 'text-gray-600');
-        post_button.classList.add('border-home-coral', 'text-home-coral');
+      
+        post_button.classList.add('border-home-coral', 'text-home-coral','active');
 
-       // const postshow =document.getElementById('MypostTab"');
-       // postshow.classList.remove('hidden')
+        const postshow =document.getElementById('MypostTab');
+        
+        postshow.classList.remove('hidden')
 
         
 
-    }
-   button_card_display()
+    
+
 
   
 
    
 
+
+
 }
-// this function for getting post aply to all doesnot matter is mentor or migrant
 
-async function get_post() {
-    let skip = 0;
-    const limit = 10;
-    let loading = false;
-    let allLoded = false;
+    async function get_post() {
+        let skip = 0;
+        const limit = 10;
+        let loading = false;
+        let allLoded = false;
 
-    if(loading || allLoded) return;
-    loading = true
-    try{
-        const response = await fetch(`http://localhost:8000/pots/me?skip=${skip}&limit=${limit}`,{
-        method :"GET",
-        headers:{
-            'Authorization':`Bearer ${localStorage.getItem('pa_token')}`,
-            'Content-Type':'application/json'
+        if(loading || allLoded) return;
+        loading = true
+        try{
+            const response = await fetch(`http://localhost:8000/pots/me?skip=${skip}&limit=${limit}`,{
+            method :"GET",
+            headers:{
+                'Authorization':`Bearer ${localStorage.getItem('pa_token')}`,
+                'Content-Type':'application/json'
+            }
+        });
+
+        if (response.status === 404) {
+                posts_tab.innerHTML = `<div class="text-center py-8 text-gray-500 italic">
+                            You haven't posted any post yet.
+                        </div>`;;
+                return null; 
+            }
+         
+
+        const post_data = await response.json()
+        if(post_data.length === 0){
+            allLoded = true;
+
+            return;
+        }
+
+        show_posts(post_data)
+        skip += limit;
+
+        }catch(error){
+        
+        }finally{
+            loading = false;
+        }
+        
+        
+    }
+    window.addEventListener('scroll',()=>{
+        if(window.innerHeight + window.screenY >= document.body.offsetHeight - 200){
+            get_post()
         }
     });
+    get_post()
 
-    if (response.status === 404) {
-            posts_tab.innerHTML = `<div class="text-center py-8 text-gray-500 italic">
-                        You haven't posted any post yet.
-                    </div>`;;
-            return null; 
-        }
-        button_card_display()
+    function show_posts(posts){
+        let posts_display = '';
 
-    const post_data = await response.json()
-    if(post_data.length === 0){
-        allLoded = true;
-
-        return;
-    }
-
-    show_posts(post_data)
-    skip += limit;
-
-    }catch(error){
-       
-    }finally{
-        loading = false;
-    }
-    
-    
-}
-window.addEventListener('scroll',()=>{
-    if(window.innerHeight + window.screenY >= document.body.offsetHeight - 200){
-        get_post()
-    }
-});
-get_post()
-
-function show_posts(posts){
-    let posts_display = '';
-
-    posts.forEach(post=>{
-        posts_display += `
-            <div class="card">
-                <div class="card-header">
-                    <div class="flex-1">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="card-badge">
-                                ${post.category}
-                            </span>
+        posts.forEach(post=>{
+            posts_display += `
+                <div class="card">
+                    <div class="card-header">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="card-badge">
+                                    ${post.category}
+                                </span>
+                            </div>
+                            <h3 class="card-title">${post.title}</h3>
                         </div>
-                        <h3 class="card-title">${post.title}</h3>
+                    </div>
+                    <p class="card-description">
+                        ${post.body}
+                    </p>
+                    <div class="card-footer">
+                        <div class="text-xs text-gray-500">
+                            <p>Posted by <strong>${post.author.name}</strong> • </p>
+                        </div>
+                        <div class="text-xs text-gray-500">
+                            <a href="#" class="text-home-coral font-bold hover:underline">View post</a>
+                        </div>
                     </div>
                 </div>
-                <p class="card-description">
-                    ${post.body}
-                </p>
-                <div class="card-footer">
-                    <div class="text-xs text-gray-500">
-                        <p>Posted by <strong>${post.author.name}</strong> • </p>
-                    </div>
-                    <div class="text-xs text-gray-500">
-                        <a href="#" class="text-home-coral font-bold hover:underline">View post</a>
-                    </div>
-                </div>
-            </div>
-        `;
-    });
-    posts_tab.innerHTML += posts_display;
+            `;
+        });
+        posts_tab.innerHTML += posts_display;
 
+        
     
-  
-}
+    }
