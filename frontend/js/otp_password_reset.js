@@ -64,7 +64,7 @@ async function requestPasswordReset(email) {
         
         return true;
     } catch (error) {
-        showStatus('Error sending OTP: ' + error.message, 'error', 'forgot-status-message');
+        showStatus('Error sending OTP: ' + error.message, 'error', 'forgot-password-status-message');
         return false;
     }
 }
@@ -93,7 +93,7 @@ async function verifyOtp(otp) {
 
             closeOtpModal();
             showPasswordResetModal();
-            showStatus('OTP verified successfully!', 'success', 'reset-status-message');
+            showStatus('OTP verified successfully!', 'success', 'otp-status-message');
             return true;
         } else {
             showStatus('Please enter a 6-digit OTP', 'error', 'otp-status-message');
@@ -111,12 +111,12 @@ async function resetPassword(newPassword, confirmPassword) {
     const email = sessionStorage.getItem('resetEmail');
     try {
         if (newPassword !== confirmPassword) {
-            showStatus('Passwords do not match', 'error', 'reset-status-message');
+            showStatus('Passwords do not match', 'error', 'password-reset-status-message');
             return false;
         }
 
         if (newPassword.length < 8) {
-            showStatus('Password must be at least 8 characters long', 'error', 'reset-status-message');
+            showStatus('Password must be at least 8 characters long', 'error', 'password-reset-status-message');
             return false;
         }
 
@@ -140,7 +140,7 @@ async function resetPassword(newPassword, confirmPassword) {
         closePasswordResetModal();
         sessionStorage.removeItem('resetEmail');
         
-        showStatus('Password reset successfully! Please login with your new password.', 'success', 'reset-status-message');
+        showStatus('Password reset successfully! Please login with your new password.', 'success', 'password-reset-status-message');
         
         // Clear form
         document.getElementById('passwordResetForm').reset();
@@ -151,7 +151,7 @@ async function resetPassword(newPassword, confirmPassword) {
             showPasswordResetModal();
         }
     } catch (error) {
-        showStatus('Error resetting password: ' + error.message, 'error', 'reset-status-message');
+        showStatus('Error resetting password: ' + error.message, 'error', 'password-reset-status-message');
         return false;
     }
 }
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('forgotPasswordEmail').value.trim();
             
             if (!email) {
-                showStatus('Please enter your email address', 'error', 'forgot-status-message');
+                showStatus('Please enter your email address', 'error', 'forgot-password-status-message');
                 return;
             }
             
