@@ -5,33 +5,33 @@
 
 // Show forgot password modal
 function showForgotPasswordModal() {
-    document.getElementById('forgotPasswordModal').classList.remove('hidden');
+    animateModal(document.getElementById('forgotPasswordModal'), true);
     document.getElementById('loginForm').reset();
 }
 
 // Close forgot password modal
 function closeForgotPasswordModal() {
-    document.getElementById('forgotPasswordModal').classList.add('hidden');
+    animateModal(document.getElementById('forgotPasswordModal'), false);
 }
 
 // Show OTP modal
 function showOtpModal() {
-    document.getElementById('otpModal').classList.remove('hidden');
+    animateModal(document.getElementById('otpModal'), true);
 }
 
 // Close OTP modal
 function closeOtpModal() {
-    document.getElementById('otpModal').classList.add('hidden');
+    animateModal(document.getElementById('otpModal'), false);
 }
 
 // Show password reset modal
 function showPasswordResetModal() {
-    document.getElementById('passwordResetModal').classList.remove('hidden');
+    animateModal(document.getElementById('passwordResetModal'), true);
 }
 
 // Close password reset modal
 function closePasswordResetModal() {
-    document.getElementById('passwordResetModal').classList.add('hidden');
+    animateModal(document.getElementById('passwordResetModal'), false);
 }
 
 // Request password reset

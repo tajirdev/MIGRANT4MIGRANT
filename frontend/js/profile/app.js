@@ -41,19 +41,19 @@
             document.getElementById('editLanguage').value = document.getElementById('profileLanguage').textContent;
             document.getElementById('editNativeCountry').value = document.getElementById('profileNativeCountry').textContent;
             document.getElementById('editCurrentCountry').value = document.getElementById('profileCurrentCountry').textContent;
-            document.getElementById('editProfileModal').classList.remove('hidden');
+            animateModal(document.getElementById('editProfileModal'), true);
         }
 
         function closeEditProfileModal() {
-            document.getElementById('editProfileModal').classList.add('hidden');
+            animateModal(document.getElementById('editProfileModal'), false);
         }
 
         function openBeaMentorModal() {
-            document.getElementById('beaMentorModal').classList.remove('hidden');
+            animateModal(document.getElementById('beaMentorModal'), true);
         }
 
         function closeBeaMentorModal() {
-            document.getElementById('beaMentorModal').classList.add('hidden');
+            animateModal(document.getElementById('beaMentorModal'), false);
         }
 
         function editMentorProfile() {

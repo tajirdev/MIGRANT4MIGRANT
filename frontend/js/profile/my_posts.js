@@ -124,12 +124,12 @@ function openEditPostModal(id, title, body, category) {
     document.getElementById('editPostTitle').value = title;
     document.getElementById('editPostBody').value = body;
     document.getElementById('editPostCategory').value = category;
-    document.getElementById('editPostModal').classList.remove('hidden');
+    animateModal(document.getElementById('editPostModal'), true);
 }
 
 // Close Edit Post Modal
 function closeEditPostModal() {
-    document.getElementById('editPostModal').classList.add('hidden');
+    animateModal(document.getElementById('editPostModal'), false);
 }
 
 // Save edited post
@@ -186,13 +186,13 @@ let pendingDeletePostId = null;
 // Show delete confirmation for post
 function confirmDeletePost(postId) {
     pendingDeletePostId = postId;
-    document.getElementById('deleteConfirmModal').classList.remove('hidden');
+    animateModal(document.getElementById('deleteConfirmModal'), true);
 }
 
 // Close delete confirmation
 function closeDeleteConfirm() {
     pendingDeletePostId = null;
-    document.getElementById('deleteConfirmModal').classList.add('hidden');
+    animateModal(document.getElementById('deleteConfirmModal'), false);
 }
 
 // Execute post deletion
