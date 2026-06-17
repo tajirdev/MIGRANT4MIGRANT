@@ -1,57 +1,40 @@
+// get_mentor.js - Handles mentor profile display in Profile page
+// Duplicate resource/post rendering has been removed; 
+// my_posts.js and my_resources.js now handle those tabs.
+
 const mentor_profile = document.getElementById("mentorSection");
-let resource_tab = document.querySelector("#MyresourceTab")
-const get_role = localStorage.getItem('pa_role')
-const mentor_resource_btn = document.getElementById("mentor_resource")
-const posts_tab = document.getElementById("MypostTab")
+const get_role = localStorage.getItem('pa_role');
 
+// Mentor profile display
+if (get_role == 'mentor') {
 
-
-// this function for getting post aply to all doesnot matter is mentor or migrant
-
-
-
-
-
-if(get_role == 'mentor'){
-    
-
-
-
-
-
-async function get_data(){
-    try{
-        const Response = await fetch("http://localhost:8000/register/mentor/me",{
-            method: 'GET',
-            headers:{
-                'Authorization':`Bearer ${localStorage.getItem('pa_token')}`,
-                'Content-Type':'application/json'
+    async function get_data() {
+        try {
+            const Response = await fetch("http://localhost:8000/register/mentor/me", {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('pa_token')}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await Response.json();
+            if (Response.status === 401) {
+                localStorage.removeItem('pa_token');
+                localStorage.removeItem('pa_role');
+                localStorage.removeItem('pa_role');
+                window.location.href = 'login.html';
+                return null;
             }
-        });
-        const data = await Response.json();
-       displaymentor(data)
-       if (Response.status === 401) {
-            localStorage.removeItem('pa_token');
-            localStorage.removeItem('pa_role');
-            localStorage.removeItem('pa_role');
-            window.location.href = 'login.html';
-            return null; 
+            displaymentor(data);
+        } catch (error) {
+            console.log("error message:", error);
         }
-    }catch(error){
-        console.log("error message:",error)
     }
+    get_data();
 
-}
-get_data()
-
-
-
-
-
-function displaymentor(user){
-    let active_mentor_profile =`
-      <h2 class="text-2xl font-black text-text-main mb-6">Mentor Profile</h2>
-                    
+    function displaymentor(user) {
+        let active_mentor_profile = `
+            <h2 class="text-2xl font-black text-text-main mb-6">Mentor Profile</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                     <p class="text-gray-500 text-sm uppercase tracking-widest font-bold mb-2">Expertise</p>
@@ -73,214 +56,16 @@ function displaymentor(user){
                         <span id="mentorRating" class="text-2xl font-black text-home-coral">${user.rating}</span>
                         <div class="text-yellow-400 text-lg">★★★★★</div>
                     </div>
-                        <button onclick="editMentorProfile()" class="navbar-btn navbar-btn-secondary px-6">
-                            Edit Mentor Info
-                        </button>
-                        </div> 
-
+                    <button onclick="editMentorProfile()" class="navbar-btn navbar-btn-secondary px-6">
+                        Edit Mentor Info
+                    </button>
+                </div>
             </div>
-                         
-    `;
-
-       mentor_profile.innerHTML= active_mentor_profile;
-}
-
-async function get_resources() {
-    let skip = 0;
-    const limit = 10;
-    let loading = false;
-    let allLoded = false;
-
-    if(loading || allLoded) return;
-    loading = true
-    try{
-        const response = await fetch(`http://localhost:8000/resources/all/me?skip=${skip}&limit=${limit}`,{
-        method :"GET",
-        headers:{
-            'Authorization':`Bearer ${localStorage.getItem('pa_token')}`,
-            'Content-Type':'application/json'
-        }
-    });
-
-    if (response.status === 404) {
-            resource_tab.innerHTML = `<div class="text-center py-8 text-gray-500 italic">
-                        You haven't posted any resources yet.
-                    </div>`;
-            return null; 
-        }
-
-    const data = await response.json()
-    if(data.length === 0){
-        allLoded = true;
-
-        return;
-    }
-
-    show_resource(data)
-    skip += limit;
-
-    }catch(error){
-       
-    }finally{
-        loading = false;
-    }
-    
-    
-}
-window.addEventListener('scroll',()=>{
-    if(window.innerHeight + window.screenY >= document.body.offsetHeight - 200){
-        get_resources()
-    }
-});
-get_resources()
-
-function show_resource(resources){
-    let resource_display = [];
-
-    resources.forEach(resource=>{
-        resource_display += `
-               <div class="card">
-                    <div class="card-header">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="card-badge">${resource.category}</span>
-                                <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-bold">Verified</span>
-                            </div>
-                            <h3 class="card-title">${resource.title}</h3>
-                        </div>
-                    </div>
-                    <p class="card-description">
-                       ${resource.description}
-                    </p>
-                    <div class="space-y-2 mb-4 text-sm text-gray-600">
-                        <p><strong>Location:</strong> ${resource.location}</p>
-                        <p><strong>Contact:</strong> ${resource.contact}</p>
-                        
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn-sm">View Details</a>
-                        <button onclick="saveResource(1)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
-                    </div>
-                </div>
-      
-
         `;
-    });
-    resource_tab.innerHTML += resource_display;
-    
-
-}
-} else{
-  
-    mentor_resource_btn.style.display = "none"
-    resource_tab.style.display = "none"
-
-   
-  
-        const post_button = document.getElementById('post-button')
-        post_button.classList.remove('border-transparent', 'text-gray-600');
-      
-        post_button.classList.add('border-home-coral', 'text-home-coral','active');
-
-        const postshow =document.getElementById('MypostTab');
-        
-        postshow.classList.remove('hidden')
-
-        
-
-    
-
-
-  
-
-   
-
-
-
-}
-
-    async function get_post() {
-        let skip = 0;
-        const limit = 10;
-        let loading = false;
-        let allLoded = false;
-
-        if(loading || allLoded) return;
-        loading = true
-        try{
-            const response = await fetch(`http://localhost:8000/pots/me?skip=${skip}&limit=${limit}`,{
-            method :"GET",
-            headers:{
-                'Authorization':`Bearer ${localStorage.getItem('pa_token')}`,
-                'Content-Type':'application/json'
-            }
-        });
-
-        if (response.status === 404) {
-                posts_tab.innerHTML = `<div class="text-center py-8 text-gray-500 italic">
-                            You haven't posted any post yet.
-                        </div>`;;
-                return null; 
-            }
-         
-
-        const post_data = await response.json()
-        if(post_data.length === 0){
-            allLoded = true;
-
-            return;
-        }
-
-        show_posts(post_data)
-        skip += limit;
-
-        }catch(error){
-        
-        }finally{
-            loading = false;
-        }
-        
-        
+        mentor_profile.innerHTML = active_mentor_profile;
     }
-    window.addEventListener('scroll',()=>{
-        if(window.innerHeight + window.screenY >= document.body.offsetHeight - 200){
-            get_post()
-        }
-    });
-    get_post()
 
-    function show_posts(posts){
-        let posts_display = '';
-
-        posts.forEach(post=>{
-            posts_display += `
-                <div class="card">
-                    <div class="card-header">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="card-badge">
-                                    ${post.category}
-                                </span>
-                            </div>
-                            <h3 class="card-title">${post.title}</h3>
-                        </div>
-                    </div>
-                    <p class="card-description">
-                        ${post.body}
-                    </p>
-                    <div class="card-footer">
-                        <div class="text-xs text-gray-500">
-                            <p>Posted by <strong>${post.author.name}</strong> • </p>
-                        </div>
-                        <div class="text-xs text-gray-500">
-                            <a href="#" class="text-home-coral font-bold hover:underline">View post</a>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-        posts_tab.innerHTML += posts_display;
-
-        
-    
-    }
+} else {
+    // Non-mentors: keep mentor section hidden.
+    // Both tabs remain visible; my_resources.js handles the 403 case gracefully.
+}

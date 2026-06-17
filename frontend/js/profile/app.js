@@ -18,7 +18,22 @@
                 });
                 this.classList.remove('border-transparent', 'text-gray-600');
                 this.classList.add('border-home-coral', 'text-home-coral');
+
+                // Load data when specific tabs are clicked
+                if (tabName === 'Mypost') {
+                    loadMyPosts();
+                } else if (tabName === 'Myresource') {
+                    loadMyResources();
+                }
             });
+        });
+
+        // Load initial tab data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load resources on initial page load (default active tab)
+            setTimeout(() => {
+                loadMyResources();
+            }, 500);
         });
 
         function editProfile() {

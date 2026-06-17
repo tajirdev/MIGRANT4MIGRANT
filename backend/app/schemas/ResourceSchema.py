@@ -10,6 +10,7 @@ class Resoureces(BaseModel):
     contact : str
 
 class ShowResoureces(BaseModel):
+    id: int
     title :str
     category :str
     description :str
