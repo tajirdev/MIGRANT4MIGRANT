@@ -223,11 +223,11 @@ async function createPost() {
 
 // Modal functions
 function openNewPostModal() {
-    document.getElementById('newPostModal').classList.remove('hidden');
+    animateModal(document.getElementById('newPostModal'), true);
 }
 
 function closeNewPostModal() {
-    document.getElementById('newPostModal').classList.add('hidden');
+    animateModal(document.getElementById('newPostModal'), false);
 }
 
 // UI state functions

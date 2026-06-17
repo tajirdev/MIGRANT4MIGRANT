@@ -23,8 +23,8 @@
                 <a href="posts.html">Posts</a>
             </div>
             <div class="navbar-auth">
-                <a href="profile.html" class="navbar-btn navbar-btn-secondary">Profile</a>
-                <button onclick="logout()" class="navbar-btn navbar-btn-primary">Logout</button>
+                <a href="profile.html" class="navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Profile</a>
+                <button onclick="logout()" class="navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Logout</button>
             </div>
             <div class="navbar-toggle">
                 <span></span>
@@ -38,8 +38,8 @@
             <a href="community.html">Community</a>
             <a href="resources.html">Resources</a>
             <a href="posts.html">Posts</a>
-            <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
-            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
+            <a href="login.html" class="navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Login</a>
+            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Join</a>
         </div>
     </nav>
 
@@ -48,7 +48,7 @@
         <div class="page-content">
             <div class="max-w-4xl mx-auto">
                 <!-- Profile Header -->
-                <div class="bg-white rounded-3xl shadow-md p-8 md:p-12 mb-8">
+                <div class="bg-white rounded-3xl shadow-md p-8 md:p-12 mb-8 js-animate-fade">
                     <div class="flex flex-col md:flex-row gap-8">
                         <!-- Profile Avatar -->
                         <div class="flex flex-col items-center md:items-start gap-4">
@@ -56,10 +56,10 @@
                                 <i data-lucide="user" class="w-14 h-14"></i>
                             </div>
                             <div class="flex flex-col gap-2 w-full md:w-auto">
-                                <button onclick="editProfile()" class="navbar-btn navbar-btn-primary px-6">
+                                <button onclick="editProfile()" class="navbar-btn navbar-btn-primary px-6 transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
                                     Edit Profile
                                 </button>
-                                <button id="beaMentorBtn" onclick="openBeaMentorModal()" class="navbar-btn navbar-btn-secondary px-6" style="display: none;">
+                                <button id="beaMentorBtn" onclick="openBeaMentorModal()" class="navbar-btn navbar-btn-secondary px-6 transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]" style="display: none;">
                                     Be a Mentor
                                 </button>
                             </div>
@@ -99,27 +99,21 @@
                 </div>
 
                 <!-- Mentor Section (if user is a mentor) -->
-                <div id="mentorSection" class="hidden bg-white rounded-3xl shadow-md p-8 md:p-12 mb-8">
+                <div id="mentorSection" class="hidden bg-white rounded-3xl shadow-md p-8 md:p-12 mb-8 js-animate-scroll opacity-0">
                     
                 </div>
 
                 <!-- Tabs -->
                 <div class="flex gap-4 border-b border-gray-200 mb-8">
-                    <button class="tab-btn px-6 py-3 border-b-2 border-home-coral text-home-coral font-bold" data-tab="Myresource" id="mentor_resource">
+                    <button class="tab-btn px-6 py-3 border-b-2 border-home-coral text-home-coral font-bold transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]" data-tab="Myresource" id="mentor_resource">
                         My Resources
                     </button>
 
-                    <button class="tab-btn px-6 py-3 border-b-2 border-transparent text-gray-600 font-bold hover:text-text-main transition" data-tab="Mypost" id="post-button">
+                    <button class="tab-btn px-6 py-3 border-b-2 border-transparent text-gray-600 font-bold hover:text-text-main transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]" data-tab="Mypost" id="post-button">
                          My posts
                     </button>
-                     
-                <!-- activites button
-                    <button class="tab-btn px-6 py-3 border-b-2 border-transparent text-gray-600 font-bold hover:text-text-main transition" data-tab="activity">
-                        Activity
-                    </button>
-                    -->
-                    
-                    <button class="tab-btn px-6 py-3 border-b-2 border-transparent text-gray-600 font-bold hover:text-text-main transition" data-tab="settings">
+                      
+                    <button class="tab-btn px-6 py-3 border-b-2 border-transparent text-gray-600 font-bold hover:text-text-main transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]" data-tab="settings">
                         Settings
                     </button>
                 </div>
@@ -153,53 +147,9 @@
                     </div>
                 </div>
 
-                <!-- Activity Tab 
-                <div id="activityTab" class="tab-content hidden">
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-black text-text-main mb-4">Your Recent Posts</h3>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="flex items-center gap-2 mb-2">
-                                        <span class="card-badge">Employment</span>
-                                    </div>
-                                    <h4 class="card-title">Job search tips for professionals</h4>
-                                </div>
-                            </div>
-                            <p class="card-description">
-                                I've compiled some useful tips from my job search experience that might help others...
-                            </p>
-                            <div class="card-footer">
-                                <div class="text-xs text-gray-500">Posted 3 days ago</div>
-                                <div class="text-xs text-home-coral font-bold">5 replies</div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="flex items-center gap-2 mb-2">
-                                        <span class="card-badge" style="background-color: rgb(208,233,223); color: var(--color-social-teal);">Housing</span>
-                                    </div>
-                                    <h4 class="card-title">Finding affordable housing in the city</h4>
-                                </div>
-                            </div>
-                            <p class="card-description">
-                                Looking for recommendations on areas with affordable rental options...
-                            </p>
-                            <div class="card-footer">
-                                <div class="text-xs text-gray-500">Posted 1 week ago</div>
-                                <div class="text-xs text-home-coral font-bold">12 replies</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                -->
-
                 <!-- Settings Tab -->
                 <div id="settingsTab" class="tab-content hidden">
-                    <div class="bg-white rounded-3xl shadow-md p-8">
+                    <div class="bg-white rounded-3xl shadow-md p-8 js-animate-scroll opacity-0">
                         <h3 class="text-xl font-black text-text-main mb-6">Account Settings</h3>
                         
                         <div class="space-y-6">
@@ -234,10 +184,10 @@
                             <div class="border-t border-gray-200 pt-6">
                                 <h4 class="font-bold text-text-main mb-4">Security</h4>
                                 <div class="space-y-3">
-                                    <button onclick="showChangePasswordModal()" class="w-full px-6 py-3 bg-blue-500 text-white rounded-lg font-bold hover:bg-blue-600 transition">
+                                    <button onclick="showChangePasswordModal()" class="w-full px-6 py-3 bg-blue-500 text-white rounded-lg font-bold transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
                                         Change Password
                                     </button>
-                                    <button onclick="requestAccountVerification()" class="w-full px-6 py-3 bg-green-500 text-white rounded-lg font-bold hover:bg-green-600 transition">
+                                    <button onclick="requestAccountVerification()" class="w-full px-6 py-3 bg-green-500 text-white rounded-lg font-bold transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
                                         Verify Account
                                     </button>
                                 </div>
@@ -245,7 +195,7 @@
 
                             <div class="border-t border-gray-200 pt-6">
                                 <h4 class="font-bold text-text-main mb-4 text-red-600">Danger Zone</h4>
-                                <button onclick="deleteAccount()" class="px-6 py-2 bg-red-500 text-white rounded-lg font-bold hover:bg-red-600 transition">
+                                <button onclick="deleteAccount()" class="px-6 py-2 bg-red-500 text-white rounded-lg font-bold transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
                                     Delete Account
                                 </button>
                             </div>
@@ -258,7 +208,7 @@
 
     <!-- Edit Profile Modal -->
     <div id="editProfileModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto modal-panel">
             <h2 class="text-2xl font-bold text-text-main mb-6">Edit Profile</h2>
             <form id="editProfileForm" class="space-y-4">
                 <div>
@@ -283,8 +233,8 @@
                     <input type="text" id="editLanguage" class="form-input">
                 </div>
                 <div class="flex gap-4 pt-4">
-                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary">Save Changes</button>
-                    <button type="button" onclick="closeEditProfileModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Save Changes</button>
+                    <button type="button" onclick="closeEditProfileModal()" class="flex-1 navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Cancel</button>
                 </div>
             </form>
         </div>
@@ -292,7 +242,7 @@
 
     <!-- Be a Mentor Modal -->
     <div id="beaMentorModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto modal-panel">
             <h2 class="text-2xl font-bold text-text-main mb-2">Be a Mentor</h2>
             <p class="text-gray-500 text-sm mb-6">Guide the next generation with your story and expertise</p>
             <form id="beaMentorForm" class="space-y-4">
@@ -315,8 +265,8 @@
                     <input type="text" id="mentorAvailabilityInput" name="availability" placeholder="e.g., Weekends, Evenings" class="form-input">
                 </div>
                 <div class="flex gap-4 pt-4">
-                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary">Start Guiding</button>
-                    <button type="button" onclick="closeBeaMentorModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Start Guiding</button>
+                    <button type="button" onclick="closeBeaMentorModal()" class="flex-1 navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Cancel</button>
                 </div>
             </form>
         </div>
@@ -324,7 +274,7 @@
 
     <!-- Change Password Modal -->
     <div id="changePasswordModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto modal-panel">
             <h2 class="text-2xl font-bold text-text-main mb-2">Change Password</h2>
             <p class="text-gray-500 text-sm mb-6">Update your password to keep your account secure.</p>
             <form id="changePasswordForm" class="space-y-4">
@@ -348,8 +298,8 @@
                     </ul>
                 </div>
                 <div class="flex gap-4 pt-4">
-                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary">Update Password</button>
-                    <button type="button" onclick="closeChangePasswordModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Update Password</button>
+                    <button type="button" onclick="closeChangePasswordModal()" class="flex-1 navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Cancel</button>
                 </div>
             </form>
         </div>
@@ -357,7 +307,7 @@
 
     <!-- Verify Account Modal -->
     <div id="verifyAccountModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto modal-panel">
             <h2 class="text-2xl font-bold text-text-main mb-2">Verify Your Account</h2>
             <p class="text-gray-500 text-sm mb-6">Enter the verification code sent to your email to verify your account.</p>
             <form id="verifyAccountForm" class="space-y-4">
@@ -370,8 +320,8 @@
                     A verification code has been sent to your email address (simulated). Please check your email.
                 </div>
                 <div class="flex gap-4 pt-4">
-                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary">Verify Account</button>
-                    <button type="button" onclick="closeVerifyAccountModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Verify Account</button>
+                    <button type="button" onclick="closeVerifyAccountModal()" class="flex-1 navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Cancel</button>
                 </div>
             </form>
         </div>
@@ -379,7 +329,7 @@
 
     <!-- Edit Post Modal -->
     <div id="editPostModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto modal-panel">
             <h2 class="text-2xl font-bold text-text-main mb-6">Edit Post</h2>
             <div class="space-y-4">
                 <input type="hidden" id="editPostId">
@@ -404,8 +354,8 @@
                     <textarea id="editPostBody" placeholder="Post content..." class="form-input h-32 resize-none" required></textarea>
                 </div>
                 <div class="flex gap-4 pt-4">
-                    <button onclick="saveEditPost()" class="flex-1 navbar-btn navbar-btn-primary">Save Changes</button>
-                    <button type="button" onclick="closeEditPostModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                    <button onclick="saveEditPost()" class="flex-1 navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Save Changes</button>
+                    <button type="button" onclick="closeEditPostModal()" class="flex-1 navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Cancel</button>
                 </div>
             </div>
         </div>
@@ -413,7 +363,7 @@
 
     <!-- Edit Resource Modal -->
     <div id="editResourceModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto modal-panel">
             <h2 class="text-2xl font-bold text-text-main mb-6">Edit Resource</h2>
             <div class="space-y-4">
                 <input type="hidden" id="editResourceId">
@@ -446,8 +396,8 @@
                     <input type="text" id="editResourceContact" placeholder="Phone, email, or website" class="form-input" required>
                 </div>
                 <div class="flex gap-4 pt-4">
-                    <button onclick="saveEditResource()" class="flex-1 navbar-btn navbar-btn-primary">Save Changes</button>
-                    <button type="button" onclick="closeEditResourceModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                    <button onclick="saveEditResource()" class="flex-1 navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Save Changes</button>
+                    <button type="button" onclick="closeEditResourceModal()" class="flex-1 navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Cancel</button>
                 </div>
             </div>
         </div>
@@ -455,24 +405,24 @@
 
     <!-- Delete Confirmation Modal (for Posts) -->
     <div id="deleteConfirmModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full modal-panel">
             <h2 class="text-2xl font-bold text-text-main mb-2">Delete Post</h2>
             <p class="text-gray-500 text-sm mb-6">Are you sure you want to delete this post? This action cannot be undone.</p>
             <div class="flex gap-4 pt-4">
-                <button onclick="executeDeletePost()" class="flex-1 px-6 py-3 bg-red-500 text-white rounded-xl font-bold hover:bg-red-600 transition-all">Yes, Delete</button>
-                <button onclick="closeDeleteConfirm()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                <button onclick="executeDeletePost()" class="flex-1 px-6 py-3 bg-red-500 text-white rounded-xl font-bold transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Yes, Delete</button>
+                <button onclick="closeDeleteConfirm()" class="flex-1 navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Cancel</button>
             </div>
         </div>
     </div>
 
     <!-- Delete Confirmation Modal (for Resources) -->
     <div id="deleteConfirmResourceModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full modal-panel">
             <h2 class="text-2xl font-bold text-text-main mb-2">Delete Resource</h2>
             <p class="text-gray-500 text-sm mb-6">Are you sure you want to delete this resource? This action cannot be undone.</p>
             <div class="flex gap-4 pt-4">
-                <button onclick="executeDeleteResource()" class="flex-1 px-6 py-3 bg-red-500 text-white rounded-xl font-bold hover:bg-red-600 transition-all">Yes, Delete</button>
-                <button onclick="closeDeleteResourceConfirm()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                <button onclick="executeDeleteResource()" class="flex-1 px-6 py-3 bg-red-500 text-white rounded-xl font-bold transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Yes, Delete</button>
+                <button onclick="closeDeleteResourceConfirm()" class="flex-1 navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Cancel</button>
             </div>
         </div>
     </div>
@@ -522,6 +472,7 @@
     <script src="js/profile/security.js"></script>
     <script src="js/profile/my_posts.js"></script>
     <script src="js/profile/my_resources.js"></script>
+    <script src="js/animations.js"></script>
     <script>
         lucide.createIcons();
     </script>

@@ -11,13 +11,11 @@ if(role === "mentor"){
 
  
  function openAddResourceModal() {
-
-
-            document.getElementById('addResourceModal').classList.remove('hidden');
+            animateModal(document.getElementById('addResourceModal'), true);
         }
 
         function closeAddResourceModal() {
-            document.getElementById('addResourceModal').classList.add('hidden');
+            animateModal(document.getElementById('addResourceModal'), false);
         }
 
         function saveResource(resourceId) {
