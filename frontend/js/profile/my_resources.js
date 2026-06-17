@@ -120,12 +120,12 @@ function openEditResourceModal(id, title, description, category, location, conta
     document.getElementById('editResourceCategory').value = category;
     document.getElementById('editResourceLocation').value = location;
     document.getElementById('editResourceContact').value = contact;
-    document.getElementById('editResourceModal').classList.remove('hidden');
+    animateModal(document.getElementById('editResourceModal'), true);
 }
 
 // Close Edit Resource Modal
 function closeEditResourceModal() {
-    document.getElementById('editResourceModal').classList.add('hidden');
+    animateModal(document.getElementById('editResourceModal'), false);
 }
 
 // Save edited resource
@@ -184,13 +184,13 @@ let pendingDeleteResourceId = null;
 // Show delete confirmation for resource
 function confirmDeleteResource(resourceId) {
     pendingDeleteResourceId = resourceId;
-    document.getElementById('deleteConfirmResourceModal').classList.remove('hidden');
+    animateModal(document.getElementById('deleteConfirmResourceModal'), true);
 }
 
 // Close resource delete confirmation
 function closeDeleteResourceConfirm() {
     pendingDeleteResourceId = null;
-    document.getElementById('deleteConfirmResourceModal').classList.add('hidden');
+    animateModal(document.getElementById('deleteConfirmResourceModal'), false);
 }
 
 // Execute resource deletion

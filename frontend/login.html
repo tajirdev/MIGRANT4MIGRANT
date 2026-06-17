@@ -20,7 +20,7 @@
 
         <main class="relative z-10 w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-12">
             
-            <div class="w-full md:w-1/2 text-center md:text-left space-y-4 pt-0 md:mt-[-28rem]">
+            <div class="w-full md:w-1/2 text-center md:text-left space-y-4 pt-0 md:mt-[-28rem] js-animate-fade">
                 <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true" focusable="false">
                     <filter id="rough-edge">
                         <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="w-full max-w-md">
+            <div class="w-full max-w-md js-animate-scroll opacity-0">
                 <div class="glass-card">
                     <div class="mb-8">
                         <h2 class="text-2xl font-bold text-text-main">Welcome Back</h2>
@@ -66,24 +66,11 @@
                             <button type="button" onclick="showForgotPasswordModal()" class="text-gray-400 hover:text-home-coral transition-colors">Lost password?</button>
                         </div>
 
-                        <button type="submit" class="w-full bg-home-coral text-white font-black py-4 rounded-xl shadow-lg hover:bg-home-coral/90 hover:scale-105 active:scale-[0.98] transition-all uppercase tracking-widest mt-2">
+                        <button type="submit" class="w-full bg-home-coral text-white font-black py-4 rounded-xl shadow-lg transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest mt-2">
                             Enter Community
                         </button>
                     </form>
                      <div id="status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
-
-
-
-                    <div class="flex items-center gap-4 py-2">
-                        <div class="h-px bg-gray-200 flex-grow"></div>
-                        <span class="text-gray-400 text-[10px] uppercase font-bold tracking-widest">or</span>
-                        <div class="h-px bg-gray-200 flex-grow"></div>
-                    </div>
-
-                    <button type="button" class="w-full flex items-center justify-center gap-3 py-3 rounded-xl border border-gray-100 bg-white text-gray-600 text-sm font-bold hover:bg-gray-50 transition-all">
-                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google">
-                        Access with Google
-                    </button>
 
                     <div class="mt-8 pt-6 border-t border-gray-100 text-center">
                         <p class="text-sm text-gray-500">
@@ -97,20 +84,20 @@
     
     <!-- Forgot Password Modal -->
     <div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full modal-panel">
             <h2 class="text-2xl font-bold text-text-main mb-2">Forgot Password</h2>
             <p class="text-gray-500 text-sm mb-6">Enter your email address and we'll send you a verification code.</p>
-            <div id="forgot-status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
+            <div id="forgot-password-status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
             <form id="forgotPasswordForm" class="space-y-4">
                 <div>
                     <label class="form-label">Email Address</label>
                     <input type="email" id="forgotPasswordEmail" placeholder="your@email.com" class="form-input" required>
                 </div>
                 <div class="flex gap-3 pt-4">
-                    <button type="submit" class="flex-1 bg-home-coral text-white font-bold py-3 rounded-xl hover:bg-home-coral/90 transition-all">
+                    <button type="submit" class="flex-1 bg-home-coral text-white font-bold py-3 rounded-xl transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
                         Send Code
                     </button>
-                    <button type="button" onclick="closeForgotPasswordModal()" class="flex-1 bg-gray-100 text-text-main font-bold py-3 rounded-xl hover:bg-gray-200 transition-all">
+                    <button type="button" onclick="closeForgotPasswordModal()" class="flex-1 bg-gray-100 text-text-main font-bold py-3 rounded-xl transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
                         Cancel
                     </button>
                 </div>
@@ -120,7 +107,7 @@
 
     <!-- OTP Verification Modal -->
     <div id="otpModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full modal-panel">
             <h2 class="text-2xl font-bold text-text-main mb-2">Verify OTP</h2>
             <p class="text-gray-500 text-sm mb-6">Enter the 6-digit verification code sent to your email.</p>
             <div id="otp-status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
@@ -131,10 +118,10 @@
                     <p class="text-gray-400 text-xs mt-2">Enter 6 digits</p>
                 </div>
                 <div class="flex gap-3 pt-4">
-                    <button type="submit" class="flex-1 bg-home-coral text-white font-bold py-3 rounded-xl hover:bg-home-coral/90 transition-all">
+                    <button type="submit" class="flex-1 bg-home-coral text-white font-bold py-3 rounded-xl transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
                         Verify
                     </button>
-                    <button type="button" onclick="closeOtpModal()" class="flex-1 bg-gray-100 text-text-main font-bold py-3 rounded-xl hover:bg-gray-200 transition-all">
+                    <button type="button" onclick="closeOtpModal()" class="flex-1 bg-gray-100 text-text-main font-bold py-3 rounded-xl transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
                         Cancel
                     </button>
                 </div>
@@ -144,10 +131,10 @@
 
     <!-- Password Reset Modal -->
     <div id="passwordResetModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-md w-full">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full modal-panel">
             <h2 class="text-2xl font-bold text-text-main mb-2">Reset Password</h2>
             <p class="text-gray-500 text-sm mb-6">Enter your new password. It should be at least 8 characters long.</p>
-            <div id="reset-status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
+            <div id="password-reset-status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
             <form id="passwordResetForm" class="space-y-4">
                 <div>
                     <label class="form-label">New Password</label>
@@ -165,10 +152,10 @@
                     </ul>
                 </div>
                 <div class="flex gap-3 pt-4">
-                    <button type="submit" class="flex-1 bg-home-coral text-white font-bold py-3 rounded-xl hover:bg-home-coral/90 transition-all">
+                    <button type="submit" class="flex-1 bg-home-coral text-white font-bold py-3 rounded-xl transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
                         Reset Password
                     </button>
-                    <button type="button" onclick="closePasswordResetModal()" class="flex-1 bg-gray-100 text-text-main font-bold py-3 rounded-xl hover:bg-gray-200 transition-all">
+                    <button type="button" onclick="closePasswordResetModal()" class="flex-1 bg-gray-100 text-text-main font-bold py-3 rounded-xl transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
                         Cancel
                     </button>
                 </div>
@@ -179,6 +166,7 @@
     <script src="js/login.js"></script>
     <script src="js/validation_input.js"></script>
     <script src="js/otp_password_reset.js"></script>
+    <script src="js/animations.js"></script>
     <script>
         lucide.createIcons();
     </script>
