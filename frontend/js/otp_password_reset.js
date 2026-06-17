@@ -57,7 +57,7 @@ async function requestPasswordReset(email) {
         showOtpModal();
         closeForgotPasswordModal();
         
-        showStatus('OTP sent to your email! ', 'success');
+        showStatus('OTP sent to your email! ', 'success', 'otp-status-message');
         
         // Store email in sessionStorage for next step
         sessionStorage.setItem('resetEmail', email);
@@ -157,8 +157,8 @@ async function resetPassword(newPassword, confirmPassword) {
 }
 
 // Status message display helper (if not already defined)
-function showStatus(message, type = 'error') {
-    const statusMessage = document.querySelector("#status-message");
+function showStatus(message, type = 'error', elementId = 'status-message') {
+    const statusMessage = document.querySelector(`#${elementId}`);
     if (statusMessage) {
         statusMessage.textContent = message;
         statusMessage.style.display = 'block';
