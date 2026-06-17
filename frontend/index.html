@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - MIGRANT4MIGRANT</title>
     <link href="style/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-bone-white font-sans antialiased overflow-x-hidden">
 
@@ -102,7 +103,7 @@
                             <p class="text-gray-600 text-sm mt-2">Learn from experienced mentors in legal, employment, and social services.</p>
                         </div>
                     </div>
-                    <div class="text-4xl text-home-coral mb-4">👨‍🏫</div>
+                    <i data-lucide="graduation-cap" class="w-10 h-10 text-home-coral mb-4 flex-shrink-0"></i>
                 </div>
 
                 <div class="card">
@@ -112,7 +113,7 @@
                             <p class="text-gray-600 text-sm mt-2">Access curated resources and share helpful information with the community.</p>
                         </div>
                     </div>
-                    <div class="text-4xl text-social-teal mb-4">📚</div>
+                    <i data-lucide="book-open" class="w-10 h-10 text-social-teal mb-4 flex-shrink-0"></i>
                 </div>
 
                 <div class="card">
@@ -122,7 +123,7 @@
                             <p class="text-gray-600 text-sm mt-2">Connect with others on similar journeys and build meaningful relationships.</p>
                         </div>
                     </div>
-                    <div class="text-4xl text-sunny-yellow mb-4">🤝</div>
+                    <i data-lucide="handshake" class="w-10 h-10 text-sunny-yellow mb-4 flex-shrink-0"></i>
                 </div>
             </div>
         </div>
@@ -160,7 +161,7 @@
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-sm md:text-base">
                 <div class="flex items-center gap-2">
-                    <span class="font-black text-lg">🚨</span>
+                    <i data-lucide="alert-triangle" class="w-6 h-6 flex-shrink-0 font-black text-lg"></i>
                     <span class="font-bold">EMERGENCY CONTACTS:</span>
                 </div>
                 <div class="flex flex-wrap gap-4 justify-center">
@@ -209,8 +210,6 @@
                 <h5 class="font-bold mb-4">Support</h5>
                 <ul class="space-y-2 text-gray-300 text-sm">
                     <li><a href="about-us.html" class="hover:text-home-coral transition-colors">About Us</a></li>
-                    <li><a href="#" class="hover:text-home-coral transition-colors">Contact</a></li>
-                    <li><a href="#" class="hover:text-home-coral transition-colors">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>
@@ -221,5 +220,8 @@
 
     <script src="js/app.js"></script>
     <script src="js/organization/loadOrganizations.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

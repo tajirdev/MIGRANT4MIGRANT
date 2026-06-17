@@ -54,7 +54,13 @@ if (get_role == 'mentor') {
                     <p class="text-gray-500 text-sm uppercase tracking-widest font-bold mb-2">Rating</p>
                     <div class="flex items-center gap-2">
                         <span id="mentorRating" class="text-2xl font-black text-home-coral">${user.rating}</span>
-                        <div class="text-yellow-400 text-lg">★★★★★</div>
+                        <div class="flex items-center gap-0.5">
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        </div>
                     </div>
                     <button onclick="editMentorProfile()" class="navbar-btn navbar-btn-secondary px-6">
                         Edit Mentor Info
@@ -63,6 +69,7 @@ if (get_role == 'mentor') {
             </div>
         `;
         mentor_profile.innerHTML = active_mentor_profile;
+        lucide.createIcons();
     }
 
 } else {
