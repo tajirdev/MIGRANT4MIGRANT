@@ -29,10 +29,11 @@ function handleAuthMenuVisibility() {
     
     if (authToken) {
         // Show authenticated user menu items (desktop menu only)
-        const communityLink = document.getElementById('community');
+        // [TEMP REMOVED] Community link unhiding
+        // const communityLink = document.getElementById('community');
         const resourceLink = document.getElementById('resource');
-        
-        if (communityLink) communityLink.hidden = false;
+
+        // if (communityLink) communityLink.hidden = false;
         if (resourceLink) resourceLink.hidden = false;
     }
 }
