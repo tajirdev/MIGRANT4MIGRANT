@@ -82,23 +82,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     const requirementsHTML = `
                         <div class="password-requirements">
                             <div class="requirement-item ${requirements.hasMinLength ? 'met' : 'unmet'}">
-                                <span class="requirement-icon">${requirements.hasMinLength ? '✓' : '✗'}</span>
+                                <span class="requirement-icon">${requirements.hasMinLength ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : '<i data-lucide="x" class="w-3.5 h-3.5"></i>'}</span>
                                 <span>8+ characters</span>
                             </div>
                             <div class="requirement-item ${requirements.hasUpperCase ? 'met' : 'unmet'}">
-                                <span class="requirement-icon">${requirements.hasUpperCase ? '✓' : '✗'}</span>
+                                <span class="requirement-icon">${requirements.hasUpperCase ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : '<i data-lucide="x" class="w-3.5 h-3.5"></i>'}</span>
                                 <span>Uppercase (A-Z)</span>
                             </div>
                             <div class="requirement-item ${requirements.hasLowerCase ? 'met' : 'unmet'}">
-                                <span class="requirement-icon">${requirements.hasLowerCase ? '✓' : '✗'}</span>
+                                <span class="requirement-icon">${requirements.hasLowerCase ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : '<i data-lucide="x" class="w-3.5 h-3.5"></i>'}</span>
                                 <span>Lowercase (a-z)</span>
                             </div>
                             <div class="requirement-item ${requirements.hasNumber ? 'met' : 'unmet'}">
-                                <span class="requirement-icon">${requirements.hasNumber ? '✓' : '✗'}</span>
+                                <span class="requirement-icon">${requirements.hasNumber ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : '<i data-lucide="x" class="w-3.5 h-3.5"></i>'}</span>
                                 <span>Number (0-9)</span>
                             </div>
                             <div class="requirement-item ${requirements.hasSpecialChar ? 'met' : 'unmet'}">
-                                <span class="requirement-icon">${requirements.hasSpecialChar ? '✓' : '✗'}</span>
+                                <span class="requirement-icon">${requirements.hasSpecialChar ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : '<i data-lucide="x" class="w-3.5 h-3.5"></i>'}</span>
                                 <span>Special char (!@#$%^&*)</span>
                             </div>
                         </div>
@@ -143,23 +143,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const requirementsHTML = `
                 <div class="password-requirements">
                     <div class="requirement-item ${requirements.hasMinLength ? 'met' : 'unmet'}">
-                        <span class="requirement-icon">${requirements.hasMinLength ? '✓' : '✗'}</span>
+                        <span class="requirement-icon">${requirements.hasMinLength ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : '<i data-lucide="x" class="w-3.5 h-3.5"></i>'}</span>
                         <span>8+ characters</span>
                     </div>
                     <div class="requirement-item ${requirements.hasUpperCase ? 'met' : 'unmet'}">
-                        <span class="requirement-icon">${requirements.hasUpperCase ? '✓' : '✗'}</span>
+                        <span class="requirement-icon">${requirements.hasUpperCase ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : '<i data-lucide="x" class="w-3.5 h-3.5"></i>'}</span>
                         <span>Uppercase (A-Z)</span>
                     </div>
                     <div class="requirement-item ${requirements.hasLowerCase ? 'met' : 'unmet'}">
-                        <span class="requirement-icon">${requirements.hasLowerCase ? '✓' : '✗'}</span>
+                        <span class="requirement-icon">${requirements.hasLowerCase ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : '<i data-lucide="x" class="w-3.5 h-3.5"></i>'}</span>
                         <span>Lowercase (a-z)</span>
                     </div>
                     <div class="requirement-item ${requirements.hasNumber ? 'met' : 'unmet'}">
-                        <span class="requirement-icon">${requirements.hasNumber ? '✓' : '✗'}</span>
+                        <span class="requirement-icon">${requirements.hasNumber ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : '<i data-lucide="x" class="w-3.5 h-3.5"></i>'}</span>
                         <span>Number (0-9)</span>
                     </div>
                     <div class="requirement-item ${requirements.hasSpecialChar ? 'met' : 'unmet'}">
-                        <span class="requirement-icon">${requirements.hasSpecialChar ? '✓' : '✗'}</span>
+                        <span class="requirement-icon">${requirements.hasSpecialChar ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : '<i data-lucide="x" class="w-3.5 h-3.5"></i>'}</span>
                         <span>Special char (!@#$%^&*)</span>
                     </div>
                 </div>
@@ -226,6 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })();
 
     });
+    // Render any dynamically added Lucide icons
+    lucide.createIcons();
 });
 
 let messageTimeout;
