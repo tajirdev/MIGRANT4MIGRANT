@@ -377,31 +377,31 @@ Thanks to everyone who has contributed to this project:
 
 <p align="center">
   <a href="https://github.com/omarisengulo17">
-    <img src="https://github.com/omarisengulo17.png" width="80" height="80" alt="omarisengulo17"/>
+    <img src="https://images.weserv.nl/?url=github.com/omarisengulo17.png&mask=circle" width="80" height="80" alt="omarisengulo17"/>
   </a>
   &nbsp;
   <a href="https://github.com/maduhu1234">
-    <img src="https://github.com/maduhu1234.png" width="80" height="80" alt="maduhu1234"/>
+    <img src="https://images.weserv.nl/?url=github.com/maduhu1234.png&mask=circle" width="80" height="80" alt="maduhu1234"/>
   </a>
   &nbsp;
   <a href="https://github.com/Jobbarnar">
-    <img src="https://github.com/Jobbarnar.png" width="80" height="80" alt="Jobbarnar"/>
+    <img src="https://images.weserv.nl/?url=github.com/Jobbarnar.png&mask=circle" width="80" height="80" alt="Jobbarnar"/>
   </a>
   &nbsp;
   <a href="https://github.com/HimChana">
-    <img src="https://github.com/HimChana.png" width="80" height="80" alt="HimChana"/>
+    <img src="https://images.weserv.nl/?url=github.com/HimChana.png&mask=circle" width="80" height="80" alt="HimChana"/>
   </a>
   &nbsp;
   <a href="https://github.com/anollian-mushi">
-    <img src="https://github.com/anollian-mushi.png" width="80" height="80" alt="anollian-mushi"/>
+    <img src="https://images.weserv.nl/?url=github.com/anollian-mushi.png&mask=circle" width="80" height="80" alt="anollian-mushi"/>
   </a>
   &nbsp;
   <a href="https://github.com/agostinosasi3-rgb">
-    <img src="https://github.com/agostinosasi3-rgb.png" width="80" height="80" alt="agostinosasi3-rgb"/>
+    <img src="https://images.weserv.nl/?url=github.com/agostinosasi3-rgb.png&mask=circle" width="80" height="80" alt="agostinosasi3-rgb"/>
   </a>
   &nbsp;
   <a href="https://github.com/tajirdev">
-    <img src="https://github.com/tajirdev.png" width="80" height="80" alt="tajirdev"/>
+    <img src="https://images.weserv.nl/?url=github.com/tajirdev.png&mask=circle" width="80" height="80" alt="tajirdev"/>
   </a>
 </p>
 
