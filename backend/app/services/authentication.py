@@ -1,0 +1,35 @@
+from fastapi import Depends,HTTPException,status
+from sqlalchemy.orm import Session
+from app.core.database import get_db
+from app.models import migrants
+from app.core.security import Hash
+from app.core import jwt_token
+from fastapi.security import  OAuth2PasswordRequestForm
+from typing import Annotated
+from datetime import timedelta, datetime, timezone
+import os
+from app.core.jwt_token import SECRET_KEY, ALGORITHM
+from app.models import migrants
+
+
+def login(request: Annotated[OAuth2PasswordRequestForm, Depends()],db:Session= Depends(get_db)):
+
+    user = db.query(migrants.Migrant).filter(migrants.Migrant.email == request.username).first()
+
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Incorect password or username')
+    
+    if not Hash.verify_password(request.password,user.password_hash):
+        raise  HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Incorect password or username')
+    
+     #  create token
+    access_token = jwt_token.create_access_token(data = {
+        'sub': user.email,
+        'id': user.id,
+        'role': user.role
+    })
+    return {
+        "access_token": access_token,
+        "token_type": "bearer",
+        "role": user.role
+    }

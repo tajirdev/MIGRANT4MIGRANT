@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migrant Registration - MIGRANT4MIGRANT</title>
+    <link href="style/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-split-layout min-h-screen flex flex-col font-sans antialiased overflow-x-hidden">
+
+    <div class="flex-1 flex items-center justify-center p-4 md:p-8 relative">
+        <div class="fixed inset-0 z-0 top-0">
+            <img src="assets/background_form.jpg" 
+                 alt="Journey Silhouettes" 
+                 class="w-full h-full object-cover opacity-90 mix-blend-multiply">
+            <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-sunny-yellow/10 to-transparent"></div>
+        </div>
+
+        <main class="relative z-10 w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-12">
+            
+            <div class="w-full md:w-1/2 text-center md:text-left space-y-4 pt-0 md:mt-[-26rem] js-animate-fade">
+                <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true" focusable="false">
+                    <filter id="rough-edge">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+                    </filter>
+            </svg>
+
+            <h1 class="text-text-main text-5xl md:text-7xl font-black uppercase leading-none tracking-tighter">
+                MIGRANT<span class="text-home-coral">4</span><br>MIGRANT
+            </h1>
+
+            <div class="brush-wrapper mx-auto md:mx-0">
+                <div class="brush-stroke"></div>
+                <p class="text-text-main text-lg font-bold leading-relaxed relative">
+                    Find your community. Find your resources. Find your home.
+                </p>
+            </div>
+        </div>
+
+        <div class="w-full max-w-lg js-animate-scroll opacity-0">
+            <div class="glass-card">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-text-main">Join the Family</h2>
+                    <p class="text-gray-500 text-sm">Register to connect with resources nearby.</p>
+                </div>
+
+                <form id="migrantRegForm" class="space-y-4">
+                    <div>
+                        <label class="form-label">Full Name</label>
+                        <input type="text" name="name" placeholder="John Doe" class="form-input" required>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="form-label">Username</label>
+                            <input type="text" name="user_name" placeholder="johndoe88" class="form-input" required>
+                            <div class="error-message" data-field="user_name"></div>
+                        </div>
+                        <div>
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" placeholder="john@example.com" class="form-input" required>
+                            <div class="error-message" data-field="email"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Password</label>
+                        <input type="password" name="password_hash" placeholder="••••••••••••" class="form-input" required>
+                        <div class="error-message" data-field="password_hash"></div>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" name="confirm_password" placeholder="••••••••••••" class="form-input" required>
+                        <div class="error-message" data-field="confirm_password"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="custom-select-container">
+                            <label class="form-label">Native Country</label>
+                            <div class="custom-select">
+                                <input type="text" name="native_country" placeholder="Select Country" class="form-input custom-select-input" readonly required>
+                                <div class="custom-select-arrow">▼</div>
+                            </div>
+                            <div class="custom-select-options">
+                                <!-- Options will be populated by JavaScript -->
+                            </div>
+                            <div class="error-message" data-field="native_country"></div>
+                        </div>
+                        <div class="custom-select-container">
+                            <label class="form-label">Current Country</label>
+                            <div class="custom-select">
+                                <input type="text" name="current_country" placeholder="Select Country" class="form-input custom-select-input" readonly required>
+                                <div class="custom-select-arrow">▼</div>
+                            </div>
+                            <div class="custom-select-options">
+                                <!-- Options will be populated by JavaScript -->
+                            </div>
+                            <div class="error-message" data-field="current_country"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Preferred Language</label>
+                        <input type="text" name="language" placeholder="e.g., Swahili, English" class="form-input" required>
+                    </div>
+
+                    <button type="submit" class="w-full bg-home-coral text-white font-black py-4 rounded-xl shadow-lg transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest mt-2">
+                        Create Account
+                    </button>
+                </form>
+                <div id="status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
+
+                <div class="mt-6 pt-4 border-t border-gray-100 text-center">
+                    <p class="text-sm text-gray-500">
+                        Already have an account? <a href="login.html" class="link-teal">Sign In</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        </main>
+    </div>
+
+    <script src="js/nav.js"></script>
+    <script src="js/validation_input.js"></script>
+    <script src="js/migrant_reg.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

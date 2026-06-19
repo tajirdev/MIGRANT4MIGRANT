@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - MIGRANT4MIGRANT</title>
+    <link href="style/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-bone-white font-sans antialiased overflow-x-hidden" onload="requireAuth()">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                MIGRANT<span>4</span>MIGRANT
+            </div>
+            <div class="navbar-menu">
+                <a href="index.html">Home</a>
+                <a href="about-us.html">About Us</a>
+                <!-- <a href="community.html">Community</a> [TEMP REMOVED] -->
+                <a href="resources.html" class="active">Resources</a>
+                <a href="posts.html">Posts</a>
+            </div>
+            <div class="navbar-auth">
+                <a href="login.html" class="navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Login</a>
+                <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Join</a>
+            </div>
+            <div class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar-mobile-menu hidden">
+            <a href="index.html">Home</a>
+            <a href="about-us.html">About Us</a>
+            <!-- <a href="community.html">Community</a> [TEMP REMOVED] -->
+            <a href="resources.html">Resources</a>
+            <a href="posts.html">Posts</a>
+            <a href="login.html" class="navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Login</a>
+            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Join</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-container">
+        <div class="page-header js-animate-fade">
+            <div id="status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
+            <h1>Resources</h1>
+            <p>Discover helpful resources curated by mentors to support your migration journey.</p>
+        </div>
+         <div id="status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
+
+        <div class="page-content">
+            <!-- Filter and Search Section -->
+            <div class="mb-8 flex flex-col md:flex-row gap-4">
+                <input type="text" placeholder="Search resources..." class="flex-1 form-input" id="searchInput">
+                <select id="categoryFilter" class="form-input w-full md:w-48">
+                    <option value="">All Categories</option>
+                    <option value="legal">Legal Aid</option>
+                    <option value="employment">Employment</option>
+                    <option value="housing">Housing</option>
+                    <option value="education">Education</option>
+                    <option value="health">Health & Wellness</option>
+                    <option value="financial">Financial Services</option>
+                </select>
+                <button onclick="requireAuth(); openAddResourceModal()" class="navbar-btn navbar-btn-primary px-6 transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]" id="addbtn">
+                    + Add Resource
+                </button>
+            </div>
+
+            <!-- Resources Grid -->
+            <div id="resourcesContainer" class="cards-grid">
+                
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-12">
+                <p class="text-gray-500 text-lg">No resources found matching your criteria.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Resource Modal -->
+    <div id="addResourceModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full modal-panel">
+            <h2 class="text-2xl font-bold text-text-main mb-6">Add a New Resource</h2>
+            <form id="addResourceForm" class="space-y-4">
+                <div>
+                    <label class="form-label">Resource Title</label>
+                    <input type="text" name="title" placeholder="e.g., Immigration Law Center" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Category</label>
+                    <select name="category" class="form-input" required>
+                        <option value="">Select a category</option>
+                        <option value="legal">Legal Aid</option>
+                        <option value="employment">Employment</option>
+                        <option value="housing">Housing</option>
+                        <option value="education">Education</option>
+                        <option value="health">Health & Wellness</option>
+                        <option value="financial">Financial Services</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">Description</label>
+                    <textarea name="description" placeholder="Describe this resource and how it helps..." class="form-input h-24 resize-none" required></textarea>
+                </div>
+                <div>
+                    <label class="form-label">Location</label>
+                    <input type="text" name="location" placeholder="City, Province/State" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Contact Information</label>
+                    <input type="text" name="contact" placeholder="Phone, email, or website" class="form-input" required>
+                </div>
+               
+
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Add Resource</button>
+                    <button type="button" onclick="closeAddResourceModal()" class="flex-1 navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-text-main text-white py-12 px-4 md:px-8 mt-20">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="font-black text-lg mb-4">MIGRANT<span class="text-home-coral">4</span>MIGRANT</h4>
+                <p class="text-gray-300 text-sm">Empowering migrants through community and mentorship.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Quick Links</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="index.html" class="hover:text-home-coral transition-colors">Home</a></li>
+                    <li><a href="about-us.html" class="hover:text-home-coral transition-colors">About Us</a></li>
+                    <!-- <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li> [TEMP REMOVED] -->
+                    <li><a href="posts.html" class="hover:text-home-coral transition-colors">Posts</a></li>
+                    <li><a href="resources.html" class="hover:text-home-coral transition-colors" id="resource" hidden>Resources</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Get Involved</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="migrant_reg.html" class="hover:text-home-coral transition-colors">Register as Migrant</a></li>
+                    
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Support</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="about-us.html" class="hover:text-home-coral transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-home-coral transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2026 MIGRANT4MIGRANT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/validation_input.js"></script>
+    <script src="js/resourcesjs/post.js"></script>
+    <script src="js/resourcesjs/get.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

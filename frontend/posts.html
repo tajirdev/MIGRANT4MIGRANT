@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts - MIGRANT4MIGRANT</title>
+    <link href="style/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-bone-white font-sans antialiased overflow-x-hidden" onload="requireAuth()">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                MIGRANT<span>4</span>MIGRANT
+            </div>
+            <div class="navbar-menu">
+                <a href="index.html">Home</a>
+                <a href="about-us.html">About Us</a>
+                <!-- <a href="community.html">Community</a> [TEMP REMOVED] -->
+                <a href="resources.html">Resources</a>
+                <a href="posts.html" class="active">Posts</a>
+            </div>
+            <div class="navbar-auth">
+                <a href="login.html" class="navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Login</a>
+                <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Join</a>
+            </div>
+            <div class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar-mobile-menu hidden">
+            <a href="index.html">Home</a>
+            <a href="about-us.html">About Us</a>
+            <!-- <a href="community.html">Community</a> [TEMP REMOVED] -->
+            <a href="resources.html">Resources</a>
+            <a href="posts.html">Posts</a>
+             <a href="login.html" class="navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Login</a>
+            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Join</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-container">
+        <div class="page-header js-animate-fade">
+            <h1>Community Posts</h1>
+            <p>Explore insights, stories, and valuable posts shared by mentors and community members.</p>
+        </div>
+
+        <div class="page-content">
+            <!-- Filter Section -->
+            <div class="mb-8 flex flex-col md:flex-row gap-4">
+                <input type="text" placeholder="Search posts..." class="flex-1 form-input" id="searchInput">
+                <select id="categoryFilter" class="form-input w-full md:w-48">
+                    <option value="">All Categories</option>
+                    <option value="legal">Legal</option>
+                    <option value="employment">Employment</option>
+                    <option value="housing">Housing</option>
+                    <option value="education">Education</option>
+                    <option value="health">Health</option>
+                    <option value="general">General</option>
+                </select>
+                <button onclick="requireAuth(); openNewPostModal()" class="navbar-btn navbar-btn-primary px-6 transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]" id="createPostBtn">
+                    + New Post
+                </button>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="text-center py-12">
+                <p class="text-gray-500 text-lg">Loading posts...</p>
+            </div>
+
+            <!-- Posts Container -->
+            <div id="postsContainer" class="space-y-4 hidden">
+                <!-- Posts will be loaded here from backend -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-12">
+                <p class="text-gray-500 text-lg">No posts found. Be the first to share!</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="hidden text-center py-12">
+                <p class="text-red-500 text-lg">Failed to load posts. Please try again later.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Post Modal -->
+    <div id="newPostModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full modal-panel">
+            <h2 class="text-2xl font-bold text-text-main mb-6">Create a New Post</h2>
+            <form id="newPostForm" class="space-y-4">
+                <div>
+                    <label class="form-label">Title</label>
+                    <input type="text" name="title" placeholder="What's on your mind?" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Category</label>
+                    <select name="category" class="form-input" required>
+                        <option value="">Select a category</option>
+                        <option value="legal">Legal</option>
+                        <option value="employment">Employment</option>
+                        <option value="housing">Housing</option>
+                        <option value="education">Education</option>
+                        <option value="health">Health</option>
+                        <option value="general">General</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">Description</label>
+                    <textarea name="body" placeholder="Share your insight, story, or advice..." class="form-input h-32 resize-none" required></textarea>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Post</button>
+                    <button type="button" onclick="closeNewPostModal()" class="flex-1 navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-text-main text-white py-12 px-4 md:px-8 mt-20">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="font-black text-lg mb-4">MIGRANT<span class="text-home-coral">4</span>MIGRANT</h4>
+                <p class="text-gray-300 text-sm">Empowering migrants through community and mentorship.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Quick Links</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="index.html" class="hover:text-home-coral transition-colors">Home</a></li>
+                    <li><a href="about-us.html" class="hover:text-home-coral transition-colors">About Us</a></li>
+                    <!-- <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li> [TEMP REMOVED] -->
+                    <li><a href="posts.html" class="hover:text-home-coral transition-colors">Posts</a></li>
+                    <li><a href="resources.html" class="hover:text-home-coral transition-colors">Resources</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Get Involved</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="migrant_reg.html" class="hover:text-home-coral transition-colors">Register as Migrant</a></li>
+                    
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-4">Support</h5>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                    <li><a href="about-us.html" class="hover:text-home-coral transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-home-coral transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2026 MIGRANT4MIGRANT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/validation_input.js"></script>
+    <script src="js/posts/posts.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

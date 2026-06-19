@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MIGRANT4MIGRANT</title>
+    <link href="style/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-split-layout min-h-screen flex flex-col font-sans antialiased overflow-x-hidden">
+
+    <div class="flex-1 flex items-center justify-center p-4 md:p-8 relative">
+        <div class="fixed inset-0 z-0 top-0">
+            <img src="assets/background_form.jpg" 
+                 alt="Migrant Journey Silhouettes" 
+                 class="w-full h-full object-cover opacity-90 mix-blend-multiply">
+            
+            <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-sunny-yellow/10 to-transparent"></div>
+        </div>
+
+        <main class="relative z-10 w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-12">
+            
+            <div class="w-full md:w-1/2 text-center md:text-left space-y-4 pt-0 md:mt-[-28rem] js-animate-fade">
+                <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true" focusable="false">
+                    <filter id="rough-edge">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+                    </filter>
+                </svg>
+
+                <h1 class="text-text-main text-5xl md:text-7xl font-black uppercase leading-none tracking-tighter">
+                    MIGRANT<span class="text-home-coral">4</span><br>MIGRANT
+                </h1>
+
+                <div class="brush-wrapper mx-auto md:mx-0">
+                    <div class="brush-stroke"></div>
+                    
+                    <p class="text-text-main text-lg font-bold leading-relaxed relative">
+                        A community where your journey becomes a shared map to the future.
+                    </p>
+                </div>
+            </div>
+
+            <div class="w-full max-w-md js-animate-scroll opacity-0">
+                <div class="glass-card">
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-text-main">Welcome Back</h2>
+                        <p class="text-gray-500 text-sm">Join the progression toward your destination.</p>
+                    </div>
+
+                    <form action="#" class="space-y-5" id="loginForm">
+                        <div>
+                            <label class="form-label">Email</label>
+                            <input type="text" placeholder="Email" class="form-input" name="username">
+                        </div>
+
+                        <div>
+                            <label class="form-label">Password</label>
+                            <input type="password" placeholder="••••••••••••" class="form-input" name="password">
+                        </div>
+
+                        <div class="flex justify-between items-center text-xs">
+                            <label class="flex items-center gap-2 text-gray-500 cursor-pointer">
+                                <input type="checkbox" class="accent-home-coral rounded"> Remember me
+                            </label>
+                            <button type="button" onclick="showForgotPasswordModal()" class="text-gray-400 hover:text-home-coral transition-colors">Lost password?</button>
+                        </div>
+
+                        <button type="submit" class="w-full bg-home-coral text-white font-black py-4 rounded-xl shadow-lg transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest mt-2">
+                            Enter Community
+                        </button>
+                    </form>
+                     <div id="status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
+
+                    <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+                        <p class="text-sm text-gray-500">
+                            New to the pilgrimage? <a href="migrant_reg.html" class="link-teal">Join us</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full modal-panel">
+            <h2 class="text-2xl font-bold text-text-main mb-2">Forgot Password</h2>
+            <p class="text-gray-500 text-sm mb-6">Enter your email address and we'll send you a verification code.</p>
+            <div id="forgot-password-status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
+            <form id="forgotPasswordForm" class="space-y-4">
+                <div>
+                    <label class="form-label">Email Address</label>
+                    <input type="email" id="forgotPasswordEmail" placeholder="your@email.com" class="form-input" required>
+                </div>
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" class="flex-1 bg-home-coral text-white font-bold py-3 rounded-xl transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
+                        Send Code
+                    </button>
+                    <button type="button" onclick="closeForgotPasswordModal()" class="flex-1 bg-gray-100 text-text-main font-bold py-3 rounded-xl transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- OTP Verification Modal -->
+    <div id="otpModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full modal-panel">
+            <h2 class="text-2xl font-bold text-text-main mb-2">Verify OTP</h2>
+            <p class="text-gray-500 text-sm mb-6">Enter the 6-digit verification code sent to your email.</p>
+            <div id="otp-status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
+            <form id="otpForm" class="space-y-4">
+                <div>
+                    <label class="form-label">Verification Code</label>
+                    <input type="text" id="otpInput" placeholder="000000" maxlength="6" class="form-input text-center text-2xl tracking-widest font-bold" required>
+                    <p class="text-gray-400 text-xs mt-2">Enter 6 digits</p>
+                </div>
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" class="flex-1 bg-home-coral text-white font-bold py-3 rounded-xl transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
+                        Verify
+                    </button>
+                    <button type="button" onclick="closeOtpModal()" class="flex-1 bg-gray-100 text-text-main font-bold py-3 rounded-xl transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Password Reset Modal -->
+    <div id="passwordResetModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full modal-panel">
+            <h2 class="text-2xl font-bold text-text-main mb-2">Reset Password</h2>
+            <p class="text-gray-500 text-sm mb-6">Enter your new password. It should be at least 8 characters long.</p>
+            <div id="password-reset-status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
+            <form id="passwordResetForm" class="space-y-4">
+                <div>
+                    <label class="form-label">New Password</label>
+                    <input type="password" id="newPassword" placeholder="••••••••" class="form-input" required>
+                </div>
+                <div>
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="••••••••" class="form-input" required>
+                </div>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-700">
+                    <strong>Password requirements:</strong>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>At least 8 characters long</li>
+                        <li>Should be unique and strong</li>
+                    </ul>
+                </div>
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" class="flex-1 bg-home-coral text-white font-bold py-3 rounded-xl transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
+                        Reset Password
+                    </button>
+                    <button type="button" onclick="closePasswordResetModal()" class="flex-1 bg-gray-100 text-text-main font-bold py-3 rounded-xl transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+    <script src="js/validation_input.js"></script>
+    <script src="js/otp_password_reset.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
