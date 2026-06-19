@@ -27,4 +27,7 @@ def register_mentor_route(request:SchemaMentor.Mentor,db:Session=Depends(get_db)
 def get_mentor_info(db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(mentor_and_admin)):
     return ServiceMentor.get_mentor_info(db,current_user_id=current_user.id)
 
+@router.put('/edite/me')
+def put_me(request:schemaUser.Edite,db:Session=Depends(get_db),current_user:schemaUser.migrant=Depends(mentor_and_admin)):
+    return ServiceMentor.edit_me(request,db,current_user_id=current_user.id)
 
