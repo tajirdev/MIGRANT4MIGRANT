@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Migrant Registration - MIGRANT4MIGRANT</title>
     <link href="style/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-split-layout min-h-screen flex flex-col font-sans antialiased overflow-x-hidden">
 
@@ -18,7 +19,7 @@
 
         <main class="relative z-10 w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-12">
             
-            <div class="w-full md:w-1/2 text-center md:text-left space-y-4 pt-0 md:mt-[-26rem]">
+            <div class="w-full md:w-1/2 text-center md:text-left space-y-4 pt-0 md:mt-[-26rem] js-animate-fade">
                 <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true" focusable="false">
                     <filter id="rough-edge">
                         <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
@@ -38,7 +39,7 @@
             </div>
         </div>
 
-        <div class="w-full max-w-lg">
+        <div class="w-full max-w-lg js-animate-scroll opacity-0">
             <div class="glass-card">
                 <div class="mb-6">
                     <h2 class="text-2xl font-bold text-text-main">Join the Family</h2>
@@ -106,7 +107,7 @@
                         <input type="text" name="language" placeholder="e.g., Swahili, English" class="form-input" required>
                     </div>
 
-                    <button type="submit" class="w-full bg-home-coral text-white font-black py-4 rounded-xl shadow-lg hover:bg-home-coral/90 hover:scale-105 active:scale-[0.98] transition-all uppercase tracking-widest mt-2">
+                    <button type="submit" class="w-full bg-home-coral text-white font-black py-4 rounded-xl shadow-lg transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest mt-2">
                         Create Account
                     </button>
                 </form>
@@ -125,5 +126,9 @@
     <script src="js/nav.js"></script>
     <script src="js/validation_input.js"></script>
     <script src="js/migrant_reg.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

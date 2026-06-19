@@ -14,6 +14,7 @@ class Post(BaseModel):
     category : str
 
 class showPost(BaseModel):
+    id: int
     title : str
     body :str
     category : str

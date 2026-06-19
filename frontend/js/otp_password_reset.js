@@ -5,33 +5,33 @@
 
 // Show forgot password modal
 function showForgotPasswordModal() {
-    document.getElementById('forgotPasswordModal').classList.remove('hidden');
+    animateModal(document.getElementById('forgotPasswordModal'), true);
     document.getElementById('loginForm').reset();
 }
 
 // Close forgot password modal
 function closeForgotPasswordModal() {
-    document.getElementById('forgotPasswordModal').classList.add('hidden');
+    animateModal(document.getElementById('forgotPasswordModal'), false);
 }
 
 // Show OTP modal
 function showOtpModal() {
-    document.getElementById('otpModal').classList.remove('hidden');
+    animateModal(document.getElementById('otpModal'), true);
 }
 
 // Close OTP modal
 function closeOtpModal() {
-    document.getElementById('otpModal').classList.add('hidden');
+    animateModal(document.getElementById('otpModal'), false);
 }
 
 // Show password reset modal
 function showPasswordResetModal() {
-    document.getElementById('passwordResetModal').classList.remove('hidden');
+    animateModal(document.getElementById('passwordResetModal'), true);
 }
 
 // Close password reset modal
 function closePasswordResetModal() {
-    document.getElementById('passwordResetModal').classList.add('hidden');
+    animateModal(document.getElementById('passwordResetModal'), false);
 }
 
 // Request password reset
@@ -57,14 +57,14 @@ async function requestPasswordReset(email) {
         showOtpModal();
         closeForgotPasswordModal();
         
-        showStatus('OTP sent to your email! ', 'success');
+        showStatus('OTP sent to your email! ', 'success', 'otp-status-message');
         
         // Store email in sessionStorage for next step
         sessionStorage.setItem('resetEmail', email);
         
         return true;
     } catch (error) {
-        showStatus('Error sending OTP: ' + error.message, 'error');
+        showStatus('Error sending OTP: ' + error.message, 'error', 'forgot-password-status-message');
         return false;
     }
 }
@@ -93,15 +93,15 @@ async function verifyOtp(otp) {
 
             closeOtpModal();
             showPasswordResetModal();
-            showStatus('OTP verified successfully!', 'success');
+            showStatus('OTP verified successfully!', 'success', 'otp-status-message');
             return true;
         } else {
-            showStatus('Please enter a 6-digit OTP', 'error');
+            showStatus('Please enter a 6-digit OTP', 'error', 'otp-status-message');
             return false;
         }
     } catch (error) {
         console.error(error)
-        showStatus('Error verifying OTP: ' + error.message, 'error');
+        showStatus('Error verifying OTP: ' + error.message, 'error', 'otp-status-message');
         return false;
     }
 }
@@ -111,12 +111,12 @@ async function resetPassword(newPassword, confirmPassword) {
     const email = sessionStorage.getItem('resetEmail');
     try {
         if (newPassword !== confirmPassword) {
-            showStatus('Passwords do not match', 'error');
+            showStatus('Passwords do not match', 'error', 'password-reset-status-message');
             return false;
         }
 
         if (newPassword.length < 8) {
-            showStatus('Password must be at least 8 characters long', 'error');
+            showStatus('Password must be at least 8 characters long', 'error', 'password-reset-status-message');
             return false;
         }
 
@@ -140,7 +140,7 @@ async function resetPassword(newPassword, confirmPassword) {
         closePasswordResetModal();
         sessionStorage.removeItem('resetEmail');
         
-        showStatus('Password reset successfully! Please login with your new password.', 'success');
+        showStatus('Password reset successfully! Please login with your new password.', 'success', 'password-reset-status-message');
         
         // Clear form
         document.getElementById('passwordResetForm').reset();
@@ -151,14 +151,14 @@ async function resetPassword(newPassword, confirmPassword) {
             showPasswordResetModal();
         }
     } catch (error) {
-        showStatus('Error resetting password: ' + error.message, 'error');
+        showStatus('Error resetting password: ' + error.message, 'error', 'password-reset-status-message');
         return false;
     }
 }
 
 // Status message display helper (if not already defined)
-function showStatus(message, type = 'error') {
-    const statusMessage = document.querySelector("#status-message");
+function showStatus(message, type = 'error', elementId = 'status-message') {
+    const statusMessage = document.querySelector(`#${elementId}`);
     if (statusMessage) {
         statusMessage.textContent = message;
         statusMessage.style.display = 'block';
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('forgotPasswordEmail').value.trim();
             
             if (!email) {
-                showStatus('Please enter your email address', 'error');
+                showStatus('Please enter your email address', 'error', 'forgot-password-status-message');
                 return;
             }
             

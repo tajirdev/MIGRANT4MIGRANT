@@ -55,13 +55,10 @@ function displayUser(userally){
                         <p><strong>Contact:</strong> ${user.contact}</p>
                         
                     </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn-sm">View Details</a>
-                        <button onclick="saveResource(1)" class="text-home-coral font-bold text-sm hover:scale-110 transition">♡ Save</button>
-                    </div>
                 </div>
         `;
     });
         header.innerHTML+= cards;
+        lucide.createIcons();
 }
         

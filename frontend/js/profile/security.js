@@ -5,22 +5,22 @@
 
 // Show change password modal
 function showChangePasswordModal() {
-    document.getElementById('changePasswordModal').classList.remove('hidden');
+    animateModal(document.getElementById('changePasswordModal'), true);
 }
 
 // Close change password modal
 function closeChangePasswordModal() {
-    document.getElementById('changePasswordModal').classList.add('hidden');
+    animateModal(document.getElementById('changePasswordModal'), false);
 }
 
 // Show verify account modal (OTP verification)
 function showVerifyAccountModal() {
-    document.getElementById('verifyAccountModal').classList.remove('hidden');
+    animateModal(document.getElementById('verifyAccountModal'), true);
 }
 
 // Close verify account modal
 function closeVerifyAccountModal() {
-    document.getElementById('verifyAccountModal').classList.add('hidden');
+    animateModal(document.getElementById('verifyAccountModal'), false);
 }
 
 // Change password function

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - MIGRANT4MIGRANT</title>
     <link href="style/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-bone-white font-sans antialiased overflow-x-hidden">
 
@@ -17,13 +18,13 @@
             <div class="navbar-menu">
                 <a href="index.html">Home</a>
                 <a href="about-us.html">About Us</a>
-                <a href="community.html" hidden class="community">Community</a>
+                <!-- <a href="community.html" hidden class="community">Community</a> [TEMP REMOVED] -->
                 <a href="resources.html" hidden class="resource">Resources</a>
                 <a href="posts.html" hidden class="posts">Posts</a>
             </div>
             <div class="navbar-auth">
-                <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
-                <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
+                <a href="login.html" class="navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Login</a>
+                <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Join</a>
             </div>
             <div class="navbar-toggle">
                 <span></span>
@@ -34,16 +35,16 @@
         <div class="navbar-mobile-menu hidden">
             <a href="index.html">Home</a>
             <a href="about-us.html">About Us</a>
-            <a href="community.html" hidden class="community">Community</a>
+            <!-- <a href="community.html" hidden class="community">Community</a> [TEMP REMOVED] -->
             <a href="resources.html" hidden class="resource">Resources</a>
             <a href="posts.html" hidden class="posts">Posts</a>
-             <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
-            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
+             <a href="login.html" class="navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Login</a>
+            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Join</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="min-h-[60vh] flex items-center justify-center p-4 md:p-8 relative overflow-hidden bg-white">
+    <section class="min-h-[60vh] flex items-center justify-center p-4 md:p-8 relative overflow-hidden bg-white js-animate-fade">
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-r from-home-coral/10 to-social-teal/10"></div>
         </div>
@@ -58,7 +59,7 @@
             </p>
 
             <div class="pt-4">
-                <a href="migrant_reg.html" class="px-8 py-4 bg-home-coral text-white font-black rounded-xl shadow-lg hover:bg-home-coral/90 hover:scale-105 transition-all uppercase tracking-widest inline-block">
+                <a href="migrant_reg.html" class="px-8 py-4 bg-home-coral text-white font-black rounded-xl shadow-lg transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest inline-block">
                     Join Our Community
                 </a>
             </div>
@@ -66,7 +67,7 @@
     </section>
 
     <!-- Our Story Section -->
-    <section class="py-20 px-4 md:px-8 bg-bone-white">
+    <section class="py-20 px-4 md:px-8 bg-bone-white js-animate-scroll opacity-0">
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
@@ -82,8 +83,8 @@
                     </p>
                 </div>
                 <div class="flex items-center justify-center">
-                    <div class="w-full h-64 md:h-80 bg-gradient-to-br from-home-coral to-social-teal rounded-3xl shadow-2xl flex items-center justify-center text-white text-6xl">
-                        🌍
+                    <div class="w-full h-64 md:h-80 bg-gradient-to-br from-home-coral to-social-teal rounded-3xl shadow-2xl flex items-center justify-center text-white">
+                        <i data-lucide="handshake" class="w-46 h-46"></i>
                     </div>
                 </div>
             </div>
@@ -91,7 +92,7 @@
     </section>
 
     <!-- Core Values Section -->
-    <section class="py-20 px-4 md:px-8 bg-white">
+    <section class="py-20 px-4 md:px-8 bg-white js-animate-scroll opacity-0">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-black text-text-main mb-4">Our Core Values</h2>
@@ -102,8 +103,8 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Community -->
-                <div class="card bg-white hover:shadow-xl transition-all">
-                    <div class="text-4xl mb-4">👥</div>
+                <div class="card bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
+                    <i data-lucide="users" class="w-10 h-10 mb-4 text-home-coral"></i>
                     <h3 class="card-title mb-3">Community</h3>
                     <p class="text-gray-600 text-sm">
                         We believe in the power of community. Together, we're stronger and can achieve more than we ever could alone.
@@ -111,8 +112,8 @@
                 </div>
 
                 <!-- Empowerment -->
-                <div class="card bg-white hover:shadow-xl transition-all">
-                    <div class="text-4xl mb-4">💪</div>
+                <div class="card bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
+                    <i data-lucide="biceps-flexed" class="w-10 h-10 mb-4 text-home-coral"></i>
                     <h3 class="card-title mb-3">Empowerment</h3>
                     <p class="text-gray-600 text-sm">
                         We empower migrants to take control of their journey by providing knowledge, resources, and support.
@@ -120,8 +121,8 @@
                 </div>
 
                 <!-- Inclusivity -->
-                <div class="card bg-white hover:shadow-xl transition-all">
-                    <div class="text-4xl mb-4">🌐</div>
+                <div class="card bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
+                    <i data-lucide="globe-2" class="w-10 h-10 mb-4 text-home-coral"></i>
                     <h3 class="card-title mb-3">Inclusivity</h3>
                     <p class="text-gray-600 text-sm">
                         Everyone is welcome here, regardless of origin, background, or where they are in their migration journey.
@@ -129,8 +130,8 @@
                 </div>
 
                 <!-- Integrity -->
-                <div class="card bg-white hover:shadow-xl transition-all">
-                    <div class="text-4xl mb-4">✨</div>
+                <div class="card bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
+                    <i data-lucide="sparkles" class="w-10 h-10 mb-4 text-home-coral"></i>
                     <h3 class="card-title mb-3">Integrity</h3>
                     <p class="text-gray-600 text-sm">
                         We operate with honesty and transparency, building trust through authentic connections and reliable support.
@@ -141,7 +142,7 @@
     </section>
 
     <!-- What We Offer Section -->
-    <section class="py-20 px-4 md:px-8 bg-bone-white">
+    <section class="py-20 px-4 md:px-8 bg-bone-white js-animate-scroll opacity-0">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-black text-text-main mb-4">What We Offer</h2>
@@ -151,42 +152,42 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card">
-                    <div class="text-5xl mb-4">👥</div>
+                <div class="glass-card transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
+                    <i data-lucide="users" class="w-12 h-12 mb-4 text-home-coral"></i>
                     <h3 class="text-2xl font-black text-text-main mb-4">Mentorship</h3>
                     <p class="text-gray-600 mb-4">
                         Connect with experienced mentors who have walked similar paths and can guide you through every step of your migration journey.
                     </p>
                     <ul class="text-sm text-gray-600 space-y-2">
-                        <li>✓ One-on-one guidance</li>
-                        <li>✓ Expert advice</li>
-                        <li>✓ Career support</li>
+                        <li><i data-lucide="check" class="w-4 h-4 inline-block mr-1 text-green-500"></i>One-on-one guidance</li>
+                        <li><i data-lucide="check" class="w-4 h-4 inline-block mr-1 text-green-500"></i>Expert advice</li>
+                        <li><i data-lucide="check" class="w-4 h-4 inline-block mr-1 text-green-500"></i>Career support</li>
                     </ul>
                 </div>
 
-                <div class="glass-card">
-                    <div class="text-5xl mb-4">📚</div>
+                <div class="glass-card transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
+                    <i data-lucide="book-open" class="w-12 h-12 mb-4 text-social-teal"></i>
                     <h3 class="text-2xl font-black text-text-main mb-4">Resources</h3>
                     <p class="text-gray-600 mb-4">
                         Access a curated collection of resources covering legal aid, employment, housing, education, health, and financial services.
                     </p>
                     <ul class="text-sm text-gray-600 space-y-2">
-                        <li>✓ Vetted information</li>
-                        <li>✓ Local services</li>
-                        <li>✓ Legal guidance</li>
+                        <li><i data-lucide="check" class="w-4 h-4 inline-block mr-1 text-green-500"></i>Vetted information</li>
+                        <li><i data-lucide="check" class="w-4 h-4 inline-block mr-1 text-green-500"></i>Local services</li>
+                        <li><i data-lucide="check" class="w-4 h-4 inline-block mr-1 text-green-500"></i>Legal guidance</li>
                     </ul>
                 </div>
 
-                <div class="glass-card">
-                    <div class="text-5xl mb-4">💬</div>
+                <div class="glass-card transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
+                    <i data-lucide="message-square" class="w-12 h-12 mb-4 text-sunny-yellow"></i>
                     <h3 class="text-2xl font-black text-text-main mb-4">Community Forum</h3>
                     <p class="text-gray-600 mb-4">
                         Join discussions, share experiences, ask questions, and support fellow migrants in our vibrant community forum.
                     </p>
                     <ul class="text-sm text-gray-600 space-y-2">
-                        <li>✓ Active discussions</li>
-                        <li>✓ Peer support</li>
-                        <li>✓ Shared experiences</li>
+                        <li><i data-lucide="check" class="w-4 h-4 inline-block mr-1 text-green-500"></i>Active discussions</li>
+                        <li><i data-lucide="check" class="w-4 h-4 inline-block mr-1 text-green-500"></i>Peer support</li>
+                        <li><i data-lucide="check" class="w-4 h-4 inline-block mr-1 text-green-500"></i>Shared experiences</li>
                     </ul>
                 </div>
             </div>
@@ -194,7 +195,7 @@
     </section>
 
     <!-- Statistics Section -->
-    <section class="py-20 px-4 md:px-8 bg-white">
+    <section class="py-20 px-4 md:px-8 bg-white js-animate-scroll opacity-0">
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="text-center">
@@ -218,14 +219,14 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 px-4 md:px-8 bg-gradient-to-r from-home-coral/90 to-social-teal/90">
+    <section class="py-20 px-4 md:px-8 bg-gradient-to-r from-home-coral/90 to-social-teal/90 js-animate-scroll opacity-0">
         <div class="max-w-4xl mx-auto text-center text-white">
             <h2 class="text-4xl font-black mb-6">Ready to Get Started?</h2>
             <p class="text-lg mb-8 text-white/90">
                 Join thousands of migrants who have found support, guidance, and community on MIGRANT4MIGRANT.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="migrant_reg.html" class="px-8 py-4 bg-white text-home-coral font-black rounded-xl shadow-lg hover:bg-bone-white hover:scale-105 transition-all uppercase tracking-widest">
+                <a href="migrant_reg.html" class="px-8 py-4 bg-white text-home-coral font-black rounded-xl shadow-lg transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest">
                     Register Now
                 </a>
             </div>
@@ -244,7 +245,7 @@
                 <ul class="space-y-2 text-gray-300 text-sm">
                     <li><a href="index.html" class="hover:text-home-coral transition-colors">Home</a></li>
                     <li><a href="about-us.html" class="hover:text-home-coral transition-colors">About Us</a></li>
-                    <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li>
+                    <!-- <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li> [TEMP REMOVED] -->
                     <li><a href="resources.html" class="hover:text-home-coral transition-colors">Resources</a></li>
                     <li><a href="posts.html" class="hover:text-home-coral transition-colors">Posts</a></li>
                 </ul>
@@ -259,7 +260,6 @@
                 <h5 class="font-bold mb-4">Support</h5>
                 <ul class="space-y-2 text-gray-300 text-sm">
                     <li><a href="about-us.html" class="hover:text-home-coral transition-colors">About Us</a></li>
-                    <li><a href="#" class="hover:text-home-coral transition-colors">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -270,5 +270,9 @@
 
     <script src="js/app.js"></script>
     <script src="js/about-us.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

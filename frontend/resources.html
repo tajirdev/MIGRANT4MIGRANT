@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resources - MIGRANT4MIGRANT</title>
     <link href="style/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-bone-white font-sans antialiased overflow-x-hidden" onload="requireAuth()">
 
@@ -17,13 +18,13 @@
             <div class="navbar-menu">
                 <a href="index.html">Home</a>
                 <a href="about-us.html">About Us</a>
-                <a href="community.html">Community</a>
+                <!-- <a href="community.html">Community</a> [TEMP REMOVED] -->
                 <a href="resources.html" class="active">Resources</a>
                 <a href="posts.html">Posts</a>
             </div>
             <div class="navbar-auth">
-                <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
-                <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
+                <a href="login.html" class="navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Login</a>
+                <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Join</a>
             </div>
             <div class="navbar-toggle">
                 <span></span>
@@ -34,17 +35,17 @@
         <div class="navbar-mobile-menu hidden">
             <a href="index.html">Home</a>
             <a href="about-us.html">About Us</a>
-            <a href="community.html">Community</a>
+            <!-- <a href="community.html">Community</a> [TEMP REMOVED] -->
             <a href="resources.html">Resources</a>
             <a href="posts.html">Posts</a>
-            <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
-            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
+            <a href="login.html" class="navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Login</a>
+            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Join</a>
         </div>
     </nav>
 
     <!-- Page Header -->
     <div class="page-container">
-        <div class="page-header">
+        <div class="page-header js-animate-fade">
             <div id="status-message" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
             <h1>Resources</h1>
             <p>Discover helpful resources curated by mentors to support your migration journey.</p>
@@ -64,7 +65,7 @@
                     <option value="health">Health & Wellness</option>
                     <option value="financial">Financial Services</option>
                 </select>
-                <button onclick="requireAuth(); openAddResourceModal()" class="navbar-btn navbar-btn-primary px-6" id="addbtn">
+                <button onclick="requireAuth(); openAddResourceModal()" class="navbar-btn navbar-btn-primary px-6 transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]" id="addbtn">
                     + Add Resource
                 </button>
             </div>
@@ -83,7 +84,7 @@
 
     <!-- Add Resource Modal -->
     <div id="addResourceModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full modal-panel">
             <h2 class="text-2xl font-bold text-text-main mb-6">Add a New Resource</h2>
             <form id="addResourceForm" class="space-y-4">
                 <div>
@@ -117,8 +118,8 @@
                
 
                 <div class="flex gap-4 pt-4">
-                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary">Add Resource</button>
-                    <button type="button" onclick="closeAddResourceModal()" class="flex-1 navbar-btn navbar-btn-secondary">Cancel</button>
+                    <button type="submit" class="flex-1 navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Add Resource</button>
+                    <button type="button" onclick="closeAddResourceModal()" class="flex-1 navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Cancel</button>
                 </div>
             </form>
         </div>
@@ -136,7 +137,7 @@
                 <ul class="space-y-2 text-gray-300 text-sm">
                     <li><a href="index.html" class="hover:text-home-coral transition-colors">Home</a></li>
                     <li><a href="about-us.html" class="hover:text-home-coral transition-colors">About Us</a></li>
-                    <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li>
+                    <!-- <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li> [TEMP REMOVED] -->
                     <li><a href="posts.html" class="hover:text-home-coral transition-colors">Posts</a></li>
                     <li><a href="resources.html" class="hover:text-home-coral transition-colors" id="resource" hidden>Resources</a></li>
                 </ul>
@@ -165,6 +166,9 @@
     <script src="js/validation_input.js"></script>
     <script src="js/resourcesjs/post.js"></script>
     <script src="js/resourcesjs/get.js"></script>
-    
+    <script src="js/animations.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

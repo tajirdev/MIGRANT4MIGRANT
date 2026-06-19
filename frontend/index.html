@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - MIGRANT4MIGRANT</title>
     <link href="style/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-bone-white font-sans antialiased overflow-x-hidden">
 
@@ -17,13 +18,13 @@
             <div class="navbar-menu">
                 <a href="index.html" class="active">Home</a>
                 <a href="about-us.html">About Us</a>
-                <a href="community.html" hidden class="community">Community</a>
+                <!-- <a href="community.html" hidden class="community">Community</a> [TEMP REMOVED] -->
                 <a href="resources.html" hidden class="resource" >Resources</a>
                 <a href="posts.html" hidden class="posts">Posts</a>
             </div>
             <div class="navbar-auth">
-                <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
-                <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
+                <a href="login.html" class="navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Login</a>
+                <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Join</a>
             </div>
             <div class="navbar-toggle">
                 <span></span>
@@ -34,17 +35,17 @@
         <div class="navbar-mobile-menu hidden">
             <a href="index.html">Home</a>
             <a href="about-us.html">About Us</a>
-            <a href="community.html" hidden class="community">Community</a>
+            <!-- <a href="community.html" hidden class="community">Community</a> [TEMP REMOVED] -->
             <a href="resources.html"hidden class="resource">Resources</a>
             <a href="posts.html" hidden class="posts">Posts</a>
             
-            <a href="login.html" class="navbar-btn navbar-btn-secondary">Login</a>
-            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary">Join</a>
+            <a href="login.html" class="navbar-btn navbar-btn-secondary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Login</a>
+            <a href="migrant_reg.html" class="navbar-btn navbar-btn-primary transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]">Join</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="min-h-[80vh] flex items-center justify-center p-4 md:p-8 relative overflow-hidden">
+    <section class="min-h-[80vh] flex items-center justify-center p-4 md:p-8 relative overflow-hidden js-animate-fade">
         <div class="absolute inset-0 z-0">
             <!-- The Background Image -->
             <img src="assets/background_form.jpg" 
@@ -79,7 +80,7 @@
             </div>
 
             <div class="flex flex-col md:flex-row gap-4 justify-center pt-8">
-                <a href="migrant_reg.html" class="px-8 py-4 bg-home-coral text-white font-black rounded-xl shadow-lg hover:bg-home-coral/90 hover:scale-105 transition-all uppercase tracking-widest">
+                <a href="migrant_reg.html" class="px-8 py-4 bg-home-coral text-white font-black rounded-xl shadow-lg transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest">
                     Join us Today
                 </a>
             </div>
@@ -87,7 +88,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-20 px-4 md:px-8 bg-white">
+    <section class="py-20 px-4 md:px-8 bg-white js-animate-scroll opacity-0">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-black text-text-main mb-4 text-center">Why Join Us?</h2>
             <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
@@ -95,41 +96,41 @@
             </p>
 
             <div class="cards-grid">
-                <div class="card">
+                <div class="card transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
                     <div class="card-header">
                         <div>
                             <h3 class="card-title">Expert Mentors</h3>
                             <p class="text-gray-600 text-sm mt-2">Learn from experienced mentors in legal, employment, and social services.</p>
                         </div>
                     </div>
-                    <div class="text-4xl text-home-coral mb-4">👨‍🏫</div>
+                    <i data-lucide="graduation-cap" class="w-10 h-10 text-home-coral mb-4 flex-shrink-0"></i>
                 </div>
 
-                <div class="card">
+                <div class="card transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
                     <div class="card-header">
                         <div>
                             <h3 class="card-title">Share Resources</h3>
                             <p class="text-gray-600 text-sm mt-2">Access curated resources and share helpful information with the community.</p>
                         </div>
                     </div>
-                    <div class="text-4xl text-social-teal mb-4">📚</div>
+                    <i data-lucide="book-open" class="w-10 h-10 text-social-teal mb-4 flex-shrink-0"></i>
                 </div>
 
-                <div class="card">
+                <div class="card transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
                     <div class="card-header">
                         <div>
                             <h3 class="card-title">Community Support</h3>
                             <p class="text-gray-600 text-sm mt-2">Connect with others on similar journeys and build meaningful relationships.</p>
                         </div>
                     </div>
-                    <div class="text-4xl text-sunny-yellow mb-4">🤝</div>
+                    <i data-lucide="handshake" class="w-10 h-10 text-sunny-yellow mb-4 flex-shrink-0"></i>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Featured Organizations Section -->
-    <section class="py-20 px-4 md:px-8 bg-gradient-to-br from-social-teal/10 to-sunny-yellow/10">
+    <section class="py-20 px-4 md:px-8 bg-gradient-to-br from-social-teal/10 to-sunny-yellow/10 js-animate-scroll opacity-0">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-black text-text-main mb-4 text-center">Trusted Partners & Organizations</h2>
             <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
@@ -145,22 +146,22 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 px-4 md:px-8 bg-gradient-to-r from-home-coral/10 to-social-teal/10">
+    <section class="py-20 px-4 md:px-8 bg-gradient-to-r from-home-coral/10 to-social-teal/10 js-animate-scroll opacity-0">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-4xl font-black text-text-main mb-4">Ready to Start Your Journey?</h2>
             <p class="text-gray-600 mb-8">Join thousands of migrants and mentors creating positive change together.</p>
-            <a href="migrant_reg.html" class="inline-block px-8 py-4 bg-home-coral text-white font-black rounded-xl shadow-lg hover:bg-home-coral/90 hover:scale-105 transition-all uppercase tracking-widest">
+            <a href="migrant_reg.html" class="inline-block px-8 py-4 bg-home-coral text-white font-black rounded-xl shadow-lg transition-transform duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest">
                 Get Started Now
             </a>
         </div>
     </section>
 
-     <!-- Emergency Contacts Strip -->
+    <!-- [TEMP REMOVED] Emergency Contacts Strip
     <section class="py-4 px-4 md:px-8 bg-home-coral/95 text-white">
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-sm md:text-base">
                 <div class="flex items-center gap-2">
-                    <span class="font-black text-lg">🚨</span>
+                    <i data-lucide="alert-triangle" class="w-6 h-6 flex-shrink-0 font-black text-lg"></i>
                     <span class="font-bold">EMERGENCY CONTACTS:</span>
                 </div>
                 <div class="flex flex-wrap gap-4 justify-center">
@@ -180,6 +181,7 @@
             </div>
         </div>
     </section>
+    [TEMP REMOVED END] -->
 
     <!-- Footer -->
     <footer class="bg-text-main text-white py-12 px-4 md:px-8">
@@ -193,7 +195,7 @@
                 <ul class="space-y-2 text-gray-300 text-sm">
                     <li><a href="index.html" class="hover:text-home-coral transition-colors">Home</a></li>
                     <li><a href="about-us.html" class="hover:text-home-coral transition-colors">About Us</a></li>
-                    <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li>
+                    <!-- <li><a href="community.html" class="hover:text-home-coral transition-colors">Community</a></li> [TEMP REMOVED] -->
                     <li><a href="resources.html" class="hover:text-home-coral transition-colors">Resources</a></li>
                     <li><a href="posts.html" class="hover:text-home-coral transition-colors">Posts</a></li>
                 </ul>
@@ -202,15 +204,13 @@
                 <h5 class="font-bold mb-4">Get Involved</h5>
                 <ul class="space-y-2 text-gray-300 text-sm">
                     <li><a href="migrant_reg.html" class="hover:text-home-coral transition-colors">Register as Migrant</a></li>                   
-                    <li><a href="community.html" class="hover:text-home-coral transition-colors">Join Discussion</a></li>
+                    <!-- <li><a href="community.html" class="hover:text-home-coral transition-colors">Join Discussion</a></li> [TEMP REMOVED] -->
                 </ul>
             </div>
             <div>
                 <h5 class="font-bold mb-4">Support</h5>
                 <ul class="space-y-2 text-gray-300 text-sm">
                     <li><a href="about-us.html" class="hover:text-home-coral transition-colors">About Us</a></li>
-                    <li><a href="#" class="hover:text-home-coral transition-colors">Contact</a></li>
-                    <li><a href="#" class="hover:text-home-coral transition-colors">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>
@@ -221,5 +221,9 @@
 
     <script src="js/app.js"></script>
     <script src="js/organization/loadOrganizations.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

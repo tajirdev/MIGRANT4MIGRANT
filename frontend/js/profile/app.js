@@ -18,7 +18,22 @@
                 });
                 this.classList.remove('border-transparent', 'text-gray-600');
                 this.classList.add('border-home-coral', 'text-home-coral');
+
+                // Load data when specific tabs are clicked
+                if (tabName === 'Mypost') {
+                    loadMyPosts();
+                } else if (tabName === 'Myresource') {
+                    loadMyResources();
+                }
             });
+        });
+
+        // Load initial tab data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load resources on initial page load (default active tab)
+            setTimeout(() => {
+                loadMyResources();
+            }, 500);
         });
 
         function editProfile() {
@@ -26,19 +41,19 @@
             document.getElementById('editLanguage').value = document.getElementById('profileLanguage').textContent;
             document.getElementById('editNativeCountry').value = document.getElementById('profileNativeCountry').textContent;
             document.getElementById('editCurrentCountry').value = document.getElementById('profileCurrentCountry').textContent;
-            document.getElementById('editProfileModal').classList.remove('hidden');
+            animateModal(document.getElementById('editProfileModal'), true);
         }
 
         function closeEditProfileModal() {
-            document.getElementById('editProfileModal').classList.add('hidden');
+            animateModal(document.getElementById('editProfileModal'), false);
         }
 
         function openBeaMentorModal() {
-            document.getElementById('beaMentorModal').classList.remove('hidden');
+            animateModal(document.getElementById('beaMentorModal'), true);
         }
 
         function closeBeaMentorModal() {
-            document.getElementById('beaMentorModal').classList.add('hidden');
+            animateModal(document.getElementById('beaMentorModal'), false);
         }
 
         function editMentorProfile() {
