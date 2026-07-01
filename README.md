@@ -303,24 +303,82 @@ emergency_contacts: id, country, service_name, phone, available_24h
 
 ## Project Structure
 
+<details>
+<summary>Click to expand schema</summary>
+
 ```
 MIGRANT4MIGRANT/
-├── backend/
-│   ├── app/
-│   │   ├── models/         # SQLAlchemy data models
-│   │   ├── schemas/        # Pydantic validation schemas
-│   │   ├── services/       # Business logic & API services
-│   │   ├── auth/           # JWT authentication & authorization
-│   │   ├── main.py         # FastAPI app entry point
-│   │   ├── database.py     # DB connection & session management
-│   │   └── requirements.txt
-│   ├── .env                # Environment variables (never commit!)
-│   ├── venv/
-│   └── .gitignore
-├── frontend/               # HTML/CSS/JS client
-├── docs/                   # Documentation & API specs
-└── README.md
+.
+├── backend
+│   ├── .dockerignore
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── alembic.ini
+│   ├── dockerfile
+│   ├── requirements.txt
+│   ├── app
+│   │   ├── main.py
+│   │   ├── core
+│   │   │   ├── auth.py
+│   │   │   ├── authorization.py
+│   │   │   ├── database.py
+│   │   │   ├── jwt_token.py
+│   │   │   └── security.py
+│   │   ├── models
+│   │   ├── routes
+│   │   ├── schemas
+│   │   └── services
+│   └── migration
+│       ├── env.py
+│       ├── README
+│       ├── script.py.mako
+│       └── versions
+│
+├── docs
+│   └── buildplan.md
+│
+└── frontend
+    ├── about-us.html
+    ├── community.html
+    ├── index.html
+    ├── login.html
+    ├── migrant_reg.html
+    ├── posts.html
+    ├── profile.html
+    ├── resources.html
+    │
+    ├── assets
+    │   └── background_form.jpg
+    │
+    ├── js
+    │   ├── about-us.js
+    │   ├── animations.js
+    │   ├── app.js
+    │   ├── login.js
+    │   ├── migrant_reg.js
+    │   ├── otp_password_reset.js
+    │   ├── validation_input.js
+    │   ├── organization
+    │   │   └── loadOrganizations.js
+    │   ├── posts
+    │   │   └── posts.js
+    │   ├── profile
+    │   │   ├── app.js
+    │   │   ├── get.js
+    │   │   ├── get_mentor.js
+    │   │   ├── my_posts.js
+    │   │   ├── my_resources.js
+    │   │   └── security.js
+    │   └── resourcesjs
+    │       ├── get.js
+    │       └── post.js
+    │
+    └── style
+        ├── input.css
+        └── output.css
 ```
+
+</details>
 
 ---
 
